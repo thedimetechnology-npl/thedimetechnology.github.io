@@ -95,6 +95,21 @@ async function syncSeedsFromApi() {
   }
 
   try {
+    const courses = await fetchList("courses");
+    if (courses.length > 0) {
+      fs.writeFileSync(
+        path.join(root, "data", "admin", "courses.json"),
+        JSON.stringify(courses, null, 2) + "\n"
+      );
+      console.log(`Seed synced from API: courses (${courses.length})`);
+    } else {
+      console.warn("API returned no courses — keeping existing courses seed");
+    }
+  } catch (err) {
+    console.warn(`Courses seed sync failed (${err.message}) — keeping existing seed`);
+  }
+
+  try {
     const list = await fetchList("posts");
     if (list.length > 0) {
       const full = await Promise.all(list.map((p) => fetchItem("posts", p.id)));
