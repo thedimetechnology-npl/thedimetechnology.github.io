@@ -1,70 +1,16 @@
 [
   {
-    "id": "car1",
-    "title": "Full-Stack Web Developer",
-    "department": "Engineering",
-    "location": "Kathmandu, Nepal / Remote",
-    "type": "Full-time",
-    "experience": "2+ years",
-    "description": "Build and ship client web applications end-to-end with React, Next.js and Node.js. You will own features from database design to deployment and work directly with international clients in a fast-moving freelance team.",
-    "requirements": [
-      "Strong JavaScript/TypeScript with React and Next.js",
-      "Experience building REST APIs with Node.js",
-      "Comfort with Git, cloud deploys and CI/CD basics",
-      "Good written English for client communication"
-    ],
-    "applyUrl": "",
-    "active": true
-  },
-  {
-    "id": "car2",
-    "title": "UI/UX Designer",
-    "department": "Design",
+    "id": "car1790759685456",
+    "title": " IT Business Development Partner | Project-Based",
+    "department": "Marketing",
     "location": "Remote",
     "type": "Contract",
-    "experience": "1+ years",
-    "description": "Design clean, conversion-focused interfaces for web and mobile products. You will turn briefs and wireframes into polished Figma designs that developers can build without guesswork.",
+    "experience": "2+ Years",
+    "description": "The Dime Technology is looking for motivated Business Development / IT Sales professionals who can bring genuine IT projects and customers.\n\nThis is a project-based commission opportunity. There is no fixed monthly salary. Your earning depends on the business you bring.\n\nWhat We Offer:\n\n1. 10% to 15% commission on successfully closed IT projects\n2. No fixed salary limit on your earning\n3. Work remotely\n4. Long-term collaboration based on performance\n5. Technical development and delivery handled by our experienced IT team\n\nExample:\n\nIf you bring a $10,000 IT project in a month:\n\nAt 15% commission = $1,500\n\nIf you bring multiple projects, your commission increases accordingly.\n\nProjects We Handle:\n\n1. Web and Mobile App Development\n2. Custom Software Development\n3. ERP and Odoo\n4. AI Automation\n5. Business Intelligence and Power BI\n6. Cloud and DevOps\n7. Network and IT Infrastructure\n8. Dedicated Development Teams\n9. IT Outsourcing\n\nWho We Are Looking For:\n\nPeople who already have access to businesses, companies, startups, or decision-makers looking for IT solutions.\n\nYou do not need to be a developer. Your main responsibility is to identify opportunities, connect with potential clients, and bring projects. Our team will handle technical discussion, estimation, development, and delivery.\n\nIf you have a strong business network and can bring IT projects, this can become a serious income opportunity.\n\nInterested?\n\nSend us a message with your experience, industry network, and the type of IT projects you can bring.\n\nThe Dime Technology\nIT Development | Outsourcing | Digital Solutions",
     "requirements": [
-      "Strong portfolio of web/app design work",
-      "Hands-on Figma skills: components, variants, auto-layout",
-      "Understanding of responsive layout and design systems",
-      "Ability to take feedback and iterate quickly"
+      "Business Developement"
     ],
-    "applyUrl": "",
-    "active": true
-  },
-  {
-    "id": "car3",
-    "title": "Mobile App Developer (Flutter)",
-    "department": "Engineering",
-    "location": "Kathmandu, Nepal",
-    "type": "Full-time",
-    "experience": "2+ years",
-    "description": "Develop and maintain cross-platform mobile apps with Flutter. You will work on real client products, integrate REST APIs and publish releases to the Play Store and App Store.",
-    "requirements": [
-      "Production experience with Flutter and Dart",
-      "Comfortable with REST APIs, local storage and state management",
-      "Experience publishing to Play Store / App Store",
-      "Eye for smooth animations and platform conventions"
-    ],
-    "applyUrl": "",
-    "active": true
-  },
-  {
-    "id": "car4",
-    "title": "DevOps Engineer",
-    "department": "Infrastructure",
-    "location": "Remote",
-    "type": "Part-time",
-    "experience": "3+ years",
-    "description": "Own cloud infrastructure and delivery pipelines for client projects. You will automate deployments, harden security and keep environments fast, observable and cost-efficient.",
-    "requirements": [
-      "Deep knowledge of AWS or equivalent cloud platforms",
-      "Hands-on with Docker, GitHub Actions and IaC tools",
-      "Experience with Linux servers, monitoring and log tooling",
-      "Understanding of networking, SSL and DNS"
-    ],
-    "applyUrl": "",
+    "applyUrl": "https://thedimetechnology.com.np/career",
     "active": true
   }
 ]
