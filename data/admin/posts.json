@@ -1,0 +1,2237 @@
+[
+  {
+    "slug": "integrate-biometric-access-control",
+    "title": "Integrate Biometric Access Control Ecosystem",
+    "excerpt": "Development of an end-to-end biometric access control ecosystem integrating ZKTeco hardware (InBio Pro / SpeedFace), Chainway P80 Android tablet (Ionic React), Web Application (React) and Backend…",
+    "date": "2026-09-15",
+    "readTime": "5 min read",
+    "category": "Flutter",
+    "tags": [
+      "Chile",
+      "Flutter",
+      "Full-Stack",
+      "Mobile App",
+      "Node.JS",
+      "SapSG & Siga Sys"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Development of an end-to-end biometric access control ecosystem integrating ZKTeco hardware (InBio Pro / SpeedFace), Chainway P80 Android tablet (Ionic React), Web Application (React) and Backend Services (Node.js / MySQL) with ADMS Push protocol. The system enables centralized enrollment and synchronization of biometric templates (Fingerprint / Face), user management, and device command handling.",
+          "Timeline and scope were defined considering the unavailability of physical devices at the start of the project.",
+          "01 ORIGINAL SCOPE OF WORK",
+          "As per initial agreement — contracted deliverables",
+          "The following scope (A–E) represents the contractually agreed work. All items have been delivered.",
+          "A. Backend (Node.js / MySQL)",
+          "• Design and extend database tables for biometric template storage",
+          "• Develop APIs for biometric enrollment and retrieval",
+          "• Implement biometric data normalization and storage logic",
+          "• Build device synchronization and command queue system",
+          "• Implement ZKTeco ADMS Push protocol and heartbeat handling",
+          "• Generate and push biometric update commands to devices",
+          "• Implement retry, error handling, and basic logging",
+          "B. Mobile / Tablet (Chainway P80 — Android / Ionic React)",
+          "• Integrate Chainway P80 fingerprint SDK",
+          "• Capture fingerprint templates in compatible format",
+          "• Capture facial images using tablet camera",
+          "• Validate facial image quality and requirements locally",
+          "• Transmit biometric data securely to backend APIs",
+          "C. Web Application (React + USB Biometric Devices)",
+          "• Integrate Web app with USB fingerprint readers via local agent or SDK",
+          "• Capture fingerprint data from supported USB devices",
+          "• Normalize fingerprint data to BASE64 format",
+          "• Implement Web-based biometric enrollment user interface",
+          "• Send biometric data securely to backend",
+          "D. ZKTeco Devices (SpeedFace / InBio)",
+          "• Register and manage biometric devices",
+          "• Sync users and biometric templates to devices via ADMS Push",
+          "• Handle device heartbeat, offline states, and re-sync logic",
+          "E. Testing, Deployment & Support",
+          "• Perform end-to-end testing with all hardware components",
+          "• Support User Acceptance Testing (UAT)",
+          "• Deploy backend services to client environment",
+          "• Provide basic documentation and system handover",
+          "• Provide post-delivery bug-fix support during warranty period",
+          "02 ADDITIONAL WORK DELIVERED BEYOND ORIGINAL SCOPE",
+          "Value-added modules — not in initial scope, delivered to make the system production-ready at no additional cost",
+          "NOTE: All items in this section were NOT part of the original requirement. They were researched, designed and delivered as extended functionality to ensure a complete, market-ready product.",
+          "F1 — WhatsApp Business API Integration",
+          "Scope originally had no WhatsApp channel — complete flow built from scratch.",
+          "• Meta Developer account setup, Business verification and app configuration",
+          "• Privacy Policy creation & hosting for verification (goaliepass.com/privacy-policy.html)",
+          "• Test phone number configuration and OTP validation flow",
+          "• Automated QR code delivery via WhatsApp upon invitation generation",
+          "• Meta submission and 7–10 day review process management for production go-live",
+          "F2 — QR Code / Invitation System",
+          "Original scope covered only biometric (fingerprint/face) — QR/NFC invites were added.",
+          "• Dynamic QR generation for doors with expiry logic (e.g., Valido hasta)",
+          "• Invitation API development and backend integration",
+          "• QR display in resident/visitor mobile app (app-debug.apk)",
+          "• Validation via Wiegand readers connected to InBio controllers",
+          "• Offline-capable QR validation after initial sync",
+          "F3 — License Plate Reader (LPR) — Patente Vehicular",
+          "Not mentioned in original image — new feature branch delivered.",
+          "• IP camera integration for automatic plate detection",
+          "• Database design: patent_logs and authorized plate registry tables",
+          "• Flow: Plate capture → Check authorized user → Open door if valid → Log event",
+          "• Dedicated QA environment setup for LPR testing",
+          "• Integration ready for both live dashboard and Phase 3 web",
+          "F4 — Multi-Language Support (i18n)",
+          "Not in scope — requested separately and implemented.",
+          "• Localization framework for P80 tablet app (Ionic React)",
+          "• Language selection: English, Spanish (AI-translated), Nepali for testing",
+          "• Extensible structure to add further languages without code changes",
+          "F5 — Roles, Buildings, Units & Zone Templates",
+          "Confirmed as Phase 3 addition — beyond initial enrollment scope.",
+          "• Edificios-Unidades (Buildings-Units) hierarchical management",
+          "• Zone Templates for reusable access permission sets",
+          "• One-tap magic link for password reset (email / WhatsApp)",
+          "• Role-based filtering: Resident-only view in recorder app, Admin-only management",
+          "• User assignment: same unit assignable to multiple users",
+          "F6 — DevOps / Infrastructure Automation",
+          "Original scope: 'Deploy backend services to client environment' only — full CI/CD & infra built.",
+          "• CI/CD pipeline with GitHub organization (MarginTop-Solutions) integration",
+          "• DNS migration: GoDaddy → Cloudflare nameserver management",
+          "• AWS Certificate Manager (ACM) SSL provisioning & auto-renewal",
+          "• S3 bucket setup for face image storage",
+          "• Production deployment: dashboard.goaliepass.com with Elastic Beanstalk",
+          "• Parallel environment management (ZKTeco-QA-env cloning & isolation)",
+          "F7 — Offline Consistency & Hardware Wiring Diagnostics",
+          "Beyond basic logging — extensive field hardware support.",
+          "• Diagnosis of RS485 EXT LED green-only (no slave response) and Wiegand format errors (Event 42/27, VerifyType 200/4)",
+          "• Physical wiring correction (orange/green data wires, black/red power)",
+          "• Validation that fingerprint + QR now work offline after sync",
+          "• Multiple technician visit coordination and live debugging",
+          "• Offline event buffering and re-sync on reconnection",
+          "Outcome: Fingerprint and QR now validate locally without internet; events sync when online.",
+          "F8 — ZKFinger SDK License R&D and Workaround Architecture",
+          "Unplanned R&D — critical to unblock fingerprint flow.",
+          "• Evaluation of ZKFinger Windows Standard SDK 5.3.0.33 vs 5.0, license portal research",
+          "• Confirmed Linux SDK has no available license/hardware",
+          "• Built always-on Windows PC service to receive P80 image → convert to TemplateV10 → push to InBio",
+          "• Documented that either SDK license OR hardware attachment is mandatory — provided hardware-based solution",
+          "Outcome: Fingerprint enrollment now works end-to-end without additional license purchase.",
+          "F9 — Branding & UX Polish",
+          "Usability improvements beyond core biometrics.",
+          "• Rebrand: Bioacces → Goaliepass Bio, custom app icon",
+          "• UX: Single-finger enrollment (vs 10), Login 1234 / Logout, search fix, status OK indicator",
+          "• Settings screen with API endpoint switching (including ngrok) and App Center TLK1NC USB default handling"
+        ]
+      }
+    ],
+    "id": "integrate-biometric-access-control",
+    "url": "https://freelancer-shahid.blogspot.com/2026/09/integrate-biometric-access-control.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_dlORvyuP0NLIjX-j_HhH-H8aHV-FXXHLKoGxcnWtx9Fo3usLZiI0oqLwRLp1DhbptxZMwf8i4ukEBc5-bS5klH0LV7kznfFrk20VaJFbDhqIFiX5Ic2lOF52dRtU6wLF0gdipinsByv6XzR6c2Pm2TosZmJEhxlQuRg7-83JNFYp6s9V5_ovy5HPdao/w640-h358/Integrate%20Biometric%20Access%20Control%20Ecosystem.jpeg"
+  },
+  {
+    "slug": "fortisiem-expert-for-log-enhancement",
+    "title": "FortiSIEM Expert for Log Enhancement and Alert Fine Tuning",
+    "excerpt": "We are seeking a FortiSIEM expert to enhance our current security information and event management system.The project involves analyzing existing syslog data sources including firewall logs, VPN…",
+    "date": "2026-09-15",
+    "readTime": "1 min read",
+    "category": "Network and System",
+    "tags": [
+      "India",
+      "Network and System"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are seeking a FortiSIEM expert to enhance our current security information and event management system.The project involves analyzing existing syslog data sources including firewall logs, VPN logs, proxy logs, and router/switch logs to identify and fine-tune alerts, reducing false positives and false negatives.The freelancer will also be responsible for creating new detection rules based on log analysis to ensure accurate and timely alerts.Additionally, customization of log parsing is required to handle unmapped and unparsed data effectively.Deliverables include improved alert accuracy, new rule creation, and enhanced parsing configurations.We expect the project to be completed within 1 week."
+        ]
+      }
+    ],
+    "id": "fortisiem-expert-for-log-enhancement",
+    "url": "https://freelancer-shahid.blogspot.com/2026/09/fortisiem-expert-for-log-enhancement.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9ni_HavOJl1hflCHD3fiLcOabDn5Bqdc5Ms4b9iGY1qNv0yjSq83E4kJyHi9GjwvzTHawfzTf43ZvX2FNiZyNEREFaR0t7OyvHuJLu5HWsoFKC4BO9vZP9-wKMX_gHf24exV4RIIAR2ylCFabKypvonAixJbdoKzkvH0XP24Bia9hM68JnI-YaHFJLDg/w640-h360/FortiSIEM%20Expert%20for%20Log%20Enhancement%20and%20Alert%20Fine%20Tuning.png"
+  },
+  {
+    "slug": "cicd-pipeline-migration-to-teamcity",
+    "title": "CI/CD Pipeline Migration to TeamCity Cloud & S3-Based Artifact Deployment",
+    "excerpt": "1. Core Objective:",
+    "date": "2026-09-08",
+    "readTime": "1 min read",
+    "category": "DevOps",
+    "tags": [
+      "DevOps",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "1. Core Objective:",
+          "Replace SMB/Shared folder artifact delivery (\\\\devops\\pipeline\\...) with versioned Amazon S3 approach - s3://<bucket>/modules/builds/<VERSION>/",
+          "Keep existing deployment logic unchanged: Local Stage -> IIS (bin, views, scripts, content)",
+          "Enable versioned deployments, rollback and eliminate SMB dependency",
+          "2. Build System (TeamCity):",
+          "Migrate 5+ Repos from GitHub to Bitbucket: B2GNow-IAC, B2GNow-api, B2GNow-sdk, b2g-core, b2g-review-hub, FAD, Intranet, SPA, B2G-AI-Control-Center, Certifier Agent",
+          "Setup TeamCity pipelines (DEV/UAT/QA/MAIN) for all projects",
+          "Implement VERSION = %build.number% and S3 upload step: aws s3 sync / upload to s3://<bucket>/modules/builds/#{Version}/",
+          "Convert B2GNow-IAC to GitOps approach",
+          "3. Deployment System (Octopus Deploy):",
+          "Change source from \\\\devops\\pipeline\\... to aws s3 sync s3://<bucket>/modules/builds/#{Version}/ C:\\pipeline\\blackcat\\modules\\",
+          "Fix deployment targets: C:\\inetpub\\wwwroot\\#{WebRoot.FolderName}\\wwwroot (dev/qa/test/stage/prod scoped)",
+          "Handle web.config protection, IAM roles (s3:ListBucket, s3:GetObject)",
+          "4. Cloud Migration:",
+          "Migrate all TeamCity + Octopus projects to TeamCity Cloud with naming convention B2G- (B2G projects) and BC- (BlackCat projects)",
+          "Setup Linux Build Agent B2G-BUILD-LINUX-03 for Docker Linux images (python:3.14.2-slim)",
+          "Resolve licensing (130-135 config limits), committer slots (32 seats), MSBuild 18->17, agent compatibility",
+          "5. Extended Standardization",
+          "Apply same S3 pattern to eComply (SQL scripts, SSRS files) and B2G Now (ASP project) using centralized shared S3 bucket for BlackCat, eComply, B2G Now",
+          "Flow: Build -> Publish artifact to S3 -> Target server downloads from S3 -> Deploy"
+        ]
+      }
+    ],
+    "id": "cicd-pipeline-migration-to-teamcity",
+    "url": "https://freelancer-shahid.blogspot.com/2026/09/cicd-pipeline-migration-to-teamcity.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHXuAcS6Vc0z651dOomnX728hJ8rh8E17J1VGsSlVvVEjQdK-sYvlDjFqE852mHCvmRm2YUVeQoC1HtDSSE_tjDG2nR9waqXVxx45rCLnRXb_EeqDz7dkzuQP-fiZi-2hlA75RHRT7Uo4aq-BNVtd_YCL5M1iEfFSOQC4u6KIQWzIwDZL21ugeVPcPUM4/w640-h360/CICD%20Pipeline%20Migration%20to%20TeamCity%20Cloud%20&amp;%20S3-Based%20Artifact%20Deployment.png"
+  },
+  {
+    "slug": "urgent-devops-engineer-for-server-setup",
+    "title": "Urgent DevOps Engineer for Server Setup",
+    "excerpt": "We are urgently looking for an experienced DevOps engineer to handle server setup and configuration.The ideal candidate should have a minimum of 3 years of experience and proven expertise in managing…",
+    "date": "2026-08-20",
+    "readTime": "1 min read",
+    "category": "DevOps",
+    "tags": [
+      "Awwal Tech",
+      "DevOps",
+      "India"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are urgently looking for an experienced DevOps engineer to handle server setup and configuration.The ideal candidate should have a minimum of 3 years of experience and proven expertise in managing servers that handle heavy traffic.Responsibilities include setting up, maintaining, and optimizing server infrastructure to ensure high availability and performance."
+        ]
+      }
+    ],
+    "id": "urgent-devops-engineer-for-server-setup",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/urgent-devops-engineer-for-server-setup.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUa6LGJhz9xox9BO6iCMMkEJkKUCBWcV_5dGZiEbIe3HcF50Lw8KjiLq4s99E0KxOUvWSQd3kbk-KnpIkBbmG80xlrAOeFrGZWGAZnecwO5Moq7Xv4cn7TL815ZzFzSsMYWqRGaBeLPhktiFbmNQxDyske27TTbqzEbKJ2ZBEYVWc2YcHsPnfKpEXFFDY/w640-h360/NoteGPT_Image_20260820121952.png"
+  },
+  {
+    "slug": "skills-required-php-node",
+    "title": "Core Payment & Insurance Modules",
+    "excerpt": "We require development of an Agent Commission Payment History module including partial commission payment and pending balance logic. The project includes implementing payment history with CSV/Excel…",
+    "date": "2026-08-15",
+    "readTime": "1 min read",
+    "category": "Php",
+    "tags": [
+      "India",
+      "Keam Softwares",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We require development of an Agent Commission Payment History module including partial commission payment and pending balance logic. The project includes implementing payment history with CSV/Excel export functionality and a toggle for Payment Failed Access permission. Additionally, a Health Insurance module needs to be created based on the existing Funeral Insurance structure. Required tasks include database design, role-based access control implementation, thorough testing, and staging deployment."
+        ]
+      }
+    ],
+    "id": "skills-required-php-node",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/skills-required-php-node.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhU2zgWwoS4o4sOVOZLYycYrE_U2bPBSNaBjcsdKwGVlbbVL80NbNZJZ3irAVPRQFcboVJUF_xjB_GKcABle36C5fkbNhRR1Fgm8W4VwUR4qzlN8jAk_dGVaTtKMJQJZdlur80DNFM0T5dbJv2nkPbTinQLNkNjO8o7U9_HVjPke0s0gMztSskTrc6PFBo/w640-h360/NoteGPT_Image_20260815104928.png"
+  },
+  {
+    "slug": "openai-api-integration-ai-assistant",
+    "title": "OpenAI API Integration - AI Assistant Demo Project",
+    "excerpt": "Provide step-by-step OpenAI API Key Guide (OpenAI_API_Key_Guide.pdf + Video https://www.youtube.com/watch?v=7GPnkJFPXpo)",
+    "date": "2026-08-12",
+    "readTime": "1 min read",
+    "category": "AI",
+    "tags": [
+      "AI",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Provide step-by-step OpenAI API Key Guide (OpenAI_API_Key_Guide.pdf + Video https://www.youtube.com/watch?v=7GPnkJFPXpo)",
+          "Guide client on how to generate and share API key - Mandatory to commence project",
+          "Handle API tier limitations - Tested with free-tier model (frequent usage limit) - Proposed moving to paid API if needed",
+          "Develop and prepare Project Demo - Ready for demo"
+        ]
+      }
+    ],
+    "id": "openai-api-integration-ai-assistant",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/openai-api-integration-ai-assistant.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1T4ZcKZRGXuugMlZfkVLJehw9hM-yhL3OaHybpvw-6ibHNltgppmAiVMGfq3Fns8y_t7R4F3xWEe68XzpqIcGMKb7-Ub85o5VYoMH-gH6qoN9WAwyT_NGjnBsMJ7QoXhnpRTVSinZ6rzGiMWMhJIMec7AQncv0XinSZssLTFD8q9looKUrSSggQCZE78/w640-h360/NoteGPT_Image_20260914172143.png"
+  },
+  {
+    "slug": "app-web-and-mobile-for-security-zkteco",
+    "title": "App Web and Mobile for Security ZKTEco",
+    "excerpt": "Scope of work covered:a.Backend (Node.js / MySQL)i.Design and extend database tables for biometric templateii.Develop APIs for biometric enrollment and retrievaliii.Implement biometric data…",
+    "date": "2026-07-28",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Chile",
+      "Flutter",
+      "Full-Stack",
+      "Mobile App",
+      "SapSG & Siga Sys",
+      "ZKTEco"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Scope of work covered:a.Backend (Node.js / MySQL)i.Design and extend database tables for biometric templateii.Develop APIs for biometric enrollment and retrievaliii.Implement biometric data normalization and storage logiciv.Build device synchronization and command queue systemv.Implement ZKTeco ADMS Push protocol and heartbeat handlingvi.Generate and push biometric update commands to devicesvii.Implement retry, error handling, and basic loggingb.Mobile / Tablet (Chainway P80 – Android / Ionic React)i.Integrate Chainway P80 fingerprint SDKii.Capture fingerprint templates in compatible formatiii.Capture facial images using tablet cameraiv.Validate facial image quality and requirements locallyv. Transmit biometric data securely to backend APIsc.Web Application (React + USB Biometric Devices)i.Integrate Web app with USB fingerprint readers via local agent or SDKii.Capture fingerprint data from supported USB devicesiii.Normalize fingerprint data to BASE64 formativ.Implement Web-based biometric enrollment user interfacev. Send biometric data securely to backendd.ZKTeco Devices (SpeedFace / InBio)i.Register and manage biometric devicesii.Sync users and biometric templates to devices via ADMS Pushiii.Handle device heartbeat, offline states, and re-sync logice.Testing, Deployment & Supporti.Perform end-to-end testing with all hardware componentsii.Support user acceptance testing (UAT)iii.Deploy backend services to client environmentiv.Provide basic documentation and system handoverv. Provide post-delivery bug-fix support during warranty period"
+        ]
+      }
+    ],
+    "id": "app-web-and-mobile-for-security-zkteco",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/app-web-and-mobile-for-security-zkteco.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg2v-7RvYBJL3yGKVfaOf4l1d9xKU5eB3j0nSA6G1Py6QE-sI6SLQZD2sdzB5U-tVLdbNU3HaiqubnjpqdDnkMjLbfEd7l2gl8LsRboB9GdC9BwM7pjBluxpvxrUMfzjNEEd3P9sPIQPf5GYrzxUtmpXNP0Bxb4ZCApQMrvGqD_nl4wN1rduzw14z0eUmc/w640-h360/App%20web%20and%20mobile%20for%20security%20zkteco.png"
+  },
+  {
+    "slug": "warehouse-management-android-app",
+    "title": "Warehouse Management Android App Development",
+    "excerpt": "Develop a Warehouse Management Android application with distinct login roles for Admin, Operator, and Cashier.Features include managing warehouses, assigning operators and cashiers to warehouses, and…",
+    "date": "2026-06-28",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "India",
+      "Keam Softwares",
+      "Mobile App"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Develop a Warehouse Management Android application with distinct login roles for Admin, Operator, and Cashier.Features include managing warehouses, assigning operators and cashiers to warehouses, and handling package scanning and delivery processes.The app should provide warehouse-wise reports on upcoming, delivered, and delayed packages.Integrate third-party APIs for package information, and implement CRUD APIs for warehouses, operators, and cashiers.Include messaging capabilities via SMS, Email, and WhatsApp to notify package owners."
+        ]
+      }
+    ],
+    "id": "warehouse-management-android-app",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/warehouse-management-android-app.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRAhjRNgqlABIR2FzTRkOi9FRIpzllIb9HsL3aBe5Qm6dqlm-0RxKYPeCp__YmF0ekwSao7UUid5GKkVqW0h_Z9-gO-w5sSDAoPpN5Z5PDGEM7BrqPAl6x1CUNyYOdVKRTmmwp6W33D1X9O8yoTM2_wajQML5qtxN7cvdJLT2AWEMd1nErpxVWnw8Rgi8/w640-h360/Warehouse%20Management%20Android%20App%20Development.jpg"
+  },
+  {
+    "slug": "enhance-ats-with-hierarchy-workflow",
+    "title": "Enhance ATS with Hierarchy, Workflow & Bulk Upload",
+    "excerpt": "We are looking for an experienced developer to enhance our existing Applicant Tracking System (ATS) application.The enhancements include implementing hierarchy management, approval workflow, and bulk…",
+    "date": "2026-06-26",
+    "readTime": "1 min read",
+    "category": "Php",
+    "tags": [
+      "India",
+      "Mazenet Solution",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are looking for an experienced developer to enhance our existing Applicant Tracking System (ATS) application.The enhancements include implementing hierarchy management, approval workflow, and bulk resume upload functionality.The ideal candidate should have experience with ATS systems, workflow automation, and handling bulk data uploads efficiently."
+        ]
+      }
+    ],
+    "id": "enhance-ats-with-hierarchy-workflow",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/enhance-ats-with-hierarchy-workflow.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgg88L-1kMj-0XZIh9gwSfog-1JJgD43iz3_hhV1GUS9WDkMKP1W7C7bm99QPkjsFLPEQzir5dKEG84MuSImTmQrYpJ9c6tnt66KE__34TB1IhT1mdWtztvKIRQEkmJ0Pq7LR-UWQSO_gS2o96YdRDF7CNYc1cThtA58mjGiPX4UD3Bnv4YJMJPp9fzi6w/w640-h360/ATS%20Application%20Tracking%20System.jpg"
+  },
+  {
+    "slug": "experienced-magento-developer-needed",
+    "title": "Experienced Magento Developer Needed",
+    "excerpt": "We are seeking a skilled Magento developer with hands-on experience to work on our eCommerce platform.Project Scope & Key Tasks:- Develop, customize, and maintain Magento-based eCommerce websites.-…",
+    "date": "2026-06-20",
+    "readTime": "1 min read",
+    "category": "Magento",
+    "tags": [
+      "India",
+      "Magento",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are seeking a skilled Magento developer with hands-on experience to work on our eCommerce platform.Project Scope & Key Tasks:- Develop, customize, and maintain Magento-based eCommerce websites.- Implement new features and optimize existing functionalities.- Troubleshoot and resolve technical issues promptly.- Ensure website performance, security, and scalability.Deliverables:- Fully functional Magento eCommerce site with requested features.- Clean, well-documented code and deployment instructions.- Post-deployment support and bug fixes as needed.Recommended Tools & Technology:- Magento platform (preferably Magento 2).- PHP, MySQL, HTML, CSS, JavaScript.- Version control systems like Git.Please provide examples of previous Magento projects and demonstrate your expertise in Magento development."
+        ]
+      }
+    ],
+    "id": "experienced-magento-developer-needed",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/experienced-magento-developer-needed.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHmiPhnty8EQsnyDSGDqcXbX88qXQq-uCxVJuwhdRHaLt7vERL4GMzlg5IMoWs6vVQIGknwoW5fxHYllV8E_sVmTXtR0LAhZzFMVlf_EJfQNHSv_ehssuluQgVotV_mi1_syUEoB3QKNQL1d1E0BmDk7RHhh3lmE8HJ0gtEkR3PVjG2emQpUrpyfXClZI/w640-h360/Experienced%20Magento%20Developer%20Needed.jpg"
+  },
+  {
+    "slug": "python-developer-needed-bulk-image",
+    "title": "Python Developer Needed – Bulk Image Downloader",
+    "excerpt": "OverviewI need an experienced Python developer to build and run a script that bulk-downloads TIFF image files from a large public image catalog via its JSON API. The collection contains 41,500…",
+    "date": "2026-05-28",
+    "readTime": "2 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Cyprus",
+      "Programming Language",
+      "Python"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "OverviewI need an experienced Python developer to build and run a script that bulk-downloads TIFF image files from a large public image catalog via its JSON API. The collection contains 41,500 images.What needs to be done- Paginate through the full collection using a public JSON API (no API key required)- For each item, fetch its resource metadata to identify available TIFF files- Select and download the smallest TIFF variant per item- Select and download the metadata- Script must be resumable (if interrupted, it continues from where it left off)- Basic error logging for any failed or missing itemsI will provide- A base script generated with Claude AI — it covers the core logic but needs a developer to review, test, fix, and get it fully working in a real environment- Full API details and documentation upon hiring- Storage location / server for the download to run onRequirements- Solid Python experience (requests, file I/O, APIs)- Familiarity with REST/JSON APIs- Ability to handle rate limiting and retries correctly- Comfort working with AI-generated code (reviewing, debugging, and improving it)- Deliver: final working script + confirmation that the full run completed + error log"
+        ]
+      },
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I need an experienced Python developer to build and run a script that bulk-downloads TIFF image files from a large public image catalog via its JSON API. The collection contains 41,500 images.What needs to be done- Paginate through the full collection using a public JSON API (no API key required)- For each item, fetch its resource metadata to identify available TIFF files- Select and download the smallest TIFF variant per item- Select and download the metadata- Script must be resumable (if interrupted, it continues from where it left off)- Basic error logging for any failed or missing items",
+          "FEEDBACK"
+        ]
+      },
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Downloading a batch of photos. Last batch was around 40000 images and we paid $ 50. This time around 25000 images so the price could be $ 31."
+        ]
+      }
+    ],
+    "id": "python-developer-needed-bulk-image",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/python-developer-needed-bulk-image.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB45YO6KIlcoNtwuehFQk4gDU5GwLwYpFT_fjWeNWXlO4c2Nq83vUqBjjvoln_hTUkY8bkXuwMcik45MBY3RDIYkpbbwHu75j5elNW3V2AlZuX_eSJwdj_UAmMpNSXuvHo5BgTOQduC-UAp7OAFu5FuzZj1IGCbPpQWQuhkCL3l2pArSF4c_IhRkdeLEg/w640-h360/Bulk%20Image%20Downloader.jpg"
+  },
+  {
+    "slug": "python-and-terraform-expert-needed-for",
+    "title": "Python and Terraform Expert Needed for Immediate Start",
+    "excerpt": "We are seeking an expert in Python and Terraform to join our project immediately.The ideal candidate should have strong experience in Python programming and Terraform infrastructure as code.This is a…",
+    "date": "2026-04-22",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Programming Language",
+      "Python",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are seeking an expert in Python and Terraform to join our project immediately.The ideal candidate should have strong experience in Python programming and Terraform infrastructure as code.This is a fixed project with an urgent hiring timeline."
+        ]
+      }
+    ],
+    "id": "python-and-terraform-expert-needed-for",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/python-and-terraform-expert-needed-for.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5eyXwrnHRWOr2ux6XeR5aiEGg5IGs-DsU2MSO7a5j7s8Ft4_0ARtJ-GH8fQujfo0XVQ9s3dlwQLNnIqohKTCyYjD47coDmGk23vF2C9tycm3E5TNr-SYHtpUbP_MVlV9hdfe_UqbRvz8Rxg2HAmNW7HTu3W0xDOS9JENHTaYo4yNYm-JqACWAHuzTQb4/w640-h360/Python%20and%20Terraform%20Expert.jpg"
+  },
+  {
+    "slug": "healthcare-recruitment-website-and",
+    "title": "Healthcare Recruitment Website and Management System",
+    "excerpt": "We are looking for an experienced web development team or full-stack developer to build a professional healthcare recruitment website and recruitment management system similar in concept to Clinical…",
+    "date": "2026-04-15",
+    "readTime": "5 min read",
+    "category": "Full-Stack",
+    "tags": [
+      "Australia",
+      "Full-Stack",
+      "Next.JS",
+      "React.JS",
+      "TI Systems"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are looking for an experienced web development team or full-stack developer to build a professional healthcare recruitment website and recruitment management system similar in concept to Clinical Talent Australia.",
+          "The system will connect healthcare professionals looking for jobs with healthcare facilities looking for qualified staff.",
+          "This is not only a corporate website. The project includes a public website, job portal, candidate registration, employer staffing requests, candidate document management, recruitment workflow, Talent Portal and Admin Panel.",
+          "The developer should have experience building recruitment, job portal, HR, healthcare or similar management systems.",
+          "Scope of Work",
+          "1. Public Website",
+          "Modern, professional and responsive design",
+          "Home page",
+          "About Us",
+          "Services",
+          "Find a Job",
+          "Find Talent / Request Staff",
+          "Testimonials",
+          "Contact Us",
+          "FAQ",
+          "Privacy Policy",
+          "Terms & Conditions",
+          "Header and footer management",
+          "Mobile, tablet and desktop compatibility",
+          "2. Job Portal",
+          "Job listing page",
+          "Job search",
+          "Job filtering by category, location, experience and employment type",
+          "Job details page",
+          "Apply for Job",
+          "Candidate registration",
+          "CV/resume upload",
+          "Application confirmation",
+          "Application status tracking",
+          "3. Candidate/Talent Registration",
+          "Candidates should be able to:",
+          "Create an account",
+          "Complete personal profile",
+          "Add professional information",
+          "Select healthcare category/specialty",
+          "Add experience and qualifications",
+          "Upload CV and supporting documents",
+          "Provide availability",
+          "Select preferred location",
+          "Submit profile for verification",
+          "Login to Talent Portal",
+          "4. Candidate/Talent Portal",
+          "Candidate dashboard",
+          "Profile management",
+          "Document management",
+          "Available jobs",
+          "Job applications",
+          "Application status",
+          "Availability",
+          "Notifications",
+          "Account settings",
+          "Password management",
+          "5. Employer / Request Staff",
+          "Employers should be able to submit staffing requirements including:",
+          "Facility/company information",
+          "Contact person",
+          "Location",
+          "Healthcare professional required",
+          "Number of staff",
+          "Required experience",
+          "Employment type",
+          "Shift requirements",
+          "Start date",
+          "Contract duration",
+          "Additional requirements",
+          "6. Admin Panel",
+          "Admin should be able to manage:",
+          "Dashboard",
+          "Candidates",
+          "Candidate profiles",
+          "Candidate documents",
+          "Employers",
+          "Staffing requests",
+          "Jobs",
+          "Job applications",
+          "Shortlisted candidates",
+          "Recruiters",
+          "Testimonials",
+          "Website content",
+          "Categories",
+          "Notifications",
+          "Reports",
+          "User roles and permissions",
+          "7. Recruitment Workflow",
+          "The system should support:",
+          "Candidate registration",
+          "Candidate verification",
+          "Document verification",
+          "Job application",
+          "Recruiter review",
+          "Candidate shortlisting",
+          "Interview/status management",
+          "Employer staffing request",
+          "Candidate matching",
+          "Placement/status management",
+          "8. Document Management",
+          "The system should allow candidates to upload relevant documents such as:",
+          "CV",
+          "Identification",
+          "Qualifications",
+          "Professional registration",
+          "Certificates",
+          "Compliance documents",
+          "Other supporting documents",
+          "Admin should be able to review, approve, reject and track documents.",
+          "9. Notifications",
+          "Email notifications should be implemented for:",
+          "New candidate registration",
+          "Job application",
+          "Application status update",
+          "Candidate approval/rejection",
+          "Document approval/rejection",
+          "New employer request",
+          "Candidate shortlisting",
+          "Password reset",
+          "Other important recruitment activities",
+          "10. CMS and SEO",
+          "Admin should be able to manage website content without developer assistance.",
+          "Page content",
+          "Services",
+          "Testimonials",
+          "FAQs",
+          "Job categories",
+          "Images",
+          "SEO title and description",
+          "Sitemap",
+          "Basic SEO setup",
+          "Google Analytics/Search Console integration",
+          "System Workflow",
+          "Candidate Workflow",
+          "Website → Find Job → Register → Complete Profile → Upload Documents → Admin Verification → Candidate Approved → Talent Portal → Browse Jobs → Apply → Recruiter Review → Shortlist → Interview/Selection → Placement",
+          "Employer Workflow",
+          "Website → Request Staff → Submit Requirement → Admin Review → Candidate Search/Matching → Shortlist → Employer Review → Selection → Placement",
+          "Admin Workflow",
+          "Admin Login → Dashboard → Manage Candidates/Employers/Jobs → Verify Documents → Review Applications → Candidate Matching → Shortlisting → Recruitment Management → Placement → Reports",
+          "Required Skills",
+          "Developer/team should have strong experience in:",
+          "Full-stack web development",
+          "React / Next.js or equivalent frontend technology",
+          "Node.js / Laravel / PHP or equivalent backend technology",
+          "MySQL/PostgreSQL",
+          "REST API development",
+          "Authentication and role-based access",
+          "Admin dashboard development",
+          "Job/recruitment portal development",
+          "File/document upload and management",
+          "Email notification integration",
+          "Responsive UI/UX",
+          "Cloud deployment",
+          "Website security",
+          "SEO",
+          "Experience with recruitment, HRMS, healthcare staffing or job portal systems will be preferred.",
+          "Expected Deliverables",
+          "Complete responsive public website",
+          "Job listing and application system",
+          "Candidate registration system",
+          "Candidate/Talent Portal",
+          "Employer staffing request system",
+          "Admin Panel",
+          "Candidate and document management",
+          "Job and application management",
+          "Recruitment workflow",
+          "Notification system",
+          "CMS",
+          "Database and APIs",
+          "Secure authentication and role management",
+          "SEO setup",
+          "Production deployment",
+          "Source code and database",
+          "Basic technical documentation",
+          "Testing and bug fixing",
+          "Technology",
+          "Developer can recommend the most suitable technology stack, but the proposed architecture should be scalable, secure and maintainable.",
+          "Preferred options:",
+          "Frontend: React / Next.js",
+          "Backend: Node.js / Laravel / PHP",
+          "Database: PostgreSQL / MySQL",
+          "Hosting: AWS / Azure / suitable cloud platform",
+          "The developer should explain the proposed technology stack and architecture in the proposal.",
+          "Timeline",
+          "Expected development period: 8 to 12 weeks, depending on the final scope and proposed architecture.",
+          "The project can be divided into milestones:",
+          "Milestone 1: UI/UX and public website",
+          "Milestone 2: Job portal and candidate registration",
+          "Milestone 3: Talent Portal and employer request system",
+          "Milestone 4: Admin Panel and recruitment management",
+          "Milestone 5: Testing, deployment and final delivery",
+          "Budget Expectation",
+          "Expected budget: USD 2,500 to USD 5,000",
+          "Please provide your fixed project quotation based on the complete scope.",
+          "If you believe the requirements need a higher budget, clearly explain the additional cost and what is included.",
+          "Do not provide an unrealistic low quotation just to win the project. We are looking for a developer/team who can deliver a production-ready system.",
+          "Important Requirements",
+          "Please share examples of similar recruitment, HR, job portal or management systems you have developed.",
+          "Explain your proposed technology stack.",
+          "Mention estimated delivery time.",
+          "Provide milestone-wise pricing.",
+          "The source code must be delivered to the client.",
+          "The system must be responsive and production-ready.",
+          "Proper database structure and API documentation should be provided.",
+          "Developer should provide testing and bug fixing before final delivery.",
+          "Third-party paid services, if required, should be clearly mentioned separately.",
+          "Please mention any features you believe should be added or modified after reviewing the requirements.",
+          "We are looking for a long-term developer/team who can continue with future improvements and maintenance after the initial development."
+        ]
+      }
+    ],
+    "id": "healthcare-recruitment-website-and",
+    "url": "https://freelancer-shahid.blogspot.com/2026/04/healthcare-recruitment-website-and.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcrIvECgEn2vlUwsYPjIFAYqi_htgHqo0O1u9_eyKASEU9H3pTEuIJYSIUqvhW1957oeQViI8t8-CwCBI68vqfh0F0soOzgvAmyFXcGaIZE09fQpm70kNmWKoAMrW_q06NpxU-1NvkWf5aoIXjiJi5KnKaF6KHKReezQgkCdOhFmqYEUQ1LIdaUVp8hqY/w640-h317/Clinical%20Talent%20Australia.png"
+  },
+  {
+    "slug": "isp-network-engineer-required-for",
+    "title": "ISP Network Engineer Required for Betting App Blocking",
+    "excerpt": "We are looking for an experienced Network Engineer / ISP Specialist to implement a network-level solution for blocking unauthorized betting websites and applications for an ISP in Nepal.",
+    "date": "2026-04-04",
+    "readTime": "1 min read",
+    "category": "Network and System",
+    "tags": [
+      "Infonet Communication",
+      "Nepal",
+      "Network and System"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are looking for an experienced Network Engineer / ISP Specialist to implement a network-level solution for blocking unauthorized betting websites and applications for an ISP in Nepal.",
+          "Scope of Work",
+          "DNS and domain-based betting site blocking",
+          "IP-based filtering where required",
+          "Firewall and network-level filtering",
+          "Dynamic blocklist management",
+          "Whitelist management",
+          "Centralized admin/dashboard for managing rules",
+          "Blocking logs and basic reporting",
+          "Integration with existing ISP infrastructure",
+          "Testing and production deployment",
+          "The solution should support changing betting domains/IPs and should have minimum impact on normal Internet traffic.",
+          "Required Skills",
+          "ISP network experience",
+          "MikroTik",
+          "Huawei networking",
+          "DNS",
+          "Firewall",
+          "Linux",
+          "CGNAT",
+          "Network traffic filtering",
+          "Network automation",
+          "Experience with Nepal ISP/FTTH networks will be preferred.",
+          "Deliverables",
+          "Complete blocking solution",
+          "Network configuration/scripts",
+          "Centralized management",
+          "Monitoring/logging",
+          "Deployment",
+          "Documentation",
+          "Testing and bug fixing",
+          "Timeline & Budget",
+          "Timeline: 2 to 4 Days",
+          "Budget: Please submit your fixed quotation based on the existing network infrastructure.",
+          "Please mention your relevant ISP projects, proposed solution, timeline and cost when applying."
+        ]
+      }
+    ],
+    "id": "isp-network-engineer-required-for",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/isp-network-engineer-required-for.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZeRLfqIib2hyphenhyphenhyasmhiPCcLJ7VuaojPWBZrLe2XZwOt7gMzgLn5ORb2l_WLltIzFxeGB5m1UTZIohwFCB6Hv5lsSbWs0mPGZaSMFainodNvdTsVythUd6-j9j30Hvljg1Xot0yaC7iwBwSZWBgNdmiYbrTzxQWqs9MXEiG-cySvKBDWmJ63F4v119fVM/w640-h408/ChatGPT%20Image%20Aug%2014,%202026,%2011_04_47%20AM.png"
+  },
+  {
+    "slug": "fix-minor-url-issues-in-sharepro-air",
+    "title": "Fix Minor URL Issues in SharePro AIR Application",
+    "excerpt": "We are looking for a skilled developer to address minor issues related to URLs in our SharePro AIR application.The tasks include identifying and resolving problems with URL handling to ensure smooth…",
+    "date": "2026-03-30",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "India",
+      "Mobile App",
+      "SharePro"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are looking for a skilled developer to address minor issues related to URLs in our SharePro AIR application.The tasks include identifying and resolving problems with URL handling to ensure smooth functionality."
+        ]
+      }
+    ],
+    "id": "fix-minor-url-issues-in-sharepro-air",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/fix-minor-url-issues-in-sharepro-air.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcCvCCA9TXCwXFQIxECNqnhyqJ06T9aYCYMHYJTx33RC6VrCyYRmPMGbQ9ws5EFaGgjmNSRkTCZ4681Rs1oUM2jMUJYUJKjjkgsXLLF5E5Uy_O2g-2AJs8qKTjD-UEu8IYD_XpBo2vzFB-vdKQTKmFBWONpnP3IlhKxCki69-tJn6da0ZudpA0a2f0KcI/w640-h360/Fix%20Minor%20URL%20Issues%20in%20SharePro%20AIR%20Application.jpg"
+  },
+  {
+    "slug": "ats-application-enhancement-for-user",
+    "title": "ATS Application Enhancement for User Hierarchy & Reporting",
+    "excerpt": "We are seeking an experienced developer to enhance our ATS application with advanced user hierarchy management, flexible user mapping, and robust access control rules.",
+    "date": "2026-03-09",
+    "readTime": "1 min read",
+    "category": "ATS",
+    "tags": [
+      "ATS",
+      "India",
+      "Mazenet Solution",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are seeking an experienced developer to enhance our ATS application with advanced user hierarchy management, flexible user mapping, and robust access control rules.",
+          "The system should support multiple user roles including Super Admin, Admin, Account Manager, Team Leader, and Recruiter with flexible hierarchy definitions and multi-mapping capabilities.",
+          "Key features include dynamic dashboard generation based on user roles, target allocation and tracking for closures and onboardings, and detailed reporting with no data duplication.",
+          "The solution must allow reassignment and transfer of users with proper linkage of performance data and task management.",
+          "Access control must ensure recruiters only see their own data, while higher roles have appropriate visibility according to hierarchy."
+        ]
+      }
+    ],
+    "id": "ats-application-enhancement-for-user",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/ats-application-enhancement-for-user.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgzi5qEM3s-A86D-SSFkTERnJ7Nyt6i9P7498RgDmUZfFLPuztv0y-9-Q9d8Nxz9ol_cDn5oI2uwPwfPgtp91hFBXmIqeTTj8PLgy83NzrC9nfSzy5vLVD6QW1ujUlW-5dz0vYWCOcHFBCPvvd-JbczUDMFZPdX3FJMQ4E3A-ImbTpD8M9BEHYBfC8n0Y/w640-h360/ATS%20Application%20Enhancement%20for.jpg"
+  },
+  {
+    "slug": "backend-developer-for-zkteco-hardware",
+    "title": "Backend Developer for ZKTeco Hardware Integration",
+    "excerpt": "Buscamos un desarrollador backend experto en integraciones de hardware para extender la funcionalidad de nuestro Sistema de Control de Acceso basado en dispositivos ZKTeco.",
+    "date": "2026-02-12",
+    "readTime": "1 min read",
+    "category": "Full-Stack",
+    "tags": [
+      "Chile",
+      "Full-Stack",
+      "Node.JS",
+      "SapSG & Siga Sys",
+      "ZKTEco"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Buscamos un desarrollador backend experto en integraciones de hardware para extender la funcionalidad de nuestro Sistema de Control de Acceso basado en dispositivos ZKTeco.",
+          "El servidor actualmente utiliza NodeJS 20 en ElasticBeanstalk y se comunica con el hardware vía TCP/IP.",
+          "Ya tenemos la funcionalidad de lectura de QR y apertura de puertas magnéticas implementada.",
+          "Experiencia demostrable en integración con SDKs de ZKTeco (preferiblemente ADMS/PULL).",
+          "Dominio avanzado de NodeJS y JavaScript/TypeScript.",
+          "Conocimiento en comunicación a través de TCP/IP.",
+          "Requerimiento especifico",
+          "Conectar nuestro sistema a los dispositivos Zkteco para que puedan verse y administrarse desde nuestro sistema Web, de la forma en que lo hace el software ZKBio CVSecurity",
+          "Adminsitrarse significa:",
+          "1.- Agregar dipositivos",
+          "2.- Visualizar estado de los dispositivos",
+          "3.- Agregar nombre a los dispositivos",
+          "Este es el primer requerimiento que se solicitara, una vez realizado de forma exitosa se entregaran mas requerimientos por esta misma vía.",
+          "Entregables y Consideraciones",
+          "Código fuente limpio y documentado del backend (NodeJS) con las nuevas integraciones funcionales.",
+          "Documentación técnica de la integración.",
+          "Se requiere disponibilidad y comunicación fluida."
+        ]
+      }
+    ],
+    "id": "backend-developer-for-zkteco-hardware",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/backend-developer-for-zkteco-hardware.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLHDLXwR7R-PruHrIEg6BKuGvds3MPRVRjnL5m9KkQYSDRmKz-VE8LU9SyevSFmOFMH9t_5OwEpIp9Ka7OpRUgrhOrG4hRwYY5-dBPUYU40d4xZdqDrVmak8t3Zf4gKdfQGcoyK2SjtI0bmXOf1NSAd-H3IEQkb7xs_dENIDufaRgGcB53-W8IuW3TOIU/w640-h360/Backend%20Developer%20for%20ZKTeco.jpg"
+  },
+  {
+    "slug": "network-engineer-required-for-mikrotik",
+    "title": "Network Engineer Required for MikroTik to Cisco ASR Migration",
+    "excerpt": "We are looking for an experienced ISP Network Engineer to migrate customer/network services from MikroTik infrastructure to Cisco ASR for an ISP network in Nepal.",
+    "date": "2026-01-06",
+    "readTime": "1 min read",
+    "category": "Network and System",
+    "tags": [
+      "Infonet Communication",
+      "Nepal",
+      "Network and System"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are looking for an experienced ISP Network Engineer to migrate customer/network services from MikroTik infrastructure to Cisco ASR for an ISP network in Nepal.",
+          "The engineer should have strong practical experience in ISP routing, BGP, OSPF, VLAN, PPPoE, CGNAT and Cisco ASR configuration."
+        ]
+      },
+      {
+        "heading": "Scope of Work",
+        "paragraphs": [
+          "• Review existing MikroTik configuration",
+          "• Analyze current customer/network services",
+          "• Design Cisco ASR migration plan",
+          "• Configure Cisco ASR",
+          "• Migrate customer services with minimum downtime",
+          "• Configure routing and required protocols",
+          "• VLAN and IP addressing configuration",
+          "• BGP/OSPF configuration as applicable",
+          "• PPPoE/customer session migration if applicable",
+          "• CGNAT configuration if required",
+          "• Firewall and access policies",
+          "• Traffic and bandwidth policies",
+          "• Testing and troubleshooting",
+          "• Performance verification after migration",
+          "• Documentation of final Cisco ASR configuration"
+        ]
+      },
+      {
+        "heading": "Required Skills",
+        "paragraphs": [
+          "• Cisco ASR",
+          "• MikroTik RouterOS",
+          "• BGP",
+          "• OSPF",
+          "• VLAN",
+          "• PPPoE",
+          "• CGNAT",
+          "• IPv4/IPv6",
+          "• ISP/FTTH network",
+          "• Routing and switching",
+          "• Network troubleshooting",
+          "Experience with Nepal ISP networks will be preferred."
+        ]
+      },
+      {
+        "heading": "Deliverables",
+        "paragraphs": [
+          "• Cisco ASR configuration",
+          "• Customer/service migration",
+          "• Tested routing configuration",
+          "• Optimized network performance",
+          "• Migration documentation",
+          "• Troubleshooting and post-migration support",
+          "Timeline: 3 to 5 Days depending on the existing network size.",
+          "Please share your previous Cisco ASR and ISP migration experience , proposed approach, availability and fixed/milestone-wise cost when applying."
+        ]
+      }
+    ],
+    "id": "network-engineer-required-for-mikrotik",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/network-engineer-required-for-mikrotik.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgoiXXHedviDCDisVkVeTPfHgLbWGlwi1Plo9fq-JitGj28Rx1DJG7JLeG-7LvhJBcpBtkmShrQKfV30ED22f3ZrzdXlsyHTK_ByRCzYXf05iY5qmREfYmBf6t_IAQB7g1qOG1yKx8_duHQjQ88nfZWVlOGjZ6jq2eBD73ZpQOjyD1zMKBNLVDJddQgh6w/w640-h426/ChatGPT%20Image%20Aug%2014,%202026,%2011_41_49%20AM.png"
+  },
+  {
+    "slug": "automated-mssql-database-backup-script",
+    "title": "Automated MSSQL Database Backup Script Development",
+    "excerpt": "We require a script to be developed for a dedicated server that will automatically back up MSSQL databases (.BAK files) on a daily basis or at a specified time.",
+    "date": "2026-01-01",
+    "readTime": "1 min read",
+    "category": "Network and System",
+    "tags": [
+      "Network and System",
+      "UAE"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We require a script to be developed for a dedicated server that will automatically back up MSSQL databases (.BAK files) on a daily basis or at a specified time.",
+          "The script should store the backups in a designated folder on the server.",
+          "Reliable and efficient backup automation is essential to ensure data safety and easy recovery."
+        ]
+      }
+    ],
+    "id": "automated-mssql-database-backup-script",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/automated-mssql-database-backup-script.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgn0tGj-Vjd3arfZeJ7fxafDEqR4-UyrWKTAc75VfWLpX41_syVv3QBzDOqvdB3GZsuZbjD1xDfybsb3NUYsUhNYa9d-suatb5YeQbp255gZx5sLJqWD_luOxore2kpAcesTNG7PkuPveyCPeDirpE0g_eF6flBIH5F_IaOIKsxLcaivEzQz7DMQ1UWMHY/w640-h360/Automated%20MSSQL%20Database%20Backup.jpg"
+  },
+  {
+    "slug": "clean-and-prepare-csv-data-for-zoho-crm",
+    "title": "Clean and Prepare CSV Data for Zoho CRM Import",
+    "excerpt": "I have two CSV files in Excel format, each containing approximately 38,000 records of people.",
+    "date": "2025-12-18",
+    "readTime": "1 min read",
+    "category": "Energy Improvement",
+    "tags": [
+      "Energy Improvement",
+      "USA",
+      "Zoho"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I have two CSV files in Excel format, each containing approximately 38,000 records of people.",
+          "The data needs to be cleaned and formatted properly to ensure smooth import into Zoho CRM.",
+          "Tasks include removing duplicates, correcting formatting issues, standardizing fields, and ensuring data consistency."
+        ]
+      }
+    ],
+    "id": "clean-and-prepare-csv-data-for-zoho-crm",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/clean-and-prepare-csv-data-for-zoho-crm.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgv4Y3YVLUtm1dgL1VkhH8C2sQgQ_1A9On52ipRX1sbmIjdvJ00VGr7jqCC78BcDzWIIkX5-B6gdvsy-oEElanYnk1PVcc73kWAy6nYxk6JnEpH8P9Lave6hYy_mI7FCCNDKfZFI3FhM8NXWlOv8JOO-lwXm2duaUNGYS2Elgt_AWuw3Cw28zu8byu6-Zw/w640-h360/Clean%20and%20Prepare%20CSV%20Data%20for%20Zoho%20CRM%20Import.jpg"
+  },
+  {
+    "slug": "adding-share-button-to-existing-app",
+    "title": "Adding the Share button to the Existing App",
+    "excerpt": "Our existing Hyybrid App developed in Flutter, which connects to the Web-application on a web-server, needs a \"Share\" button which will download a PDF from the linked url and allow the user to…",
+    "date": "2025-12-16",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "India",
+      "Mobile App",
+      "SharePro"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Our existing Hyybrid App developed in Flutter, which connects to the Web-application on a web-server, needs a \"Share\" button which will download a PDF from the linked url and allow the user to download the report to the cell phone"
+        ]
+      }
+    ],
+    "id": "adding-share-button-to-existing-app",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/adding-share-button-to-existing-app.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1lmhGUvlt0XdD30EP7FJb-fXPjK3mnIX_1KheSZ2PgVda_670xLOnOo-YpnMdH71o2MQEPGmTkxfiSErwy1XR-OKFFkyKap6SKsgn5JfWhSvZoUtDKdv_KCe_T5s-NeQ7e2JcIifcywwHQlvlTyTqz4szA8-AFossVqZ48FPSbZ0VgGjusb__BynayWk/w640-h360/Adding%20the%20Share%20button%20to%20the%20Existing%20App.jpg"
+  },
+  {
+    "slug": "our-existing-app-on-play-store-requires",
+    "title": "Our existing App on Play Store requires 16KB memory Page sizes from 1st November",
+    "excerpt": "Our existing App on Google Play Store requires 16KB Page sizes as per new requirements from Google. As a result, the App has stopped listing for newer phones. This has to be rectified. Moreover,…",
+    "date": "2025-11-27",
+    "readTime": "1 min read",
+    "category": "ATS",
+    "tags": [
+      "ATS",
+      "Flutter",
+      "India",
+      "Mobile App",
+      "SharePro"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Our existing App on Google Play Store requires 16KB Page sizes as per new requirements from Google. As a result, the App has stopped listing for newer phones. This has to be rectified. Moreover, minor modifications are required in the Flutter App to handle some more requirements, like \"Downoading PDF or XLSX files\" on the phone. Some look and feel requirements may also be included."
+        ]
+      }
+    ],
+    "id": "our-existing-app-on-play-store-requires",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/our-existing-app-on-play-store-requires.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhaCkII-DJmLi2ic7K5XIewTj0CZ_Wee1xll_fvhdNjku4499rmCpHum_roWsOlhNBRVzvuu8j3eoedlrYLfefheHE-k6vM_X1JN02VKJbhCxc8x_VkuI8hDulz5v7xeioxxTkITpk_MfUn8-Dp0NjCPh98JAVQyOfBFEtY4KSCzTzRgIVKB6DV59g4zU/w640-h360/Our%20existing%20App%20on%20Play%20Store%20requires%20.jpg"
+  },
+  {
+    "slug": "seeking-expert-freelancerconsultant-for",
+    "title": "Seeking Expert Freelancer/Consultant for Production Setup and CI/CD Enhancement",
+    "excerpt": "​I am looking for a highly skilled, independent professional to assist our team with two critical infrastructure and development pipeline projects.",
+    "date": "2025-10-30",
+    "readTime": "1 min read",
+    "category": "DevOps",
+    "tags": [
+      "DevOps",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "​I am looking for a highly skilled, independent professional to assist our team with two critical infrastructure and development pipeline projects.",
+          "​Project 1: Production Services Setup on Red Hat Linux & Docker",
+          "​We need an expert to guide us in setting up our production services and deploying our application using the latest stable version of Red Hat Linux and Docker.",
+          "​Required Expertise: Deep knowledge of Red Hat Linux (RHEL) administration, Docker deployment best practices (we have licenses), application containerization, networking, and system hardening for a production environment.",
+          "​Project 2: Jenkins and CI/CD Pipeline Update",
+          "​We are looking to update our Jenkins instance to the latest stable version and modernize our associated CI/CD pipeline for improved efficiency and stability.",
+          "​Required Expertise: Extensive experience with Jenkins administration, Jenkins Pipeline scripting (Groovy/Declarative/Scripted), plugin management, and integrating security/testing tools within the pipeline.",
+          "​Ideal Candidate Profile:",
+          "​Proven track record with both RHEL/Docker production environments and modern Jenkins CI/CD solutions.",
+          "​Strong communication skills to collaborate effectively."
+        ]
+      }
+    ],
+    "id": "seeking-expert-freelancerconsultant-for",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/seeking-expert-freelancerconsultant-for.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivd2c2MFKO228krKNeJKV-zqJ1wu9rVKmpjdtZvj2nWPB5acAVHrXEKpXtmddiHOW2CAJRGNgli7_GnVuYXA1PHld8c5VyXdrFKZkDSnAT7geEfAWzWPwcXzTig8tBoqVPn1ILFedSBCesN1553UgB6tjuNfbiKf50pWFK1VbbQPybhwBvER3FgDru46s/w640-h426/ChatGPT%20Image%20Aug%2014,%202026,%2011_30_48%20AM.png"
+  },
+  {
+    "slug": "ats-application-tracking-system",
+    "title": "ATS Application Tracking System",
+    "excerpt": "Scope of Work",
+    "date": "2025-10-28",
+    "readTime": "4 min read",
+    "category": "ATS",
+    "tags": [
+      "ATS",
+      "India",
+      "Mazenet Solution",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Scope of Work",
+          "Masters - Existing System:",
+          "The current existing ATS system has the following modules:",
+          "1. Role Master - User Defined Role names (Configuring Roles names with Functionalities is not available)",
+          "2. Country Master",
+          "3. City Master - Cities are grouped under countries",
+          "4. SO Master - Used to categorise type of SO which is a business model used within the organization",
+          "5. SO Status - User defined functional field used to track SO status such as Open, Closed, Hold used. The status will be updated by the end user manually.",
+          "6. Profile Status - User defined functional field used to track the candidates interview status. The status is manually updated by the recruiter.",
+          "7. Source - User defined functional field used to identify the source of profile such as Naukri, Monster, Reference, etc",
+          "8. Customer - Contains basic information about the client such as Name, Address, HQ City, HQ Country, NDA Signed or Not, MSA Date",
+          "Masters - Proposed System:",
+          "Role Based Authorization: Based on the Role Names, Authorization needs to be provided for each and every module in the Masters and Transaction with CRUD operation. User Based Authorization User based authorization need to be provided for two modules names:",
+          "1. SO Approval",
+          "2. Profile Approval",
+          "SO Approval:",
+          "● SO Approval will be done after creating New SO",
+          "● Approved SO should not be edited after approval.",
+          "● Approved SO can be edited only the user who already has SO approval authority",
+          "Profile Approval:",
+          "● Profile approval will be done before submitting the profile to client evaluation or internal SME evaluation.",
+          "● Since the profile sharing to Client/SME are done manually, system should not allow the the user to change the profile status until the profile gets approved",
+          "Transaction:",
+          "Work flow: Create SO and allocate Recruiter > Add New profile against SO > Update Profile Status > Update SO Status Proposed Work flow: Create SO > Approve SO > Allocate Recruiter(s) > Add New profile from existing DB or create new profile > Profile Approve > Update Profile Status > Update SO Status",
+          "SO - Existing System",
+          "The Sale Order (SO) has following fields: SO Name, SO Receive Date, SO Status, CUstomer, Client, JD available or not, Upload JD, City, Country, SO Type, SO Qty, SO Fulfilled Qty, SO Open Qty, SO Hold Qty, SO skills - Descriptive columns",
+          "SO Proposed System:",
+          "● SO Fulfilled Qty to be removed and a new page should be created for SO Fulfilled which contains information about Again which SO details, Profile Details, Recruiter Details, Shortlisted Date",
+          "● SO Open Qty to be auto calculated",
+          "● SO Hold should be moved out of SO Create/Edit page",
+          "Profile Upload - Existing System",
+          "Key information such as Name, Phone, Email, Current Employer etc are manually entered and profile is uploaded.",
+          "Profile Upload - Proposed System",
+          "Need Provision for adding profile in Database without selecting any SO At the time of Profile upload user can either select the profile from the existing DB or create new profile Provision for auto populating key information using AI tools to be provided.",
+          "Profile Search:",
+          "Provision for searching the profiles should be provided with the following search criteria",
+          "1. Manual Search - Name, Phone, Email, Location, Skillset, Experience, Designation",
+          "2. AI Search - Based JD, matched profile should be displayed",
+          "Performance Calculation - Existing System",
+          "It is calculated based on no of hours between current Date and SO allocation date",
+          "Performance calculation - Proposed System",
+          "Should be calculated based on the following parameters",
+          "1. No of profiles added against the SO",
+          "2. No of profiles shortlisted",
+          "3. Profile shortlist ratio - No of profiles sent to interview and no of profiles client shortlisted",
+          "4. House Spend (Need to create a new page for entering no of hours spend per SO)",
+          "Dashboard and Reports",
+          "Dashboard and Reports should be categorized into two types namely",
+          "1. Individual",
+          "2. Overall",
+          "Individual Dashboard / Report:",
+          "Data should be populated based on the logged in user, other user details should not be considered and it should have provision for following filters: Date, SO, Profile status [All option should be provided and it should work based on authorization]",
+          "Overall Dashboard / Report:",
+          "Data should be populated for all users and it has provision for following filtered Date, SO, Recruiter, Profile Status Additionally, users with approving authority for SO approval/Profile approval the status of approval/REject to be displayed [All option should be provided and it should work based on authorization]",
+          "Expected parameters in Dashboard and Reports:",
+          "1. Profiles count",
+          "2. Performance measure (Hours)",
+          "3. SO count Other than this provision for displaying count of profiles based on “status of profile” in Dashboard to be provided dynamically userwise.",
+          "Filters: Client, SO, Recruiter, Date range along with ALL options for all filter options. All options should be enabled based on Roles",
+          "Existing application Tech stack:",
+          "Front end: Bootstrap",
+          "Back end: PHP Laravel DB: MySQL"
+        ]
+      }
+    ],
+    "id": "ats-application-tracking-system",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/ats-application-tracking-system.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-bpg9eP9SN9ZW4c1-Xr7VQ3xzJ0IFDmuEt0pZFyvN3cBawIWlnStdR9YJL6ePpP53GYRgQT3snShS9Kf3trSX3q2Fb6U63vyUVF8mnM1J-1AigTz35Mf4KlWMKR06G5cfq8fePJMF9dWUy1HxVTQe_FFjDLkkTzSOjjCjtrpiGW74aHGG2jkx6dR_Jkc/w640-h360/ATS%20Application%20Tracking%20System.jpg"
+  },
+  {
+    "slug": "create-username-buy-eell-website-with",
+    "title": "Create Username Buy Sell Website with Payment Integration",
+    "excerpt": "I am looking for Username buy/selling website (just like domain name buy/sell)",
+    "date": "2024-08-11",
+    "readTime": "1 min read",
+    "category": "Full-Stack",
+    "tags": [
+      "Full-Stack",
+      "India",
+      "Node.JS"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I am looking for Username buy/selling website (just like domain name buy/sell)",
+          "-Login with Logify",
+          "-Show current username, balance, username price set if posted for selling, available discount code (get it from api)",
+          "-User can buy a username for himself",
+          "-User can buy a username as gift for another user",
+          "-User can search, shortlist usernames",
+          "-User search for username",
+          "-Get list of suggested usernames and price (get data from api)",
+          "-User can shortlist usernames",
+          "-User reserves a username for 10minutes and proceed to buy it (reserve via api)",
+          "-User completes payment (update success to api)",
+          "-User can retry if payment fail",
+          "-User may cancel the transaction and go back to find another username",
+          "-User can transfer username for a fee",
+          "-Get userId to transfer too, and pay transfer fee (update success to api)",
+          "-User can list username for selling at a price (set price to api)",
+          "-Withdraw balance (update success to api)",
+          "APIs will be provided",
+          "-Get current username, balance, and price if set for current username",
+          "-Get price of searched username and list of suggestions",
+          "-Reserve username",
+          "-Confirm payment for",
+          "-Username purchase",
+          "-Username gift",
+          "-Username transfer",
+          "-Update price for selling current username",
+          "-Confirm balance withdrawal",
+          "Payment gateway to receive and payout money is required",
+          "Website UI-UX designing is required, should be responsive and support both mobile and desktop"
+        ]
+      }
+    ],
+    "id": "create-username-buy-eell-website-with",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/create-username-buy-eell-website-with.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaO3T0wT7rn4eGhoEg-fTVyzPXgnOLbkJzmvhQ-P4EnXOxFW5pbbrJ6jSHx0KK_S4L-YEu8grwN2NH2v4X8iWJrY3jQISR7NBkColRBfGggIw1Ewo4wA0aWIBSWMpdMP9dnZ9-O6QIknbwyFtiUrJIbCGtDHkCKtL_gwrnFBp9YEn2L_oj8Jb-re6ZmZ0/w640-h360/Create%20a%20username%20buy-and-sell.jpg"
+  },
+  {
+    "slug": "docker-prod-deployment",
+    "title": "Docker Prod Deployment",
+    "excerpt": "I am looking for a skilled person with good knowledge of Docker and Kubernetes to help me set up production deployment.",
+    "date": "2024-07-16",
+    "readTime": "1 min read",
+    "category": "DevOps",
+    "tags": [
+      "DevOps",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I am looking for a skilled person with good knowledge of Docker and Kubernetes to help me set up production deployment.",
+          "Docker setup",
+          "1. Configure Docker swarm to have a cluster of 3 nodes.",
+          "2. In the docker compose file, the physical DB server URL should be utilized instead of the DB container host.",
+          "3. Providing documentation, demonstration, and assistance in setting up on the client's side.",
+          "4. few month support"
+        ]
+      }
+    ],
+    "id": "docker-prod-deployment",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/docker-prod-deployment.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgr3sODL22rN1qC8CozJHGdNCiQ3qgV-qgJ2I_hhfO0FKv2aSpOTjDJYMeNjWwS2RksxfytlNl-bRxm7AivizWmOqSAUOzxHfT1G_36nOG80py1k_SnHiDUoaPbwSUL1LN2AtH0mn2X2scPLp1BXrnfPm763CnxBicr4EgTWKdpZs0Plo40OQ2AmS_afA8/w640-h358/Container_Production_Deployment_Roadmap.jpg"
+  },
+  {
+    "slug": "repurpose-open-source-forum-to-task",
+    "title": "Repurpose an open source forum to a Task Management Application",
+    "excerpt": "Hello, I need a custom backend/frontend website. The goal is to repurpose an online, open-source forum into a task/project management app. Here are the two things that I will supply you with: The…",
+    "date": "2024-06-30",
+    "readTime": "2 min read",
+    "category": "Full-Stack",
+    "tags": [
+      "Full-Stack",
+      "JavaScript",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Hello, I need a custom backend/frontend website. The goal is to repurpose an online, open-source forum into a task/project management app. Here are the two things that I will supply you with: The original source code for the project I want you to modify, and a UI template that I want you to use. The original source code is made up of Javascript (Node.js), EJS, HTML, and CSS. The Database to be used is MongoDB. The existing project may ask for a Mailgun API key, please be prepared to create one just for the sake of setting the project up. The UI template that I would like you to use is made up of Javascript, SCSS, and HTML.",
+          "The goal of this project is to transform the backend of the source code to a Kanban type project manager. You should create a fully functional user profile page. On that user profile page, there should be a link to an individual assignment center with the Kanban layout. Note that there should be an individual assignment center for each member. You should repurpose the “threads” of the forum to the Kanban assignments.",
+          "You should repurpose the badges component of the forum to roles. There should be three roles: Administrator, Project Manager, Staff Member, and Unverified. The Administrator should have access to all components of the website. The Project Manager should be able to view, add/remove tasks from a Staff member. The Staff Member should be able to see their own assignment center. Staff Members should be able to move the assignment in different categories throughout the Kanban board. Staff Members should not be able to create or edit new assignments.",
+          "You should be able to use existing models and routes, as well as creating new models and routes. An example of new models you should create are tags and due dates. Upon the creation modal of a new assignment in the Kanban, Project Managers and Administrators should be able to set a due date, as well as tags the assignment belongs to.",
+          "This will be a very hard and confusing task! If you require more payment than the listed hourly payment, please contact me. I will specify all of these even more upon acceptance of the job."
+        ]
+      }
+    ],
+    "id": "repurpose-open-source-forum-to-task",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/repurpose-open-source-forum-to-task.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhTPMRpY4ZUMgY3vZh_8lGAXXmwwUZ-v3gqP3_DnA_lHYjUKMItgBgQO2xzfm3_kyA9t-OFstd7wk9STk7AuETkn1rqgxLLGMy0OQptFsTwOd83EryeD1i-AxNlTSaiNdhu2_-TYZba2cJQdD-J5NtEtBqQcgSLQROikggfAVZyg3a1DI4zgKoKIDQibJw/w640-h360/Repurpose%20an%20open-source%20forum.jpg"
+  },
+  {
+    "slug": "blazor-dotnet-development-and-design",
+    "title": "Blazor DotNet Development and Design",
+    "excerpt": "Blazor app needs one more functionality and some design changes.",
+    "date": "2024-05-23",
+    "readTime": "1 min read",
+    "category": "ASP.Net",
+    "tags": [
+      "ASP.Net",
+      "Full-Stack",
+      "India"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Blazor app needs one more functionality and some design changes.",
+          "Functionality: the app has a search functionality but I need another filter. In the database there are postcodes and then we need to find the nearest by postcode entered by the user. The calculation will be done by a 3rd party API.",
+          "And secondly there are some design changes which needs to be done. Already using Radzen so we can see what's possible."
+        ]
+      }
+    ],
+    "id": "blazor-dotnet-development-and-design",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/blazor-dotnet-development-and-design.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPuYWandSWZByv9vqHgsNXxVut9UMp6Qs0fLXUZPkEOVbWyTLOyvCuqJ3V6Pv3v1eDwMPrUroZUBC0EEtLckvCJ82cjc2PdxrWae6XGI9eB0jRv4AR3EYEH_HBefacTEK23SLY5IaQBUZEffknwmwYFXkXgqsYyhC0tO88Fm7bbME4knk__nJ60z9QhWo/w640-h360/Blazor%20dotnet%20development.jpg"
+  },
+  {
+    "slug": "need-to-fix-build-errors-in-my-react",
+    "title": "Need to fix build Errors in my React Native Mobile App",
+    "excerpt": "We currently have a react native app that needs some repariing in order to build and deploy to android and ios store.",
+    "date": "2024-03-07",
+    "readTime": "1 min read",
+    "category": "Mobile App",
+    "tags": [
+      "Mobile App",
+      "React Native",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We currently have a react native app that needs some repariing in order to build and deploy to android and ios store."
+        ]
+      }
+    ],
+    "id": "need-to-fix-build-errors-in-my-react",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/need-to-fix-build-errors-in-my-react.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTI4MLgYcaKjwo8jYjB0PYLeNn0gXQr9FOJOMQdOdr3lxv0e24clmfdJnnaTQVWH7_thQAcvYKwafCCLpBChaqbP9jeMSUfVj5iMdXpNkthfgbt1BHyVw0fFBoXVej-OF0CmFMsw16xrGt5LJr9AZLo7GP2wswApCUR1Z9iN6i2QFeRjEwbw21Ez_nBZk/w640-h360/Need%20to%20fix%20build%20errors%20in%20my.jpg"
+  },
+  {
+    "slug": "a-complex-cross-platform-app",
+    "title": "A complex Cross Platform App",
+    "excerpt": "Requires map integration and changes in source code of the map. Many complex features required. I can explain in detail via videocall.",
+    "date": "2024-02-29",
+    "readTime": "1 min read",
+    "category": "Mobile App",
+    "tags": [
+      "Kazakhstan",
+      "Mobile App",
+      "React Native"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Requires map integration and changes in source code of the map. Many complex features required. I can explain in detail via videocall."
+        ]
+      }
+    ],
+    "id": "a-complex-cross-platform-app",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/a-complex-cross-platform-app.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuG5w48Nw7XRV2nx1-NwpvRDltEx0ICLe51jZYYbL7OHJE0TG_lQYIWqSweFn6aN_i8w3x_jOQ8-51mJehMXtsx2ch8JpygIaywzz0Ko4ZgOJ0Nq_54IuysONdf8KuEduF6qrP4RXg5oIMeCmfjvPSJy_KIVqXxfwJE1AmArVYfLuesW9DW5n0cHEqJl0/w640-h360/A%20complex%20Cross-Platform%20App.jpg"
+  },
+  {
+    "slug": "update-3-configurations-to-null-safety",
+    "title": "Update 3 Configurations to NULL SAFETY ! and do other small tasks",
+    "excerpt": "Hello ! Happy New Year !!!",
+    "date": "2024-02-23",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "Mobile App",
+      "Russia"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Hello ! Happy New Year !!!",
+          "FUTTER / DART : update 3 three configurations to NULL SAFETY ! and do other small tasks !",
+          "Work mainly with these libraries: table calendar ; provider ; fl chart ; scoped_model ; flutter calendar carousel . If you have no experience with these libraries, please don't write to me !",
+          "How I work: at the end of the work, you give me the code - then I deploy it, check the work - if all the work is done and identified problems in the work - I write to you to fix all the comments - if all the work is done successfully - I pay you for the work !",
+          "In general there is not much work to do"
+        ]
+      }
+    ],
+    "id": "update-3-configurations-to-null-safety",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/update-3-configurations-to-null-safety.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqAM00yuDJL_wvmkhpiQuo0F6t1AyxCLtIG339UJX7TLBBLSkiCiwBClMT0OxHLbK6GBQO0A_q4NV1SRfn4CCaJys5jYoZLSLymlLnBTDsprk4leb1_yPwazPmxzNSm22uORhkW0Dlf0i9hZEbNSftT0VT0-tuq3nCgHNLjAtNkp4o0L2zIpfBP9qqnls/w640-h360/Update%203%20%20configurations%20to%20NULL.jpg"
+  },
+  {
+    "slug": "conversion-of-phonegap-app-to-cordova",
+    "title": "Conversion of PhoneGap App to Cordova",
+    "excerpt": "We are trying to migrate our \"PhoneGap\" App to Cordova but are having issues. The builds are for Android and iOS. We require expert help in sorting the issues that we have. A brief of teh project:",
+    "date": "2024-02-16",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "India",
+      "Mobile App",
+      "SharePro"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are trying to migrate our \"PhoneGap\" App to Cordova but are having issues. The builds are for Android and iOS. We require expert help in sorting the issues that we have. A brief of teh project:",
+          "1) On first launch, the app downloads an XML from our website and lists the \"Brokers\" in the XML file for the user to choose from.",
+          "2) Once the user chooses a \"Broker\", the url of the broker is stored in the phone and the user is redirected to the url.",
+          "3) The url is of a web app which runs inside the inAppBrowser.",
+          "4) On next launch of the App, the app checks for the existence of saved url. If found, it simply redircts without presenting a list as mentioned in (1).",
+          "We are having issues setting this all up in Cordova"
+        ]
+      }
+    ],
+    "id": "conversion-of-phonegap-app-to-cordova",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/conversion-of-phonegap-app-to-cordova.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAV4xnp5KW_g6qJWKpbbUDtgEZZyEYB86QifPHhpjBZFgnPiNxlydej9J89kpbDB-jC9NPyyXoHHZN40DN5LcgLUTpvzlPexLn_q2e8wy4_oRQFDTHOFzgOhlrqzmy6RjVQdbEny5RFS8zhe3F6DWj14kVpnNg5pSVQsFDesnn2mrFdD44CupASnLradU/w640-h640/Conversion%20of%20PhoneGap%20App%20to%20Cordova.jpg"
+  },
+  {
+    "slug": "need-android-app-developer-for-advance",
+    "title": "Need a Android App Developer for advance Quiz App",
+    "excerpt": "I need a quiz and general knowledge app in form of short feed. if you are aware of inshorts news app it is on same consept of feed scroll for quiz. with supar admin panel where i can able to see…",
+    "date": "2024-02-11",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "India",
+      "Mobile App"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I need a quiz and general knowledge app in form of short feed. if you are aware of inshorts news app it is on same consept of feed scroll for quiz. with supar admin panel where i can able to see users details, create categories and sub categories, upload quiz and news and can manage admob ad codes as well and can able to add admin and sub admins with access restrictions. i have attached short news aapp screenshot for reference."
+        ]
+      }
+    ],
+    "id": "need-android-app-developer-for-advance",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/need-android-app-developer-for-advance.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYcnvpX5W49iItIHbcgGA88Ewoa5FxrGQv_cbahtx9IW-hFubXGu83snhsOB5UoZFlZShEbkEs9UoV6hMv1QvrnxRqDyqo3VRZ7D8l38zwYGYAbOZJzxAmv7eYQFL8YgjJRYenVHhURfuHjoTJAzm3QoZRfpOdYcOYnX2QrbOn13lK0PHoLqlfpm8xJ1c/w640-h640/Need%20an%20Android%20App%20developer.jpg"
+  },
+  {
+    "slug": "i-need-flutter-developer-to-work-on",
+    "title": "I need Flutter Developer to work on Existing Project. I already Integrated Google Ads",
+    "excerpt": "I need flutter developer to work on existing project.I already integrated Google ads. My tasks are banner and interatial to be integrated in new places.",
+    "date": "2024-02-02",
+    "readTime": "1 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "India",
+      "Mobile App"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I need flutter developer to work on existing project.I already integrated Google ads. My tasks are banner and interatial to be integrated in new places."
+        ]
+      }
+    ],
+    "id": "i-need-flutter-developer-to-work-on",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/i-need-flutter-developer-to-work-on.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgU-zDUAWkpJmL3zPtYIgJV5G1V9XebDtGgl0nHMWl_5oWIW2tHhXCRf_XkyghyMmjJWxGBmg0cVk8cRdtZNT32viszg1-DQOj0OxW79k-uVA8MF5gEDaerIVfQmDn-VyhpfNQkbT7jSlk2yElg8LoDaCauVe0SvJp0paf-dZSHvF1D8x6xe0Zg6vUdqw4/w640-h640/I%20need%20a%20Flutter%20developer%20to%20work.jpg"
+  },
+  {
+    "slug": "online-certificate-designer",
+    "title": "Online Certificate Designer",
+    "excerpt": "Online Certificate Designer Frontend Technical Specification",
+    "date": "2024-01-11",
+    "readTime": "1 min read",
+    "category": "Full-Stack",
+    "tags": [
+      "Full-Stack",
+      "India",
+      "JavaScript"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Online Certificate Designer Frontend Technical Specification",
+          "Introduction",
+          "The Online Certificate Designer is a web-based application that allows users to create and customize certificates for various purposes. This document outlines the technical specifications for the frontend development of this application.",
+          "User Interface (UI) Design",
+          "1.Certificate Creation:",
+          "-Users can create a new certificate by selecting a template or starting from scratch.",
+          "-An intuitive drag-and-drop interface will allow users to add text, images, shapes, and signatures to the certificate.",
+          "-Users can customize fonts, colors, and sizes for text elements.",
+          "2.Template Library:",
+          "-Users can browse and select from a library of pre-designed certificate templates.",
+          "-Admins can add, edit, or remove templates from the library.",
+          "3. Certificate Preview:",
+          "-Users can preview their certificate design in real-time.",
+          "-Zoom and pan functionality should be available for detailed inspection.",
+          "Technologies and Frameworks",
+          "1.Frontend Framework: Use JQuery or SolidJs for building the user interface.",
+          "Performance and Optimization",
+          "1. Optimize the application for performance and responsiveness to ensure a smooth user experience.",
+          "2. Implement lazy loading for resources such as templates and images.",
+          "3. Minimize HTTP requests and use asynchronous loading of assets.",
+          "Testing",
+          "1. Perform unit testing, integration testing, and end-to-end testing to ensure the application functions correctly.",
+          "2. Implement error handling and logging for debugging purposes.",
+          "Documentation",
+          "1. Provide comprehensive documentation for developers, including setup instructions and guidelines for extending the frontend.",
+          "2. Document API endpoints and data models used for communication with the backend."
+        ]
+      }
+    ],
+    "id": "online-certificate-designer",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/online-certificate-designer.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAL3WDMuUy6T8Xp5nQPdnleqyWm35FxQEmZrUZhaQc4UZd2yN8_49lbXd88JcHl5DfkXs80iNhJlWD7DG4Hov6NsRY7myv9XePAkj_59QnJAPng3ht-ZU4Keym3hhzEcH_sbf7gDo0WQbDXvQ1CrBhElgjPExQe9dExc1c-nugmxFhmEeYV8BtOWPdu8c/w640-h360/Online%20Certificate%20Designer.jpg"
+  },
+  {
+    "slug": "do-website-update-in-html",
+    "title": "Do a website update in HTML",
+    "excerpt": "Simple update for a file in html, we have some code for which html needs to be updated.",
+    "date": "2023-11-13",
+    "readTime": "1 min read",
+    "category": "HTML",
+    "tags": [
+      "Canada",
+      "HTML",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Simple update for a file in html, we have some code for which html needs to be updated.",
+          "Immediate work"
+        ]
+      }
+    ],
+    "id": "do-website-update-in-html",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/do-website-update-in-html.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPYo4dII6GyA639q-G_RWW7AtAOJLoFUkZTHPSv4-KKibAOMYHDwES69CuySlHfv_b7Jx9PsmaVXF9farKWZtsY42HqFKNGMdq4AqO0CXFgpGinAD4YImbNP6RHJPWUbikhk86HE8cNqY2-VxaxV6cPjQbFkUDvb9WcaGdfKCz32NEUI9C1XJngEI7a60/w640-h360/Do%20a%20website%20update%20in%20HTML.jpg"
+  },
+  {
+    "slug": "integrate-ticket-system",
+    "title": "Integrate Ticket System",
+    "excerpt": "As a Web Developer for Ticket System Integration, you will be responsible for seamlessly incorporating a ticket system script into our website's architecture. This includes customizing the ticket…",
+    "date": "2023-09-17",
+    "readTime": "1 min read",
+    "category": "Php",
+    "tags": [
+      "Jordan",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "As a Web Developer for Ticket System Integration, you will be responsible for seamlessly incorporating a ticket system script into our website's architecture. This includes customizing the ticket system's appearance to match our branding, configuring its settings, and ensuring its smooth functionality across various devices and browsers. Your expertise in web development, problem-solving skills, and attention to detail will play a crucial role in delivering a user-friendly and efficient ticketing experience to our customers."
+        ]
+      },
+      {
+        "heading": "Key Responsibilities:",
+        "paragraphs": [
+          "Assessing the website's current structure and identifying the best approach to integrate the ticket system.",
+          "Customizing the ticket system's design to align with our website's branding and user interface.",
+          "Configuring ticket categories, user roles, email notifications, and other relevant settings within the ticket system.",
+          "Implementing the ticket system using suitable integration methods (e.g., embedding, creating dedicated pages, utilizing APIs).",
+          "Conducting rigorous testing to ensure the ticket system functions flawlessly across different devices and browsers.",
+          "Collaborating with our team to ensure the ticket system aligns with our customer support workflow and requirements.",
+          "Troubleshooting and resolving any technical issues that arise during the integration process.",
+          "Providing post-integration support and addressing any potential bugs or improvements.",
+          "Qualifications:",
+          "Proven experience as a web developer with a strong background in website integration and customization.",
+          "Familiarity with ticket system scripts (e.g., [mention specific scripts you are considering]).",
+          "Proficiency in HTML, CSS, JavaScript, and other relevant web development languages and frameworks.",
+          "Ability to understand and work with existing code and databases to ensure seamless integration.",
+          "Strong problem-solving skills and attention to detail to address any technical challenges effectively.",
+          "Good communication and collaboration skills to work with our team throughout the integration process.",
+          "A portfolio showcasing previous web development projects and ticket system integration experience would be advantageous."
+        ]
+      }
+    ],
+    "id": "integrate-ticket-system",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/integrate-ticket-system.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2Uzie65exntZCoWQFCrbHCWyTG6HiL-8ykLJrFzPcvWsU6ptFz_qhmCJX2jYClHkUR3Op22J0OIqAgNM0ABTzmYQx_VvPbYm-dT59SYJ6e0w_kyfO2C3Qda0czHlrtJMIXxBE_reQqO-tilLzKjYwdVa8-XXAefwrgtO9NGIbIZfoEhb3SYSjTopybaQ/w640-h360/Integrate%20Ticket%20system.jpg"
+  },
+  {
+    "slug": "moodle-customization",
+    "title": "Moodle Customization",
+    "excerpt": "Project Details",
+    "date": "2023-09-16",
+    "readTime": "2 min read",
+    "category": "Moodle LMS",
+    "tags": [
+      "India",
+      "Mazenet Solution",
+      "Moodle LMS",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Php | Moodle",
+        "paragraphs": [
+          "Project Details",
+          "Module 1: Changing Course Total",
+          "Existing system:",
+          "While exporting the grade report, the Course total (Real) and Course total (Percentage)",
+          "are calculated only by considering attended activities. It does not consider unattended",
+          "activities.",
+          "For Example:",
+          "Consider two activities namely A1 and A2 in the course",
+          "Consider two students in the course namely S1 and S2",
+          "S1 has attended both the activities and received 100% in A1 and 90% in A2",
+          "S2 has completed only A1 and received 100%. S2 has not attended A2 yet.",
+          "Proposed System:",
+          "The system should display the Course Total (Real) and Course Total (Percentage) by considering the unattended activities too.",
+          "Module 2: Generate report only for selected activities",
+          "Existing System:",
+          "While downloading the report, course total is displayed for all the activities (including un",
+          "selected activities)",
+          "For Example:",
+          "Consider there are 3 activities namely A1,A2 and A3",
+          "Consider student S1 scored 80% in A1, 70% in A2 and 50% in A3",
+          "only A1 and A2 are selected",
+          "A3 is not selected",
+          "Proposed System:",
+          "The course total should display only the selected activities",
+          "Module 3: Display Max marks (Out of) in Result column",
+          "Existing System:",
+          "While exporting the grade report the course total (Real) does not contain max marks",
+          "allotted for the activity.",
+          "For Example:",
+          "Consider two activities namely A1 and A2",
+          "Consider the student S1 scored 8 out of 10 in activity A1 and course total 15 out of 20.",
+          "Consider the student S2 scored 10 out of 10 in activity A1 and course total 16 out of 20.",
+          "It is difficult to understand the maximum number of marks (out of marks) allocated for",
+          "each activity.",
+          "Proposed System:",
+          "The system needs to display maximum marks allocated for each activity on the column",
+          "names.",
+          "Module 4: Add tags in Aiken format",
+          "Existing System:",
+          "While importing bulk questions in aiken format only question text,options,answers are",
+          "imported.",
+          "Proposed System:",
+          "While importing in aiken format, multiple tag names should also be imported and it is",
+          "optional. Format for mentioning the tags in the aiken format can be recommended by",
+          "the Vendor."
+        ]
+      }
+    ],
+    "id": "moodle-customization",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/moodle-customization.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXvf0izoLr-M1O9puZV5a2c_mudFlxgPqYqI-1o7EfkCpDUPOv4vqfN_92MXu7QYkc7Bw3A2vwyLitfLau4ZSuCfiNNdzKu_PJx3tg6UypZcFNpu5hdm1QFhsit3QXlQJdB8-BAvR3CY0omL4tyzFe2KfouEYMNRkwtVRUFA8S2LA0Xqo4a4S4M55ATgg/w640-h360/Moodle%20customization.jpg"
+  },
+  {
+    "slug": "need-custom-website",
+    "title": "Need a custom Website",
+    "excerpt": "Charity Pyramid Marketing website based on referral codes.",
+    "date": "2023-08-27",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Programming Language",
+      "Python",
+      "Saudi Arabia"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Charity Pyramid Marketing website based on referral codes.",
+          "The User can create a refarrl code and add it to a URL of charity online-store",
+          "So the User can see how much donations he helped with. Based on charity online store API"
+        ]
+      }
+    ],
+    "id": "need-custom-website",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/need-custom-website.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxRuhUSXZs1Fs0dyPEUbyHQhtO21mHfmQkFZ2-9pruwWguECDkRFm_lDSV4qT4TDLU-HPM84B_tOTy9TbXRMrNnQWgiV7VnU10yI5QCuEM3zyAW-VkVynmBsOQgYeCuArW7aHaC5sdOqcyyDOfIm4T_tF11h28MA7FE7OlIOkXCcC-aharnln4lixXxpI/w640-h360/Need%20a%20Custom%20Website.jpg"
+  },
+  {
+    "slug": "undelivered-emails-extraction",
+    "title": "Undelivered Emails Extraction",
+    "excerpt": "I need a program to extract and compile undelivered email addresses (in thousands) from outlook into a csv file",
+    "date": "2023-08-21",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Malaysia",
+      "Programming Language",
+      "Python"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I need a program to extract and compile undelivered email addresses (in thousands) from outlook into a csv file"
+        ]
+      }
+    ],
+    "id": "undelivered-emails-extraction",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/undelivered-emails-extraction.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjt007H62Yb3uoKLJa8YK_cjwdlBL43EAQIKBwlXxbXiyST-ud-BMAiwf29WODuN5aeKiGArpBdoGYvNqskaMXA6FeCTpBho1gWnoWYBcx6Eelmg0_awaNlY91VTLK3MUkTA3xdgOPq1oKo_eyUkp14jIRrr2hxab7qGUQcn-xjLBpr0yilTx0ObiOGY0g/w640-h360/Undelivered%20Emails%20Extraction.jpg"
+  },
+  {
+    "slug": "finalize-scraping-strategy",
+    "title": "Finalize Scraping Strategy",
+    "excerpt": "I have pieces...LLM prompts, and a scraper to leverage, a source sheet that lists the Start URLs, database design for an interim table for scraped data, and CRM as the ultimate destination for data.",
+    "date": "2023-08-13",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Croatia",
+      "Programming Language",
+      "Utilities and Scripting"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I have pieces...LLM prompts, and a scraper to leverage, a source sheet that lists the Start URLs, database design for an interim table for scraped data, and CRM as the ultimate destination for data.",
+          "Need to bring the pieces together to make the processes run automatically...add a new site to the sheet, scheduled scrape picks it up...ultimately adds the data to my CRM, with no further intervention."
+        ]
+      }
+    ],
+    "id": "finalize-scraping-strategy",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/finalize-scraping-strategy.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGM3BKC6l2PLQnjE4Pe9BNk8vGGl8aYukx-1HYxSwtRTAC0BgBq0C34Fk435nWCZFmDtrTXlsQfPGlPVwl3nlc6m0p551nTIRTzRlHrgvgKKhcjQkY4tWBwicpxlEKzTTetrIVLcCChSVQB5Jzv49u29kvH7-NJphGirCRn93MQ7qsIMvQ2G-jhtDOBRM/w640-h360/Finalize%20Scraping%20Strategy.jpg"
+  },
+  {
+    "slug": "nyckel-classifier-and-modify-code-to",
+    "title": "Nyckel Classifier and Modify Code to allow Receiving JSON from Multiple Sites, and Writing Vendors",
+    "excerpt": "I need a Nyckel Classifier added to my code, and",
+    "date": "2023-08-09",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Croatia",
+      "Programming Language",
+      "Python"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I need a Nyckel Classifier added to my code, and",
+          "Modify Code to allow receiving JSON from multiple sites, and writing vendors back to the same site."
+        ]
+      }
+    ],
+    "id": "nyckel-classifier-and-modify-code-to",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/nyckel-classifier-and-modify-code-to.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzH85iOb1qCQjyb3TGwSEWQ4XbZv203GdDiNw_NWXKR97pZ7cbET3KQlQgOPzAQ32fxGFPmnlrL8MEgBqV8RcrZrqDzPGVuAKFICMDuPToAHX-R7uGjN1SwGQKefZVsSqJpjACtr9aD-VQTfiiGmRQKyk7Sovd5NOxB_BL41LTg2nJiuMosqjT7mzXpFo/w640-h360/Nyckel%20Classifier%20and%20Modify%20Code%20to%20allow.jpg"
+  },
+  {
+    "slug": "python-scraping-to-crm-database_01916622106",
+    "title": "Add Contacts to WordPress CRM and ChatGPT Call",
+    "excerpt": "Returning enriched data from my data provider, there are 3 contacts x 4 fields, need those inserted.",
+    "date": "2023-07-29",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Croatia",
+      "Programming Language",
+      "Python"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Returning enriched data from my data provider, there are 3 contacts x 4 fields, need those inserted.",
+          "Also, Call ChatGPT to classify job titles using my existing prompt"
+        ]
+      }
+    ],
+    "id": "python-scraping-to-crm-database_01916622106",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/python-scraping-to-crm-database_01916622106.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGKan0yAY3Dutj0H6r-unnd1Oib_h-7RkTNtuvMp11XVeAa7Ng0U3nCa9UczkhJzvz4R0qECLzTooHCFKxfEuvY7kPhyT4IRtjGcx9Ys8Nhvc8AY3NHH72M5Tl0WzoquieabHqPszX8rqdJImmVexOjCgHpW-oFkfJo2kqxzdgx44UkecyomuhETkOIPA/w640-h360/Add%20Contacts%20to%20WordPress%20CRM.jpg"
+  },
+  {
+    "slug": "devops-consulting-needed-to-support",
+    "title": "DevOps consulting needed to support Docker Kubernetes",
+    "excerpt": "Proof of concept - Feb 25 – June 10",
+    "date": "2023-07-21",
+    "readTime": "2 min read",
+    "category": "DevOps",
+    "tags": [
+      "DevOps",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Proof of concept - Feb 25 – June 10",
+          "Task 1",
+          "We are expecting a single or Multiple node Docker to the local Windows 10/11 Environment using minikubes and azure/container-registry",
+          "1. Setup",
+          "2. Documentation",
+          "3. Docker compose file",
+          "4. Demo",
+          "5. And help me to setup in my local environment",
+          "6. Windows 10, 11",
+          "azure/container-registry",
+          " Docker compose",
+          " Kuberneties",
+          " App- scaling up and",
+          " 1 App – + 1 Redis image",
+          "2 weeks for Task 1",
+          "Task 2",
+          "We are expecting a single-node, or Multi-layer Kubernetes cluster deployed with our middle-layer application . (Redhat linux Server) using azure/container-registry",
+          "1. Setup",
+          "2. Documentation",
+          "3. Package Manger Like Helm Chart",
+          "4. Network like Nginx",
+          "5. Demo",
+          "6. And help me to setup in my local environment",
+          "7. minikube & Redhat linux",
+          "• azure/container-registry",
+          "• Kuberneties",
+          "• App- scaling up and",
+          "• 1 App – + 1 Redis image",
+          "Duration of Task 2 is 3 weeks",
+          "Task 3",
+          "We are expecting a single-node, or Multi-layer Kubernetes cluster deployed with our middle-layer application . (Windows Server 2019 Server) using azure/container-registry",
+          "1. Setup",
+          "2. Documentation",
+          "3. Package Manger Like Helm",
+          "4. Network like Nginx",
+          "5. Demo",
+          "6. And help me to setup in my environment",
+          "8. minikube & Redhat linux",
+          "• azure/container-registry",
+          "• Kuberneties",
+          "• App- scaling up and",
+          "• 1 App – + 1 Redis image",
+          "Duration of Task3 :3 weeks",
+          "Task 4",
+          "We are expecting a single-node or Multi-layer Kubernetes cluster deployed with our middle-layer application . (Azure cloud ) using azure/container-registry",
+          "1. Setup",
+          "2. Documentation",
+          "3. Package Manger Like Helm",
+          "4. Network like Nginx",
+          "5. Demo",
+          "6. And help me to setup in my environment",
+          "7 minikube & Redhat linux",
+          "• azure/container-registry",
+          "• Kuberneties",
+          "• App- scaling up and",
+          "• 1 App – + 1 Redis image",
+          "Duration Task 4 : 3 weeks"
+        ]
+      }
+    ],
+    "id": "devops-consulting-needed-to-support",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/devops-consulting-needed-to-support.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3mePwWJFTyj62xbeh2xcRk62aMBAChzzo0PtQTVGLjVcZcvQXqIN_Zo6I71hnL-vsKTCGOreg1aB1hvV-3e5ek7VYl0UExE8FbA8uEF-j7AQzK735knMHQAyqprfAS5U3Cxm1IzZ7N_TWtzgM7qgkKZxcXISxYSJMOztxPd3LJwxzj6r09Mww46mXbY0/w640-h360/DevOps%20consulting.jpg"
+  },
+  {
+    "slug": "network-and-dns-support-engineer-linux",
+    "title": "Network and DNS Support Engineer (Linux)",
+    "excerpt": "Seeking a Network and DNS Support Engineer to troubleshoot and resolve network and DNS-related issues on Ubuntu-based edge devices. Responsibilities include diagnosing problems impacting camera…",
+    "date": "2023-07-20",
+    "readTime": "1 min read",
+    "category": "Network and System",
+    "tags": [
+      "Network and System",
+      "Permi Tech",
+      "Saudi Arabia"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Seeking a Network and DNS Support Engineer to troubleshoot and resolve network and DNS-related issues on Ubuntu-based edge devices. Responsibilities include diagnosing problems impacting camera accessibility, configuring SSH, and providing technical support. Strong knowledge of networking concepts, DNS configuration, and Ubuntu/Linux systems is required."
+        ]
+      }
+    ],
+    "id": "network-and-dns-support-engineer-linux",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/network-and-dns-support-engineer-linux.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRan_rnrN1eoMyp5cKXd5u8-ghGuI-R8MdKiCGQnU0wjUNQFBMADhyphenhyphencWhVM2t_-E6rXe4n9ElnBq7n5vUu4bMFZ19Kri3h4-o0fCyh-FrU7le6Uk7oYR5_5WzzT3r9O_Axcc6u_Tz3EoeJ7nOOoKyiJBYc5QgMvjxG15vL6SAkSJuIh0ija-y5h6Z52LE/w640-h360/Network%20and%20DNS%20Support%20Engineer.jpg"
+  },
+  {
+    "slug": "python-scraping-to-crm-database",
+    "title": "Python Scraping to CRM Database",
+    "excerpt": "I have a simple Beautiful Soup scraping script that opens a page, opens links that conform to a wildcard format, and returns the contents of a div on the detail page.",
+    "date": "2023-07-19",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Croatia",
+      "Programming Language",
+      "Python"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "I have a simple Beautiful Soup scraping script that opens a page, opens links that conform to a wildcard format, and returns the contents of a div on the detail page.",
+          "I also have a Google spreadsheet that lists the URLs, and the details above.",
+          "I need to modify the script to loop over the values form the sheet, and extract the data., and probably write it to a database for safekeeping.",
+          "Then, loop over the text blocks and send to ChatGPT in a particular way.",
+          "Get the data back and update my CRM database.",
+          "Customize the script to not scrape old data, probably using the URL as a key."
+        ]
+      }
+    ],
+    "id": "python-scraping-to-crm-database",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/python-scraping-to-crm-database.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJO45hoIk0O7GTDQ23DkJljCo8xgO-3UaDniGV9bp7xtahc6CiHLVY26g8bKtZ32Ov2KfM0yCLh9cQSo3o-E9a9IdTiCdcKf4XQ3_biUy1L9j2utqA5ZBWpXy1DmTNXZ-zwT7pIOkfKLeTmOuWi9y7atPZ3locppPery2JMtBJb_L-GuCT-UwFUtgFbZ8/w640-h360/Python%20Scraping%20to%20CRM%20Database.jpg"
+  },
+  {
+    "slug": "simple-modification-to-python-script-2",
+    "title": "Simple Modification to Python Script 2",
+    "excerpt": "Update: I am looking for a Python dev, a professional who knows how to communicate and wants to work with me on this via Google Meet in my Timezone, GMT-7.",
+    "date": "2023-07-16",
+    "readTime": "1 min read",
+    "category": "Programming Language",
+    "tags": [
+      "Croatia",
+      "Programming Language",
+      "Python",
+      "WordPress"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Update: I am looking for a Python dev, a professional who knows how to communicate and wants to work with me on this via Google Meet in my Timezone, GMT-7.",
+          "If you have been following me, you know I have a nice Python solution that takes a JSON package and does some web scraping, returning businesses and contacts.",
+          "It currently writes the results to Postgres.",
+          "I simply need it to write to MySQL, specifically my WordPress database, with the businesses and contacts in FluentCRM. Contacts can be created with a call to an existing webhook listener in FluentCRM. There are API calls for both of these, so we don't actually have to map the database inserts.",
+          "I would like to keep the existing database connection block, and add a simple if using a variable like data_destination, that we can add the configuration block.",
+          "Probably, if you can use the WP/Fluent API to to the writes it would be better than writing directly to the database."
+        ]
+      }
+    ],
+    "id": "simple-modification-to-python-script-2",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/simple-modification-to-python-script-2.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPkKXZxQ7ovoqA87ve1CS_O3N4ElEeehGCPuWsqsmGPJCouH3D2FjhTXDWpcIgrZHOpAxBVlRSB2o6fwPiS1VbCXtcXXeNhLl1YiTMaPug-KAzYSEjsw6Xu40YWND1Mc6erJeNghtid6o2XIzUAwQWG0OIHBAvdZG5poUcJR61LMXn_tbRgrjGb0agSWs/w640-h360/Simple%20Modification%20to%20Python%20Script%202.jpg"
+  },
+  {
+    "slug": "construct-radius-proxy-server-that",
+    "title": "Construct a Radius Proxy Server that Handles API based Second Factor AuthenticationMFA and Radius",
+    "excerpt": "Radius Proxy Sever",
+    "date": "2023-06-28",
+    "readTime": "1 min read",
+    "category": "Java",
+    "tags": [
+      "Fortytwo Labs",
+      "India",
+      "Java",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Radius Proxy Sever",
+          "A) Problem statement: Construct a Radius Proxy server that handles API-based second factor authentication(MFA) and radius server authentication (1FA). The integrating application should just need to update the pointing in order to use MFA services because the request response payload should be consistent with the radius protocol.",
+          "B) Solution: Implement a Radius proxy server that will perform the following actions:-",
+          "-Accept username and password as the first factor using radius protocol",
+          "-Authenticate the same to a Radius Server (configuration should be properties file-based)",
+          "-Initiate the second factor of authentication using an API call after the first factor is successfull.",
+          "-The request and response structure must be radius protocol compliant, so that the integrating application does gnot have to undergo and changes. The objective is just to change domain name pointing from an existing radius server to our custom proxy server for enabling MFA.",
+          "-For sending MFA requests the mobile Number/Email id should be fetched from Radius server.",
+          "C) Configurations",
+          "The proxy server should accept radius server connection details(IP/Port).",
+          "D) Techology stack",
+          "Java/Go",
+          "E) Deliverables",
+          "Source code",
+          "Code Explanation document",
+          "Test case document",
+          "Demo/Working Solution",
+          "Integration interfaces",
+          "F) Expected Timelines 3 weeks"
+        ]
+      }
+    ],
+    "id": "construct-radius-proxy-server-that",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/construct-radius-proxy-server-that.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqfGMRrl8xO3w19JcJLv23OHQdr09Gyt3qYcdl6Dgsd_6VKy2_Q1JCve4EC9Wgk2MgQoET1IW-yOX7TE4dHszrxGRT3_596LgPvYoKPArH9LrR7hy-SUXqNBMmynERFqzMK7udCPVjuxS0pnqHGZJzkWBMO33hzbvTDMftpDUzRVn2PpFHyj86DwhQ2qQ/w640-h360/Construct%20a%20Radius%20Proxy%20server%20that%20handles%20API%20.jpg"
+  },
+  {
+    "slug": "cyber-security-network-attacks-against",
+    "title": "Cyber Security- Network Attacks Against Availability",
+    "excerpt": "Our organization is experiencing frequent downtime through (ICMP, SYN and Network Issues). This Project will help the team to solve some of the common issues Project Schedule: 1. Start Date: July 16,…",
+    "date": "2023-04-16",
+    "readTime": "1 min read",
+    "category": "Information and Security",
+    "tags": [
+      "Information and Security",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Our organization is experiencing frequent downtime through (ICMP, SYN and Network Issues). This Project will help the team to solve some of the common issues Project Schedule: 1. Start Date: July 16, 2022 2. End Date: July 26, 2022"
+        ]
+      }
+    ],
+    "id": "cyber-security-network-attacks-against",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/cyber-security-network-attacks-against.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7hL5Y1TmDES33FqbNHXjBjeaQyPa-77WqLZnZliP7NI6y9GsN12fC-xiVCQtqSN2BYwVPvsvMUQJBYrx1kKsFVEylojRNGyPeetvQf7FeNZpa6N96BSWhYlqiHNJkN5f39-NwXUaT8j04_zFwAtsDgN5LC5GRyBU-Nvfz6WVIvQPxJalVhzqAJptEsMw/w640-h360/Cyber%20Security-%20Network%20Attacks.jpg"
+  },
+  {
+    "slug": "webaudio-api-expert-javascript",
+    "title": "WebAudio API Expert Javascript",
+    "excerpt": "We already have a program that is working and we want to add new functionality",
+    "date": "2023-04-15",
+    "readTime": "1 min read",
+    "category": "Full-Stack",
+    "tags": [
+      "Canada",
+      "Full-Stack",
+      "JavaScript",
+      "System Canada"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We already have a program that is working and we want to add new functionality",
+          "Current situation of project : When we upload the file, we have low high and mid controls. At this point on uploading the file, we can change low mid and high values and hear on speakers in real time",
+          "What Needs to be done by the Freelancer ( Below details will be very easy for those that have worked in WebAudio API to understand what we want )",
+          "When we upload the file and then play with low mid and high - it changes audio sound.",
+          "We want that with the new function (new code) That changed audio sound - Can we download as well",
+          "This is the new functionality that needs to be added into the existing code",
+          "The entire work is in Javascript (.JS)",
+          "So expert level in (1) WebAudio API is a must followed by expertise in (2) Javascript"
+        ]
+      }
+    ],
+    "id": "webaudio-api-expert-javascript",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/webaudio-api-expert-javascript.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjjK70JxIoTTRHGpNO6o75HeWcK07DCLfvGdC0pzKkbQWzeYmgL5GY7VkYBhb0-bh12H74KSNyrDiTg9zN7NHOUFyTeASSwcklzDGpLlTquiKiCr5Y-1rspelfd06nfKmerhA2dYmJRf446aq4lgk2Tu9eGAC0EApoWZQBOjw1sXySq6It_505oJ9nO6k/w640-h360/WebAudio%20API%20Expert%20Javascript.jpg"
+  },
+  {
+    "slug": "i-need-freelancer-for-product-promotion",
+    "title": "I need a Freelancer for a Product Promotion Campaign",
+    "excerpt": "Al Yousuf Motors is looking for an agency to handle a product promotion campaign on social media, which will include 4 videos & approximately 25 stories.",
+    "date": "2023-03-14",
+    "readTime": "1 min read",
+    "category": "Graphic and Video Editing",
+    "tags": [
+      "Al Yousuf Motors",
+      "Graphic and Video Editing",
+      "UAE"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Al Yousuf Motors is looking for an agency to handle a product promotion campaign on social media, which will include 4 videos & approximately 25 stories."
+        ]
+      }
+    ],
+    "id": "i-need-freelancer-for-product-promotion",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/i-need-freelancer-for-product-promotion.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgCiLFFxt4psTmfDjTlXAjeeUHFadZU2Knr5K3ElXPtQdBq3H4NGOXZl48xA76Hk257pLIsXUjijQxLQ4FqypFuFfChySrMGIlveo0-r3eUfeqUvUkOBmJfkC05huhkQ2TYQgcFqUc1_48MVz6iPyU8DQGAmmBMSitHokdTt3Yi7GVu74WK6NdA0jTcmsg/w640-h640/I%20need%20a%20freelancer%20for%20a%20product%20promotion%20campaign.jpg"
+  },
+  {
+    "slug": "dashboard-creation-in-moodle",
+    "title": "Dashboard Creation in Moodle",
+    "excerpt": "In Moodle, we need to create a stunning Dashboard. The Dashboard contains multiple drill down charts. Dashboard Areas are provided below:",
+    "date": "2023-02-16",
+    "readTime": "1 min read",
+    "category": "Moodle LMS",
+    "tags": [
+      "India",
+      "Mazenet Solution",
+      "Moodle LMS",
+      "Php",
+      "Programming Language"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "In Moodle, we need to create a stunning Dashboard. The Dashboard contains multiple drill down charts. Dashboard Areas are provided below:",
+          "Attendance",
+          "Time Spend on LMS platform",
+          "Over all Quiz",
+          "Detailed Quiz",
+          "Overall Assignment",
+          "Detailed Assignment",
+          "Overall Hands on Practice",
+          "Detailed Assignment",
+          "Overall Projects",
+          "Detailed Projects",
+          "Course completion %",
+          "Question Completion Status (Correct, Wrong, Partially Correct SKipped, Not Viewed, Not Attended)",
+          "Test completion Status (Completed, Not Completed, Not Started)",
+          "Top Performance Test",
+          "Least PErformance Test",
+          "Progress Report (Top score, LEast scrore, Average score, PArticular Student Score)",
+          "Note: Please Send Poposal if you already have good experience in Moodle"
+        ]
+      }
+    ],
+    "id": "dashboard-creation-in-moodle",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/dashboard-creation-in-moodle.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7QRcOe6xBoihfBX00OyMgUqQCkz1SpA7mhyphenhyphenov6UWQ3z17sGC30XClseS-md0OfciEfOaGdzm4TLgCKBdt-gKrFsJwxvbbpHNaVBhoA1FgYaF3Ea_FIw97nVDrHLR0OgEVUxPSCMMxfZh6l4uYLy1MxENr6OVlbIDfsEYxGOS-VtkBHerdydL-LJ2d4MQ/w640-h360/Dashboard%20creation%20in%20Moodle.jpg"
+  },
+  {
+    "slug": "flutter-developer-required-for-staff",
+    "title": "Flutter Developer Required for Staff, Student and Parent Mobile Applications",
+    "excerpt": "We are looking for an experienced **Flutter Developer** to develop mobile applications for **Staff, Students and Parents**.",
+    "date": "2022-08-14",
+    "readTime": "2 min read",
+    "category": "Flutter",
+    "tags": [
+      "Flutter",
+      "Mobile App",
+      "Nepal"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "We are looking for an experienced **Flutter Developer** to develop mobile applications for **Staff, Students and Parents**.",
+          "The applications will consume existing or newly developed **Laravel REST APIs** and will use **JWT authentication and Role-Based Access Control (RBAC)** to provide different features and access levels for each user type.",
+          "The developer should be comfortable working with clean architecture and should be able to build a scalable, maintainable and production-ready Flutter application.",
+          "Scope of Work",
+          "Flutter Application",
+          "* Develop Android and iOS applications using Flutter",
+          "* Implement MVVM architecture",
+          "* Use GetX for state management",
+          "* Create responsive and user-friendly UI",
+          "* Integrate Laravel REST APIs",
+          "* Handle API responses and errors",
+          "* Form validation",
+          "* Local data/session management",
+          "* Push notifications if required",
+          "User Roles",
+          "The application should support separate access and functionality for:",
+          "1. Staff",
+          "2. Students",
+          "3. Parents",
+          "Each role should have its own dashboard and authorized modules.",
+          "Authentication and Security",
+          "* Login",
+          "* Logout",
+          "* JWT authentication",
+          "* Token/session management",
+          "* Role-Based Access Control",
+          "* Protected screens and API requests",
+          "* Password reset if required",
+          "System Workflow",
+          "**Login → JWT Authentication → Identify User Role → Role-Based Dashboard → Access Authorized Modules → Laravel API → Process Response → Display/Update Data**",
+          "Technical Requirements",
+          "**Mobile:** Flutter / Dart",
+          "**Architecture:** MVVM",
+          "**State Management:** GetX",
+          "**Backend:** Laravel REST API",
+          "**Authentication:** JWT",
+          "**Authorization:** RBAC",
+          "**Database:** MySQL/PostgreSQL through Laravel APIs",
+          "Expected Deliverables",
+          "* Complete Flutter source code",
+          "* Staff mobile application/module",
+          "* Student mobile application/module",
+          "* Parent mobile application/module",
+          "* Laravel REST API integration",
+          "* JWT authentication",
+          "* RBAC implementation",
+          "* API error handling",
+          "* Responsive UI",
+          "* Android APK/AAB",
+          "* iOS build support",
+          "* Testing and bug fixing",
+          "* Source code documentation",
+          "* Deployment support",
+          "Developer Requirements",
+          "Please apply only if you have practical experience with:",
+          "* Flutter and Dart",
+          "* MVVM architecture",
+          "* GetX",
+          "* Laravel REST API integration",
+          "* JWT authentication",
+          "* RBAC",
+          "* JSON/API integration",
+          "* Android and iOS development",
+          "* Git/GitHub",
+          "Experience in **school management, education, ERP or similar multi-role applications** will be an advantage.",
+          "Timeline",
+          "Expected timeline: **4 to 8 weeks**, depending on the final number of modules and existing API readiness.",
+          "The project can be divided into milestones based on:",
+          "1. UI and application structure",
+          "2. Authentication and API integration",
+          "3. Staff module",
+          "4. Student module",
+          "5. Parent module",
+          "6. Testing and deployment",
+          "Budget",
+          "Please provide your **fixed project quotation** along with milestone-wise pricing.",
+          "Mention separately if your quotation depends on the number of screens or modules.",
+          "When Applying",
+          "Please provide:",
+          "* Previous Flutter projects",
+          "* Similar multi-role application examples",
+          "* Proposed technology/architecture",
+          "* Estimated timeline",
+          "* Fixed price",
+          "* Milestone-wise cost",
+          "* Your availability per week",
+          "* Confirmation that you can provide complete source code",
+          "We are looking for a developer who can build a **stable, scalable and production-ready application**, not only complete the UI."
+        ]
+      }
+    ],
+    "id": "flutter-developer-required-for-staff",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/flutter-developer-required-for-staff.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-n15QCtwrn4QWSCh0hP52fE2tDEu1awnyFrJNBLTHqa50aaSsNdziLu541eqbPvdZE1eIrn7M7NamMSedcekhsbIatuBu9lhk35KnsSED6gBgMS9_VOJIYU06KnGQIotN7wZbH798p-D4aw-Boo3FWI6PgWGv0AXsHQFbcETeNSNNuB3BzwYMoEt8nLE/w640-h360/ChatGPT%20Image%20Aug%2014,%202026,%2010_50_29%20AM.png"
+  },
+  {
+    "slug": "cybersecurity-project-web-app",
+    "title": "Cybersecurity Project - Web App",
+    "excerpt": "Many web applications are often poorly written and lack adequate security features. These vulnerabilities can result in the application getting exploited by the bad guys and might even cause…",
+    "date": "2022-07-30",
+    "readTime": "1 min read",
+    "category": "Information and Security",
+    "tags": [
+      "Information and Security",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Many web applications are often poorly written and lack adequate security features. These vulnerabilities can result in the application getting exploited by the bad guys and might even cause considerable damage to the organization."
+        ]
+      }
+    ],
+    "id": "cybersecurity-project-web-app",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/cybersecurity-project-web-app.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiUu514b2q_oPSRDIUnXLbgjPbizgIEmLOiwB5wXLCkGHCJszyYqngaKlBrmMDh23U8H8eS0NeTPeYVwieZMOsSBMKIJxpdYwHgdi4ZkXffsY4FESKQnhpSBxCdMXKoPre5uhnzJgidbPqyN_E_RRhhfyZo6CDoexVI1f8dZNC8NKajcc5hGTLAFsvoh8w/w640-h360/Cybersecurity%20Project%20-%20Web%20App.jpg"
+  },
+  {
+    "slug": "hi-i-am-looking-for-someone-to-help-me_01939135314",
+    "title": "Hi, I am looking for someone to help me complete my CyberSecurity Project",
+    "excerpt": "Hi, I'm looking for someone to help me complete my cybersecurity project? If you can, please let me know your opinion on that?",
+    "date": "2022-04-22",
+    "readTime": "1 min read",
+    "category": "Information and Security",
+    "tags": [
+      "Information and Security",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "Hi, I'm looking for someone to help me complete my cybersecurity project? If you can, please let me know your opinion on that?"
+        ]
+      }
+    ],
+    "id": "hi-i-am-looking-for-someone-to-help-me_01939135314",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/hi-i-am-looking-for-someone-to-help-me_01939135314.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2S2oXXT0q_3gjwQmXSoxbU5O36nccp2_LsSxUOGGz-mOtpqsrKWv58SlrUiwGXFkoEx9-wwnF4dN3e_ghFZ1ojqV_dZn2qUHN3PJy3THhSVNawTJxRaykb5KaYIZniq9e78Nf2he3_WWGxX85OZTG7qCqBFS-ilFNdnGYWvSpItke7bjJ4FbyzX6e2tg/w640-h360/NoteGPT_Image_20260629063752.png"
+  },
+  {
+    "slug": "network-security-create-unique-topology_01459550011",
+    "title": "Network Security Create a Unique Topology",
+    "excerpt": "1.) Create a unique topology for your hands-on project. (CONFIGURATION IS NOT REQUIRED AT THIS POINT)",
+    "date": "2022-03-15",
+    "readTime": "1 min read",
+    "category": "Network and System",
+    "tags": [
+      "Network and System",
+      "USA"
+    ],
+    "sections": [
+      {
+        "heading": "Project Details",
+        "paragraphs": [
+          "1.) Create a unique topology for your hands-on project. (CONFIGURATION IS NOT REQUIRED AT THIS POINT)",
+          "2.) Create an addressing table.",
+          "3.) Write at least 2 ACL statements. (one standard and one extended)",
+          "This statement should describe what the ACL is permitting and deny.",
+          "This statement is not the command you will use to configure these ACLs.",
+          "Requirements for the topology",
+          "1.) ONLY use packet tracer version 7.2.2",
+          "2.) HSRP",
+          "3.) Spanning tree",
+          "4.) OSPF",
+          "5.) VPN",
+          "6.) Syslog",
+          "7.) NTP",
+          "8.) SSH",
+          "9.) ACLs",
+          "12.) 3 or more VLANs on the main LAN",
+          "13.) EtherChannel",
+          "14.) Radius",
+          "15.) Internet Server"
+        ]
+      }
+    ],
+    "id": "network-security-create-unique-topology_01459550011",
+    "url": "https://freelancer-shahid.blogspot.com/2026/08/network-security-create-unique-topology_01459550011.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRlo8IaSmb19R_Z9xiAxQoLUHN07oU1tez-9OoD3YsmpJCEt270BFSBuDxDWUu8YFMwfYqSq2FhQrEzAHX36qdZBbLcHvsGmmC6Awu3wcLvoRDpIKBPA5ZRRkxbvqtpfIIhN8sltnoD9IhOYdGQbU4ASWTWhUtZRKPyeGeT4LOhEYSK8s6yZUlp139snc/w640-h360/NoteGPT_Image_20260629063135.png"
+  }
+]

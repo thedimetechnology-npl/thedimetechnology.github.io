@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Roman",
+    "role": "ASP.NET Developer",
+    "experience": "5+ Years experience",
+    "tech": [
+      "C#",
+      ".NET Core",
+      "SQL Server",
+      "Azure"
+    ],
+    "photo": "/assets/team/roman.jpg",
+    "category": "software",
+    "id": "m1"
+  },
+  {
+    "name": "Josheph",
+    "role": "Java Developer",
+    "experience": "4+ Years experience",
+    "tech": [
+      "Java",
+      "Spring Boot",
+      "Microservices"
+    ],
+    "photo": "/assets/team/josheph.jpg",
+    "category": "software",
+    "id": "m2"
+  },
+  {
+    "name": "Bibek",
+    "role": "Mobile App Developer",
+    "experience": "4+ Years experience",
+    "tech": [
+      "Flutter",
+      "React Native",
+      "Kotlin"
+    ],
+    "photo": "/assets/team/bibek.jpg",
+    "category": "mobile",
+    "id": "m3"
+  },
+  {
+    "name": "Pratik",
+    "role": "Cyber Security Engineer",
+    "experience": "5+ Years experience",
+    "tech": [
+      "Penetration Testing",
+      "SIEM",
+      "SOC"
+    ],
+    "photo": "/assets/team/pratik.jpg",
+    "category": "security",
+    "id": "m4"
+  },
+  {
+    "name": "Susant",
+    "role": "Network Security Engineer",
+    "experience": "6+ Years experience",
+    "tech": [
+      "Cisco",
+      "Juniper",
+      "Firewalls",
+      "VPN"
+    ],
+    "photo": "/assets/team/susant.jpg",
+    "category": "security",
+    "id": "m5"
+  },
+  {
+    "name": "Shahid Alam",
+    "role": "Founder & CEO",
+    "experience": "10+ Years experience",
+    "tech": [
+      "Tech Strategy",
+      "Cloud",
+      "Architecture"
+    ],
+    "photo": "/assets/team/shahid.jpg",
+    "category": "founder",
+    "founder": true,
+    "id": "m6"
+  },
+  {
+    "name": "Balkrishna",
+    "role": "WordPress Developer",
+    "experience": "4+ Years experience",
+    "tech": [
+      "WordPress",
+      "PHP",
+      "WooCommerce"
+    ],
+    "photo": "/assets/team/balkrishna.jpg",
+    "category": "web",
+    "id": "m7"
+  },
+  {
+    "name": "Roshan",
+    "role": "Full-Stack Developer",
+    "experience": "5+ Years experience",
+    "tech": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "AWS"
+    ],
+    "photo": "/assets/team/roshan.jpg",
+    "category": "software",
+    "id": "m8"
+  }
+]

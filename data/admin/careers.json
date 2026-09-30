@@ -1,0 +1,70 @@
+[
+  {
+    "id": "car1",
+    "title": "Full-Stack Web Developer",
+    "department": "Engineering",
+    "location": "Kathmandu, Nepal / Remote",
+    "type": "Full-time",
+    "experience": "2+ years",
+    "description": "Build and ship client web applications end-to-end with React, Next.js and Node.js. You will own features from database design to deployment and work directly with international clients in a fast-moving freelance team.",
+    "requirements": [
+      "Strong JavaScript/TypeScript with React and Next.js",
+      "Experience building REST APIs with Node.js",
+      "Comfort with Git, cloud deploys and CI/CD basics",
+      "Good written English for client communication"
+    ],
+    "applyUrl": "",
+    "active": true
+  },
+  {
+    "id": "car2",
+    "title": "UI/UX Designer",
+    "department": "Design",
+    "location": "Remote",
+    "type": "Contract",
+    "experience": "1+ years",
+    "description": "Design clean, conversion-focused interfaces for web and mobile products. You will turn briefs and wireframes into polished Figma designs that developers can build without guesswork.",
+    "requirements": [
+      "Strong portfolio of web/app design work",
+      "Hands-on Figma skills: components, variants, auto-layout",
+      "Understanding of responsive layout and design systems",
+      "Ability to take feedback and iterate quickly"
+    ],
+    "applyUrl": "",
+    "active": true
+  },
+  {
+    "id": "car3",
+    "title": "Mobile App Developer (Flutter)",
+    "department": "Engineering",
+    "location": "Kathmandu, Nepal",
+    "type": "Full-time",
+    "experience": "2+ years",
+    "description": "Develop and maintain cross-platform mobile apps with Flutter. You will work on real client products, integrate REST APIs and publish releases to the Play Store and App Store.",
+    "requirements": [
+      "Production experience with Flutter and Dart",
+      "Comfortable with REST APIs, local storage and state management",
+      "Experience publishing to Play Store / App Store",
+      "Eye for smooth animations and platform conventions"
+    ],
+    "applyUrl": "",
+    "active": true
+  },
+  {
+    "id": "car4",
+    "title": "DevOps Engineer",
+    "department": "Infrastructure",
+    "location": "Remote",
+    "type": "Part-time",
+    "experience": "3+ years",
+    "description": "Own cloud infrastructure and delivery pipelines for client projects. You will automate deployments, harden security and keep environments fast, observable and cost-efficient.",
+    "requirements": [
+      "Deep knowledge of AWS or equivalent cloud platforms",
+      "Hands-on with Docker, GitHub Actions and IaC tools",
+      "Experience with Linux servers, monitoring and log tooling",
+      "Understanding of networking, SSL and DNS"
+    ],
+    "applyUrl": "",
+    "active": true
+  }
+]

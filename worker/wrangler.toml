@@ -1,0 +1,8 @@
+name = "dime-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dime-content"
+database_id = "f45bb347-5456-4d92-90aa-19f4a26f0f6f"

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "crs1",
+    "title": "Full-Stack Web Development",
+    "category": "Web Development",
+    "level": "Beginner",
+    "duration": "12 weeks",
+    "mode": "Online",
+    "price": "Free",
+    "description": "Go from the basics to building and deploying full web applications. Learn the modern JavaScript stack hands-on by shipping real projects with guidance from our engineers.",
+    "topics": [
+      "HTML, CSS and JavaScript fundamentals",
+      "React and Next.js for modern frontends",
+      "REST APIs and databases with Node.js",
+      "Git, testing, deployment and hosting"
+    ],
+    "enrollUrl": "",
+    "active": true
+  },
+  {
+    "id": "crs2",
+    "title": "Flutter Mobile App Development",
+    "category": "Mobile Development",
+    "level": "Intermediate",
+    "duration": "8 weeks",
+    "mode": "Online",
+    "price": "NPR 4,999",
+    "description": "Build cross-platform mobile apps for Android and iOS with a single codebase. Course projects mirror real client work, from UI to store release.",
+    "topics": [
+      "Dart language and Flutter widgets",
+      "State management and app architecture",
+      "REST API integration and local storage",
+      "Publishing to the Play Store and App Store"
+    ],
+    "enrollUrl": "",
+    "active": true
+  },
+  {
+    "id": "crs3",
+    "title": "DevOps & Cloud Fundamentals",
+    "category": "Infrastructure",
+    "level": "Intermediate",
+    "duration": "6 weeks",
+    "mode": "Online",
+    "price": "NPR 6,999",
+    "description": "Learn how modern software is delivered — containers, pipelines and cloud infrastructure. Ideal for developers who want to own deployment too.",
+    "topics": [
+      "Linux, Docker and container basics",
+      "CI/CD pipelines with GitHub Actions",
+      "AWS core services and networking",
+      "Monitoring, logging and security basics"
+    ],
+    "enrollUrl": "",
+    "active": true
+  },
+  {
+    "id": "crs4",
+    "title": "UI/UX Design with Figma",
+    "category": "Design",
+    "level": "Beginner",
+    "duration": "5 weeks",
+    "mode": "Self-paced",
+    "price": "Free",
+    "description": "Design clean, user-friendly interfaces from wireframe to polished prototype. Learn the design thinking process we use on real client products.",
+    "topics": [
+      "Design principles and wireframing",
+      "Figma components, variants and auto-layout",
+      "Responsive design and design systems",
+      "Prototyping and handing off to developers"
+    ],
+    "enrollUrl": "",
+    "active": true
+  }
+]

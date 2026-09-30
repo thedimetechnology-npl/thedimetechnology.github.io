@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Mazenet",
+    "logo": "/assets/clients/mazenet.jpg",
+    "id": "c1"
+  },
+  {
+    "name": "FortyTwo Labs",
+    "logo": "/assets/clients/fourtytwo.jpg",
+    "id": "c2"
+  },
+  {
+    "name": "Permitech",
+    "logo": "/assets/clients/permitech.jpg",
+    "id": "c3"
+  },
+  {
+    "name": "System Canada",
+    "logo": "/assets/clients/systemcanada.jpg",
+    "id": "c4"
+  },
+  {
+    "name": "ABS Infosys",
+    "logo": "/assets/clients/absinfosys.jpg",
+    "id": "c5"
+  },
+  {
+    "name": "Infonet",
+    "logo": "/assets/clients/infonet.jpg",
+    "id": "c6"
+  },
+  {
+    "name": "Sunrise",
+    "logo": "/assets/clients/sunrise.jpg",
+    "id": "c7"
+  },
+  {
+    "name": "SharePro",
+    "logo": "/assets/clients/sharepro.jpg",
+    "id": "c8"
+  },
+  {
+    "name": "JanaFly",
+    "logo": "/assets/clients/janafly.jpg",
+    "id": "c9"
+  },
+  {
+    "name": "Energy Improvements",
+    "logo": "/assets/clients/energyimprovements.jpg",
+    "id": "c10"
+  },
+  {
+    "name": "Clinical Talent Australia",
+    "logo": "/assets/clients/clinicaltalent.jpg",
+    "id": "c11"
+  },
+  {
+    "name": "SapSG",
+    "logo": "/assets/clients/SapSG.jpg",
+    "id": "c12"
+  },
+  {
+    "name": "SIGASYS-Chinaway",
+    "logo": "/assets/clients/SIGASYS-Chinaway.jpg",
+    "id": "c13"
+  }
+]

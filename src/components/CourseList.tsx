@@ -1,0 +1,130 @@
+"use client";
+
+import { apiFetch } from "@/lib/api";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import type { AdminCourse } from "@/lib/admin-types";
+
+const chipClass = "px-3 py-1 rounded-full text-xs font-medium border";
+const neutralChip = "bg-white/5 text-[#9898b0] border-white/10";
+const typeChip = "bg-[#065cc2]/10 text-[#2b7de0] border-[#065cc2]/25";
+const priceChip = "bg-emerald-500/10 text-emerald-400 border-emerald-500/25";
+const enrollBtnClass =
+  "inline-flex items-center gap-2 mt-auto self-start px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5";
+
+export default function CourseList({ initial }: { initial: AdminCourse[] }) {
+  const [items, setItems] = useState(initial);
+
+  useEffect(() => {
+    apiFetch("/api/content/courses")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (Array.isArray(data) && data.length) setItems(data);
+      })
+      .catch(() => {});
+  }, []);
+
+  const open = items.filter((i) => i.active !== false);
+
+  return (
+    <>
+      {open.length === 0 ? (
+        <div className="bg-[#1a1a2e] border border-white/5 rounded-2xl p-10 text-center">
+          <h2 className="text-xl font-bold mb-2">No courses available right now</h2>
+          <p className="text-sm text-[#9898b0] mb-6">
+            New courses are announced regularly — get in touch and we&apos;ll let you know
+            when the next one starts.
+          </p>
+          <Link
+            href="/#contact"
+            className="inline-flex px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
+            style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+          >
+            Get in Touch
+          </Link>
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 gap-6">
+          {open.map((course) => (
+            <div
+              key={course.id}
+              className="bg-[#1a1a2e] border border-white/5 rounded-2xl p-6 flex flex-col transition-all hover:-translate-y-1 hover:border-[#065cc2]/30"
+            >
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <h2 className="text-lg font-bold">{course.title}</h2>
+                {course.price && <span className={`${chipClass} ${priceChip} shrink-0`}>{course.price}</span>}
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-4">
+                {course.category && (
+                  <span className={`${chipClass} ${typeChip}`}>{course.category}</span>
+                )}
+                <span className={`${chipClass} ${neutralChip}`}>{course.level}</span>
+                {course.duration && (
+                  <span className={`${chipClass} ${neutralChip}`}>{course.duration}</span>
+                )}
+                {course.mode && (
+                  <span className={`${chipClass} ${neutralChip}`}>{course.mode}</span>
+                )}
+              </div>
+
+              {course.description && (
+                <p className="text-sm text-[#9898b0] leading-relaxed mb-4">
+                  {course.description}
+                </p>
+              )}
+
+              {course.topics.length > 0 && (
+                <ul className="space-y-2 mb-6">
+                  {course.topics.map((topic, i) => (
+                    <li key={i} className="flex gap-2.5 text-sm text-[#9898b0]">
+                      <span className="text-[#2b7de0] mt-0.5">▸</span>
+                      <span>{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {course.enrollUrl.startsWith("http") ? (
+                <a
+                  href={course.enrollUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={enrollBtnClass}
+                  style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+                >
+                  Enroll Now →
+                </a>
+              ) : (
+                <Link
+                  href="/#contact"
+                  className={enrollBtnClass}
+                  style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+                >
+                  Enroll Now →
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="mt-10 bg-[#1a1a2e] border border-white/5 rounded-2xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
+        <div>
+          <h2 className="text-lg font-bold mb-1.5">Not sure which course fits?</h2>
+          <p className="text-sm text-[#9898b0]">
+            Tell us about your background and goals — we&apos;ll help you pick the right
+            one.
+          </p>
+        </div>
+        <Link
+          href="/#contact"
+          className="shrink-0 inline-flex px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
+          style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+        >
+          Get in Touch
+        </Link>
+      </div>
+    </>
+  );
+}
