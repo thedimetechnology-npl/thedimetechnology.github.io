@@ -37,12 +37,12 @@ export default function Footer() {
                   LinkedIn
                 </a>
                 <a
-                  href="https://github.com/azhashmi"
+                  href="https://www.facebook.com/thedimetechnology/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2 border border-white/5 rounded-full text-xs font-medium text-[#9898b0] hover:border-[#065cc2] hover:text-white hover:bg-[#065cc2]/10 transition-all"
                 >
-                  GitHub
+                  Facebook
                 </a>
               </div>
             </div>

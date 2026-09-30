@@ -3,6 +3,8 @@
 import { apiFetch } from "@/lib/api";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ReadMore from "@/components/ReadMore";
+import DetailModal from "@/components/DetailModal";
 import type { AdminCourse } from "@/lib/admin-types";
 
 const chipClass = "px-3 py-1 rounded-full text-xs font-medium border";
@@ -10,10 +12,11 @@ const neutralChip = "bg-white/5 text-[#9898b0] border-white/10";
 const typeChip = "bg-[#065cc2]/10 text-[#2b7de0] border-[#065cc2]/25";
 const priceChip = "bg-emerald-500/10 text-emerald-400 border-emerald-500/25";
 const enrollBtnClass =
-  "inline-flex items-center gap-2 mt-auto self-start px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5";
+  "inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5";
 
 export default function CourseList({ initial }: { initial: AdminCourse[] }) {
   const [items, setItems] = useState(initial);
+  const [openId, setOpenId] = useState<string | null>(null);
 
   useEffect(() => {
     apiFetch("/api/content/courses")
@@ -51,7 +54,7 @@ export default function CourseList({ initial }: { initial: AdminCourse[] }) {
               className="bg-[#1a1a2e] border border-white/5 rounded-2xl p-6 flex flex-col transition-all hover:-translate-y-1 hover:border-[#065cc2]/30"
             >
               <div className="flex items-start justify-between gap-3 mb-3">
-                <h2 className="text-lg font-bold">{course.title}</h2>
+                <h2 className="text-lg font-bold line-clamp-2">{course.title}</h2>
                 {course.price && <span className={`${chipClass} ${priceChip} shrink-0`}>{course.price}</span>}
               </div>
 
@@ -69,41 +72,55 @@ export default function CourseList({ initial }: { initial: AdminCourse[] }) {
               </div>
 
               {course.description && (
-                <p className="text-sm text-[#9898b0] leading-relaxed mb-4">
-                  {course.description}
-                </p>
+                <div className="space-y-4 line-clamp-4 mb-1">
+                  {course.description
+                    .split("\n")
+                    .filter((p) => p.trim())
+                    .map((para, i) => (
+                      <p key={i} className="text-sm text-[#9898b0] leading-relaxed">
+                        {para}
+                      </p>
+                    ))}
+                </div>
               )}
 
-              {course.topics.length > 0 && (
-                <ul className="space-y-2 mb-6">
-                  {course.topics.map((topic, i) => (
-                    <li key={i} className="flex gap-2.5 text-sm text-[#9898b0]">
-                      <span className="text-[#2b7de0] mt-0.5">▸</span>
-                      <span>{topic}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <div className="mt-auto flex items-center justify-between gap-3">
+                <ReadMore text={course.description} onClick={() => setOpenId(course.id)} />
 
-              {course.enrollUrl.startsWith("http") ? (
-                <a
-                  href={course.enrollUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={enrollBtnClass}
-                  style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
-                >
-                  Enroll Now →
-                </a>
-              ) : (
-                <Link
-                  href="/#contact"
-                  className={enrollBtnClass}
-                  style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
-                >
-                  Enroll Now →
-                </Link>
-              )}
+                {course.enrollUrl.startsWith("http") ? (
+                  <a
+                    href={course.enrollUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={enrollBtnClass}
+                    style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+                  >
+                    Enroll Now →
+                  </a>
+                ) : (
+                  <Link
+                    href="/#contact"
+                    className={enrollBtnClass}
+                    style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+                  >
+                    Enroll Now →
+                  </Link>
+                )}
+              </div>
+
+              <DetailModal
+                open={openId === course.id}
+                onClose={() => setOpenId(null)}
+                title={course.title}
+                chips={[course.category, course.level, course.duration, course.mode, course.price].filter(
+                  (c): c is string => !!c
+                )}
+                description={course.description}
+                listLabel="Topics"
+                list={course.topics}
+                ctaLabel="Enroll Now →"
+                ctaHref={course.enrollUrl}
+              />
             </div>
           ))}
         </div>

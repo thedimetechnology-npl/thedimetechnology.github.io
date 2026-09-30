@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -276,6 +277,49 @@ body {
   }
 }
 
+@keyframes aboutGlow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.about-glow {
+  animation: aboutGlow 5s ease-in-out infinite;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-box {
+  animation: modalIn 0.25s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+  scrollbar-gutter: stable;
+}
+
+.modal-backdrop {
+  animation: fadeIn 0.2s ease forwards;
+}
+
 .scroll-line {
   transform-origin: top;
   animation: scrollPulse 2.2s ease-in-out infinite;
@@ -293,7 +337,10 @@ body {
   .hero-orb-3,
   .hero-ring,
   .shimmer-text,
-  .scroll-line {
+  .scroll-line,
+  .about-glow,
+  .modal-box,
+  .modal-backdrop {
     animation: none !important;
   }
 }
