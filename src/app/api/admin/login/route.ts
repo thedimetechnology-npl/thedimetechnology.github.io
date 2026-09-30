@@ -7,6 +7,10 @@ export async function POST(req: NextRequest) {
   };
   const { username, password } = getCredentials();
 
+  if (!username || !password) {
+    return NextResponse.json({ error: "Admin login is not configured" }, { status: 500 });
+  }
+
   if (body.username !== username || body.password !== password) {
     return NextResponse.json({ error: "Invalid username or password" }, { status: 401 });
   }

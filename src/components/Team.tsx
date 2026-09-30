@@ -1,7 +1,7 @@
 "use client";
 
 import { apiFetch } from "@/lib/api";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const teamMembers = [
   {
@@ -84,6 +84,7 @@ export default function Team() {
   const [activeTab, setActiveTab] = useState("all");
   const [hovered, setHovered] = useState<number | null>(null);
   const [items, setItems] = useState(teamMembers);
+  const touchActive = useRef(false);
 
   useEffect(() => {
     apiFetch("/api/content/team")
@@ -93,6 +94,15 @@ export default function Team() {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (hovered === null) return;
+    const clear = () => {
+      if (touchActive.current) setHovered(null);
+    };
+    window.addEventListener("scroll", clear, { passive: true });
+    return () => window.removeEventListener("scroll", clear);
+  }, [hovered]);
 
   const filtered = items.filter(
     (m) => activeTab === "all" || m.category === activeTab
@@ -145,9 +155,22 @@ export default function Team() {
           {filtered.map((member, i) => (
             <div
               key={member.name}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              className="rounded-xl overflow-hidden cursor-pointer transition-all duration-500 group"
+              onPointerEnter={(e) => {
+                if (e.pointerType === "mouse") {
+                  touchActive.current = false;
+                  setHovered(i);
+                }
+              }}
+              onPointerLeave={(e) => {
+                if (e.pointerType === "mouse") setHovered(null);
+              }}
+              onPointerDown={(e) => {
+                if (e.pointerType === "touch") {
+                  touchActive.current = true;
+                  setHovered((h) => (h === i ? null : i));
+                }
+              }}
+              className="rounded-xl overflow-hidden cursor-pointer transition-all duration-500"
               style={{
                 background:
                   hovered === i
@@ -171,7 +194,13 @@ export default function Team() {
                 <img
                   src={member.photo}
                   alt={`${member.name} - ${member.role}`}
-                  className="w-full h-full object-cover transition-all duration-500 brightness-[0.35] saturate-[0.3] group-hover:brightness-100 group-hover:saturate-100"
+                  className="w-full h-full object-cover transition-all duration-500"
+                  style={{
+                    filter:
+                      hovered === i
+                        ? "brightness(1) saturate(1)"
+                        : "brightness(0.35) saturate(0.3)",
+                  }}
                 />
                 <div
                   className="absolute inset-0 pointer-events-none"

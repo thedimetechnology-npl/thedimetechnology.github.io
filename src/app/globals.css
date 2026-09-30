@@ -39,9 +39,24 @@ body {
   animation: marquee 55s linear infinite;
 }
 
-.animate-marquee:hover,
-.animate-marquee-slow:hover {
-  animation-play-state: paused;
+/* Only pause marquees on hover-capable devices — a tap on mobile must not freeze them */
+@media (hover: hover) {
+  .animate-marquee:hover,
+  .animate-marquee-slow:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Touch devices: taps must not leave cards stuck in the hover state */
+@media (hover: none) {
+  .client-card:hover {
+    transform: none !important;
+  }
+
+  .client-card:hover img {
+    opacity: 0.6 !important;
+    filter: grayscale(100%) !important;
+  }
 }
 
 .gradient-text {

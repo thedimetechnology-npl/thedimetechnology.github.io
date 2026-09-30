@@ -51,10 +51,7 @@ export default function AdminLogin() {
           onSubmit={submit}
           className="bg-[#1a1a2e] border border-white/5 rounded-2xl p-8"
         >
-          <h1 className="text-xl font-extrabold mb-1">Sign in</h1>
-          <p className="text-sm text-[#5a5a72] mb-6">
-            Default credentials: <code className="text-[#2b7de0]">admin / admin123</code>
-          </p>
+          <h1 className="text-xl font-extrabold mb-6">Sign in</h1>
 
           {error && (
             <div className="mb-4 px-4 py-2.5 rounded-lg bg-red-500/10 border border-red-500/25 text-red-400 text-sm">

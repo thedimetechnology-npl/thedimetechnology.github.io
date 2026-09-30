@@ -2,7 +2,7 @@
 
 import { API_BASE, apiFetch } from "@/lib/api";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Section = { heading: string; paragraphs: string[] };
 type Post = {
@@ -14,6 +14,8 @@ type Post = {
   readTime: string;
   category: string;
   tags: string[];
+  url?: string;
+  image?: string;
   sections: Section[];
 };
 
@@ -26,6 +28,8 @@ const emptyForm = {
   category: "General",
   tags: "",
   content: "",
+  url: "",
+  image: "",
 };
 
 function parseContent(content: string): Section[] {
@@ -61,7 +65,11 @@ function parseContent(content: string): Section[] {
 
 function serializeContent(sections: Section[]): string {
   return sections
-    .map((s) => `## ${s.heading}\n${s.paragraphs.join("\n\n")}`)
+    .map((s) =>
+      s.heading
+        ? `## ${s.heading}\n${s.paragraphs.join("\n\n")}`
+        : s.paragraphs.join("\n\n")
+    )
     .join("\n\n");
 }
 
@@ -77,6 +85,10 @@ export default function AdminPosts() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [syncing, setSyncing] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [importMsg, setImportMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const [importedUrl, setImportedUrl] = useState("");
+  const importTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const load = () =>
     apiFetch("/api/admin/posts")
@@ -86,10 +98,15 @@ export default function AdminPosts() {
 
   useEffect(() => {
     load();
+    return () => {
+      if (importTimer.current) clearTimeout(importTimer.current);
+    };
   }, []);
 
   const openCreate = () => {
     setForm(emptyForm);
+    setImportMsg(null);
+    setImportedUrl("");
     setModal({ mode: "create" });
   };
 
@@ -103,17 +120,89 @@ export default function AdminPosts() {
       category: post.category,
       tags: post.tags.join(", "),
       content: serializeContent(post.sections),
+      url: post.url || "",
+      image: post.image || "",
     });
+    setImportMsg(null);
+    setImportedUrl(post.url || "");
     setModal({ mode: "edit", post });
+  };
+
+  const importFromUrl = async (raw: string) => {
+    const url = raw.trim();
+    if (!url || url === importedUrl || importing) return;
+    if (!/\.blogspot\./i.test(url)) return;
+    setImporting(true);
+    setImportMsg(null);
+    try {
+      const res = await apiFetch("/api/admin/posts/fetch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setImportMsg({ ok: false, text: data.error || "Could not import this post" });
+        return;
+      }
+      const p = (await res.json()) as {
+        slug?: string;
+        title?: string;
+        excerpt?: string;
+        date?: string;
+        readTime?: string;
+        category?: string;
+        tags?: string[];
+        url?: string;
+        image?: string;
+        sections?: Section[];
+      };
+      setForm((f) => ({
+        ...f,
+        title: p.title || f.title,
+        slug: modal?.mode === "create" ? p.slug || f.slug : f.slug,
+        excerpt: p.excerpt || f.excerpt,
+        date: p.date || f.date,
+        readTime: p.readTime || f.readTime,
+        category: p.category || f.category,
+        tags: (p.tags || []).join(", "),
+        content: serializeContent(p.sections || []),
+        url: p.url || url,
+        image: p.image || f.image,
+      }));
+      setImportedUrl(p.url || url);
+      setImportMsg({ ok: true, text: "Imported from blogspot — review the fields, then save." });
+    } catch {
+      setImportMsg({ ok: false, text: "Could not reach the import service" });
+    } finally {
+      setImporting(false);
+    }
+  };
+
+  const onUrlChange = (value: string) => {
+    setForm((f) => ({ ...f, url: value }));
+    setImportMsg(null);
+    setImportedUrl("");
+    if (importTimer.current) clearTimeout(importTimer.current);
+    if (/\.blogspot\./i.test(value) && /\.html?$/i.test(value.trim())) {
+      importTimer.current = setTimeout(() => importFromUrl(value), 700);
+    }
   };
 
   const save = async () => {
     setSaving(true);
     setMessage("");
     const payload = {
-      ...form,
+      title: form.title,
+      slug: form.slug,
+      excerpt: form.excerpt,
+      date: form.date,
+      readTime: form.readTime,
+      category: form.category,
       tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
       sections: parseContent(form.content),
+      url: form.url,
+      image: form.image,
     };
     const res =
       modal?.mode === "edit"
@@ -237,6 +326,37 @@ export default function AdminPosts() {
             </h2>
 
             <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="col-span-2">
+                <label className={labelClass}>
+                  Blogspot URL{" "}
+                  {importing && (
+                    <span className="text-[#2b7de0] font-normal">Importing…</span>
+                  )}
+                </label>
+                <input
+                  className={inputClass}
+                  value={form.url}
+                  onChange={(e) => onUrlChange(e.target.value)}
+                  onBlur={() => importFromUrl(form.url)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      importFromUrl(form.url);
+                    }
+                  }}
+                  placeholder="https://freelancer-shahid.blogspot.com/2026/09/my-post.html"
+                  spellCheck={false}
+                />
+                {importMsg && (
+                  <p
+                    className={`mt-1.5 text-xs ${
+                      importMsg.ok ? "text-[#2b7de0]" : "text-red-400"
+                    }`}
+                  >
+                    {importMsg.text}
+                  </p>
+                )}
+              </div>
               <div className="col-span-2">
                 <label className={labelClass}>Title</label>
                 <input

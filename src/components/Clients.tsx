@@ -53,7 +53,7 @@ export default function Clients() {
             {doubled.map((client, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 bg-[#1a1a2e] border border-white/5 rounded-lg px-6 py-4 flex items-center justify-center h-20 w-44 transition-all duration-300 hover:border-[#065cc2]/30 hover:-translate-y-1 group"
+                className="client-card flex-shrink-0 bg-[#1a1a2e] border border-white/5 rounded-lg px-6 py-4 flex items-center justify-center h-20 w-44 transition-all duration-300 hover:border-[#065cc2]/30 hover:-translate-y-1 group"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

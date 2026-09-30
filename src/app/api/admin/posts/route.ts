@@ -53,6 +53,8 @@ export async function POST(req: NextRequest) {
     category: String(body.category || "General"),
     tags: Array.isArray(body.tags) ? body.tags.map(String).slice(0, 20) : [],
     sections: Array.isArray(body.sections) ? body.sections : [],
+    url: String(body.url || ""),
+    image: String(body.image || ""),
   };
 
   posts.unshift(post);
