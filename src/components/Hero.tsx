@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ScrollLink from "./ScrollLink";
 
 export default function Hero() {
   const [counters, setCounters] = useState({ projects: 0, satisfaction: 0, years: 0, professionals: 0 });
@@ -128,12 +129,12 @@ export default function Hero() {
           >
             Start a Project
           </a>
-          <a
-            href="#about"
+          <ScrollLink
+            section="about"
             className="inline-block px-9 py-3.5 rounded-full text-base font-semibold border border-white/20 text-white hover:border-[#065cc2] hover:bg-[#065cc2]/10 transition-all"
           >
             Learn More
-          </a>
+          </ScrollLink>
         </div>
 
         <div

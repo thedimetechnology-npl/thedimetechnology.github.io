@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ScrollLink from "./ScrollLink";
 
 export default function Pricing() {
   const ref = useRef<HTMLDivElement>(null);
@@ -80,13 +81,13 @@ export default function Pricing() {
                 Save ~£37,296/year
               </div>
             </div>
-            <a
-              href="#contact"
-              className="block text-center text-white font-semibold py-4 transition-all hover:shadow-lg hover:shadow-[#065cc2]/30"
+            <ScrollLink
+              section="contact"
+              className="block w-full text-center text-white font-semibold py-4 transition-all hover:shadow-lg hover:shadow-[#065cc2]/30"
               style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
             >
               Hire Now
-            </a>
+            </ScrollLink>
           </div>
 
           <div className="flex justify-center items-center gap-8 mt-10 flex-wrap">
