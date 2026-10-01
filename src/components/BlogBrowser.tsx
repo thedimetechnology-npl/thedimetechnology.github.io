@@ -48,6 +48,13 @@ function formatDate(iso: string) {
   });
 }
 
+function getMeta(tags: string[]) {
+  return {
+    country: tags.find((t) => COUNTRIES.includes(t)),
+    company: tags.find((t) => COMPANIES.includes(t)),
+  };
+}
+
 export default function BlogBrowser({ posts }: { posts: PostCard[] }) {
   const [open, setOpen] = useState<Record<string, boolean>>({ country: true });
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -219,6 +226,7 @@ export default function BlogBrowser({ posts }: { posts: PostCard[] }) {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {visiblePosts.map((post) => {
               const href = post.url || `/blog/${post.slug}`;
+              const meta = getMeta(post.tags);
               return (
                 <a
                   key={post.slug}
@@ -242,6 +250,26 @@ export default function BlogBrowser({ posts }: { posts: PostCard[] }) {
                     <h3 className="text-xl font-bold leading-snug mb-3 group-hover:text-[#2b7de0] transition-colors">
                       {post.title}
                     </h3>
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      {post.category && (
+                        <span
+                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-white border border-white/15"
+                          style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+                        >
+                          {post.category}
+                        </span>
+                      )}
+                      {meta.country && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-[#9898b0] border border-white/10 bg-white/5">
+                          {meta.country}
+                        </span>
+                      )}
+                      {meta.company && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-[#9898b0] border border-white/10 bg-white/5">
+                          {meta.company}
+                        </span>
+                      )}
+                    </div>
                     <time dateTime={post.date} className="text-sm text-[#9898b0] mt-auto">
                       on {formatDate(post.date)}
                     </time>
