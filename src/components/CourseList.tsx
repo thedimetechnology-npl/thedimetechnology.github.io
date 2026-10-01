@@ -2,9 +2,9 @@
 
 import { apiFetch } from "@/lib/api";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import ReadMore from "@/components/ReadMore";
 import DetailModal from "@/components/DetailModal";
+import ScrollLink from "@/components/ScrollLink";
 import type { AdminCourse } from "@/lib/admin-types";
 
 const chipClass = "px-3 py-1 rounded-full text-xs font-medium border";
@@ -38,13 +38,13 @@ export default function CourseList({ initial }: { initial: AdminCourse[] }) {
             New courses are announced regularly — get in touch and we&apos;ll let you know
             when the next one starts.
           </p>
-          <Link
-            href="/#contact"
+          <ScrollLink
+            section="contact"
             className="inline-flex px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
             style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
           >
             Get in Touch
-          </Link>
+          </ScrollLink>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 gap-6">
@@ -98,13 +98,13 @@ export default function CourseList({ initial }: { initial: AdminCourse[] }) {
                     Enroll Now →
                   </a>
                 ) : (
-                  <Link
-                    href="/#contact"
+                  <ScrollLink
+                    section="contact"
                     className={enrollBtnClass}
                     style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
                   >
                     Enroll Now →
-                  </Link>
+                  </ScrollLink>
                 )}
               </div>
 
@@ -134,13 +134,13 @@ export default function CourseList({ initial }: { initial: AdminCourse[] }) {
             one.
           </p>
         </div>
-        <Link
-          href="/#contact"
+        <ScrollLink
+          section="contact"
           className="shrink-0 inline-flex px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
           style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
         >
           Get in Touch
-        </Link>
+        </ScrollLink>
       </div>
     </>
   );

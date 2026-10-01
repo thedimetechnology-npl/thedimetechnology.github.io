@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import Link from "next/link";
+import ScrollLink from "@/components/ScrollLink";
 
 const chipClass = "px-3 py-1 rounded-full text-xs font-medium border bg-white/5 text-[#9898b0] border-white/10";
 
@@ -113,13 +113,13 @@ export default function DetailModal({
             {ctaLabel}
           </a>
         ) : (
-          <Link
-            href="/#contact"
+          <ScrollLink
+            section="contact"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
             style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
           >
             {ctaLabel}
-          </Link>
+          </ScrollLink>
         )}
       </div>
     </div>,

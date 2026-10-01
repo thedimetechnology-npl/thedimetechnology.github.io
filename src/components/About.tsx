@@ -47,13 +47,52 @@ export default function About() {
             </p>
             <div className="grid grid-cols-2 gap-5">
               {[
-                { icon: "💡", title: "Innovation", desc: "Innovation and creativity at every turn" },
-                { icon: "🎯", title: "Quality", desc: "Relentless pursuit of quality and improvement" },
-                { icon: "🤝", title: "Strategy", desc: "Strategic solutions tailored to each client" },
-                { icon: "🛡️", title: "Reliability", desc: "Reliable support and transparent communication" },
+                {
+                  title: "Innovation",
+                  desc: "Innovation and creativity at every turn",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 18h6M10 21h4" />
+                      <path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Quality",
+                  desc: "Relentless pursuit of quality and improvement",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <circle cx="12" cy="12" r="5" />
+                      <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Strategy",
+                  desc: "Strategic solutions tailored to each client",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="m14.8 9.2-1.9 4.3-4.3 1.9 1.9-4.3z" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Reliability",
+                  desc: "Reliable support and transparent communication",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  ),
+                },
               ].map((v) => (
                 <div key={v.title} className="flex gap-3.5 items-start">
-                  <span className="text-xl mt-0.5">{v.icon}</span>
+                  <span className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-[#065cc2]/25 bg-[#065cc2]/10 text-[#2b7de0] shadow-[0_0_20px_rgba(6,92,194,0.15)]">
+                    {v.icon}
+                  </span>
                   <div>
                     <strong className="block text-sm mb-1">{v.title}</strong>
                     <p className="text-[#5a5a72] text-xs leading-relaxed">{v.desc}</p>

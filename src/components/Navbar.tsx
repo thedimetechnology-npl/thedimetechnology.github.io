@@ -2,15 +2,18 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import ScrollLink from "@/components/ScrollLink";
 
-const navLinks = [
-  { label: "About", href: "/#about" },
-  { label: "Services", href: "/#services" },
-  { label: "Process", href: "/#process" },
-  { label: "Team", href: "/#team" },
-  { label: "Testimonials", href: "/#testimonials" },
+type NavLink = { label: string; section?: string; href?: string };
+
+const navLinks: NavLink[] = [
+  { label: "About", section: "about" },
+  { label: "Services", section: "services" },
+  { label: "Process", section: "process" },
+  { label: "Team", section: "team" },
+  { label: "Testimonials", section: "testimonials" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", section: "contact" },
 ];
 
 export default function Navbar() {
@@ -40,20 +43,18 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) =>
-            link.href.startsWith("http") ? (
-              <a
+            link.section ? (
+              <ScrollLink
                 key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                section={link.section}
                 className="text-sm font-medium text-[#9898b0] hover:text-white transition-colors"
               >
                 {link.label}
-              </a>
+              </ScrollLink>
             ) : (
               <Link
                 key={link.label}
-                href={link.href}
+                href={link.href || "/"}
                 className="text-sm font-medium text-[#9898b0] hover:text-white transition-colors"
               >
                 {link.label}
@@ -83,21 +84,19 @@ export default function Navbar() {
       {menuOpen && (
         <div className="lg:hidden bg-[#0a0a0f]/98 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) =>
-            link.href.startsWith("http") ? (
-              <a
+            link.section ? (
+              <ScrollLink
                 key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                section={link.section}
                 className="text-sm font-medium text-[#9898b0] hover:text-white transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
-              </a>
+              </ScrollLink>
             ) : (
               <Link
                 key={link.label}
-                href={link.href}
+                href={link.href || "/"}
                 className="text-sm font-medium text-[#9898b0] hover:text-white transition-colors"
                 onClick={() => setMenuOpen(false)}
               >

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import ScrollLink from "@/components/ScrollLink";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -88,13 +88,13 @@ export default function LegalPage({
               <h2 className="text-lg font-bold mb-1.5">{cta.heading}</h2>
               <p className="text-sm text-[#9898b0]">{cta.text}</p>
             </div>
-            <Link
-              href="/#contact"
+            <ScrollLink
+              section="contact"
               className="shrink-0 inline-flex px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
               style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
             >
               Contact Us
-            </Link>
+            </ScrollLink>
           </div>
         </div>
       </main>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ScrollLink from "@/components/ScrollLink";
 
 export default function Footer() {
   const [showTop, setShowTop] = useState(false);
@@ -49,15 +50,23 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-bold mb-4">Quick Links</h4>
               {[
-                { label: "About", href: "/#about" },
-                { label: "Services", href: "/#services" },
-                { label: "Process", href: "/#process" },
-                { label: "Team", href: "/#team" },
+                { label: "About", section: "about" },
+                { label: "Services", section: "services" },
+                { label: "Process", section: "process" },
+                { label: "Team", section: "team" },
                 { label: "Blog", href: "/blog" },
                 { label: "Career", href: "/career" },
-                { label: "Contact", href: "/#contact" },
+                { label: "Contact", section: "contact" },
               ].map((link) =>
-                link.href.startsWith("http") ? (
+                link.section ? (
+                  <ScrollLink
+                    key={link.label}
+                    section={link.section}
+                    className="block text-[#9898b0] text-sm mb-2.5 hover:text-[#2b7de0] transition-colors"
+                  >
+                    {link.label}
+                  </ScrollLink>
+                ) : link.href?.startsWith("http") ? (
                   <a
                     key={link.label}
                     href={link.href}
@@ -70,7 +79,7 @@ export default function Footer() {
                 ) : (
                   <Link
                     key={link.label}
-                    href={link.href}
+                    href={link.href || "/"}
                     className="block text-[#9898b0] text-sm mb-2.5 hover:text-[#2b7de0] transition-colors"
                   >
                     {link.label}
