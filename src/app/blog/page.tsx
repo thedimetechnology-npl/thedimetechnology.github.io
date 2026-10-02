@@ -9,11 +9,15 @@ export const metadata: Metadata = {
   description:
     "Insights, case studies and project write-ups from The Dime Technology — software development, DevOps, mobile apps and AI engineering.",
   keywords: "tech blog, software development case studies, DevOps, mobile apps, AI, The Dime Technology",
+  alternates: {
+    canonical: "/blog",
+  },
   openGraph: {
     title: "Blog | The Dime Technology",
     description:
       "Insights, case studies and project write-ups from The Dime Technology.",
     type: "website",
+    images: ["/assets/og.png"],
   },
 };
 

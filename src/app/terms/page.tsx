@@ -6,11 +6,15 @@ export const metadata: Metadata = {
   description:
     "Terms of Service for The Dime Technology — the terms that govern your access to and use of our website and services.",
   keywords: "terms of service, terms and conditions, The Dime Technology",
+  alternates: {
+    canonical: "/terms",
+  },
   openGraph: {
     title: "Terms of Service | The Dime Technology",
     description:
       "The terms that govern your access to and use of our website and services.",
     type: "article",
+    images: ["/assets/og.png"],
   },
 };
 

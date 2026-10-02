@@ -4,12 +4,29 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://thedimetechnology.com.np"),
   title: "The Dime Technology | Your Freelance Tech Partner",
-  description: "We are a collective of passionate technologists driving business transformation through innovative technology solutions. Hire elite tech talent — shortlist in 5 days.",
+  description:
+    "Your Freelance Tech Partner. From concept to completion, we turn ideas into production-ready web, mobile and cloud projects with an elite engineering team.",
   keywords: "freelance tech partner, software development, web development, mobile apps, IT services Nepal, hire developers",
   openGraph: {
     title: "The Dime Technology | Your Freelance Tech Partner",
-    description: "Elite AI & Engineering teams. Fully managed, built to last.",
+    description:
+      "Your Freelance Tech Partner. From concept to completion, we turn ideas into production-ready web, mobile and cloud projects with an elite engineering team.",
     type: "website",
+    images: [
+      {
+        url: "/assets/og.png",
+        width: 1200,
+        height: 630,
+        alt: "The Dime Technology",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Dime Technology | Your Freelance Tech Partner",
+    description:
+      "Your Freelance Tech Partner. From concept to completion, we turn ideas into production-ready web, mobile and cloud projects with an elite engineering team.",
+    images: ["/assets/og.png"],
   },
 };
 

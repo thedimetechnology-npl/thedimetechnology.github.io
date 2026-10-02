@@ -12,11 +12,15 @@ export const metadata: Metadata = {
     "Training courses from The Dime Technology — web development, mobile apps, DevOps and UI/UX design courses taught by practicing engineers.",
   keywords:
     "tech courses, web development course, flutter course, DevOps course, UI/UX course, The Dime Technology",
+  alternates: {
+    canonical: "/course",
+  },
   openGraph: {
     title: "Courses | The Dime Technology",
     description:
       "Training courses in web development, mobile apps, DevOps and UI/UX design.",
     type: "website",
+    images: ["/assets/og.png"],
   },
 };
 

@@ -12,10 +12,14 @@ export const metadata: Metadata = {
     "Open positions at The Dime Technology — join our remote-friendly team building web, mobile and cloud products for clients worldwide.",
   keywords:
     "careers, jobs, hiring, software developer jobs Nepal, remote tech jobs, The Dime Technology",
+  alternates: {
+    canonical: "/career",
+  },
   openGraph: {
     title: "Careers | The Dime Technology",
     description: "Open positions at The Dime Technology — web, mobile and cloud roles.",
     type: "website",
+    images: ["/assets/og.png"],
   },
 };
 

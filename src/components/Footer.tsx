@@ -105,7 +105,7 @@ export default function Footer() {
           </div>
           <div className="border-t border-white/5 pt-6 text-center">
             <p className="text-[#5a5a72] text-xs">
-              © 2026 The Dime Technology. Made with in Nepal
+              © 2026 The Dime Technology. Made with ❤ in Nepal
             </p>
           </div>
         </div>

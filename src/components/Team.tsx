@@ -272,7 +272,7 @@ export default function Team() {
                         GitHub
                       </a>
                       <a
-                        href="mailto:afrozhashmi@hotmail.com"
+                        href="mailto:info@thedimetechnology.com.np"
                         className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-[#065cc2]/25 text-[#2b7de0] hover:bg-[#065cc2]/15 hover:text-white transition-all"
                       >
                         Email

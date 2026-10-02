@@ -6,11 +6,15 @@ export const metadata: Metadata = {
   description:
     "The Dime Technology privacy policy — what information we collect through our website, how we use it, and how we protect it.",
   keywords: "privacy policy, data protection, The Dime Technology",
+  alternates: {
+    canonical: "/privacy",
+  },
   openGraph: {
     title: "Privacy Policy | The Dime Technology",
     description:
       "What information we collect through our website, how we use it, and how we protect it.",
     type: "article",
+    images: ["/assets/og.png"],
   },
 };
 

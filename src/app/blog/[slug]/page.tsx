@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollLink from "@/components/ScrollLink";
 import { posts, getPost } from "@/data/posts";
 
 type Params = { slug: string };
@@ -24,16 +25,21 @@ export async function generateMetadata({
     title: `${post.title} | The Dime Technology Blog`,
     description: post.excerpt,
     keywords: post.tags,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
+      images: ["/assets/og.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: ["/assets/og.png"],
     },
   };
 }
@@ -139,15 +145,13 @@ export default async function BlogPostPage({
                 Freelance tech partner for software, mobile and cloud projects
               </span>
             </div>
-            <a
-              href="https://www.truelancer.com/freelancer/shahidalam7"
-              target="_blank"
-              rel="noopener noreferrer"
+            <ScrollLink
+              section="contact"
               className="ml-auto hidden sm:inline-block text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5"
               style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
             >
               Start a Project
-            </a>
+            </ScrollLink>
           </div>
 
           <nav className="flex justify-between gap-4 mt-10 pt-8 border-t border-white/5">
