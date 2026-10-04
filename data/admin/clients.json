@@ -40,11 +40,6 @@
     "id": "c8"
   },
   {
-    "name": "JanaFly",
-    "logo": "/assets/clients/janafly.jpg",
-    "id": "c9"
-  },
-  {
     "name": "Energy Improvements",
     "logo": "/assets/clients/energyimprovements.jpg",
     "id": "c10"
@@ -63,5 +58,15 @@
     "name": "SIGASYS-Chinaway",
     "logo": "/assets/clients/SIGASYS-Chinaway.jpg",
     "id": "c13"
+  },
+  {
+    "name": "Awwal Tech",
+    "logo": "/assets/clients/awwaltech.jpg",
+    "id": "c14"
+  },
+  {
+    "name": "ATIT Solutionz",
+    "logo": "/assets/clients/atitsolutionz.jpg",
+    "id": "c16"
   }
 ]
