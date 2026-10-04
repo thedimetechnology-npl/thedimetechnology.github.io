@@ -168,7 +168,6 @@ export default function Home() {
       <TechStack />
       <Team />
       <Testimonials />
-      <Clients />
       <FAQ />
       <Contact />
       <Footer />
