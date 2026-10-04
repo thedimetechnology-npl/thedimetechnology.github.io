@@ -9,6 +9,7 @@ type NavLink = { label: string; section?: string; href?: string };
 const navLinks: NavLink[] = [
   { label: "About", section: "about" },
   { label: "Services", section: "services" },
+  { label: "Products", href: "/product" },
   { label: "Process", section: "process" },
   { label: "Team", section: "team" },
   { label: "Testimonials", section: "testimonials" },

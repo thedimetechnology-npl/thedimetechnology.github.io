@@ -52,6 +52,7 @@ export default function Footer() {
               {[
                 { label: "About", section: "about" },
                 { label: "Services", section: "services" },
+                { label: "Products", href: "/product" },
                 { label: "Process", section: "process" },
                 { label: "Team", section: "team" },
                 { label: "Blog", href: "/blog" },
