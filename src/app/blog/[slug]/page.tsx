@@ -67,14 +67,55 @@ export default async function BlogPostPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.date,
-    author: { "@type": "Organization", name: "The Dime Technology" },
-    publisher: { "@type": "Organization", name: "The Dime Technology" },
-    mainEntityOfPage: `/blog/${post.slug}`,
-    keywords: post.tags.join(", "),
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://thedimetechnology.com.np/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: "https://thedimetechnology.com.np/blog",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.title,
+            item: `https://thedimetechnology.com.np/blog/${post.slug}`,
+          },
+        ],
+      },
+      {
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        image: post.image || "/assets/og.png",
+        datePublished: post.date,
+        inLanguage: "en",
+        author: {
+          "@type": "Person",
+          name: "Shahid Alam",
+          jobTitle: "Founder & CEO",
+          url: "https://www.linkedin.com/in/shahidalam-nepal/",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "The Dime Technology",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://thedimetechnology.com.np/assets/logo.png",
+          },
+        },
+        mainEntityOfPage: `/blog/${post.slug}`,
+        keywords: post.tags.join(", "),
+      },
+    ],
   };
 
   return (

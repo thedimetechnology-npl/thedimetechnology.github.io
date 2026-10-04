@@ -42,22 +42,43 @@ export default async function CoursePage() {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Courses — The Dime Technology",
-    url: "/course",
-    itemListElement: courses.map((c, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "Course",
-        name: c.title,
-        description: c.description,
-        provider: {
-          "@type": "Organization",
-          name: "The Dime Technology",
-        },
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://thedimetechnology.com.np/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Courses",
+            item: "https://thedimetechnology.com.np/course",
+          },
+        ],
       },
-    })),
+      {
+        "@type": "ItemList",
+        name: "Courses — The Dime Technology",
+        url: "/course",
+        itemListElement: courses.map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Course",
+            name: c.title,
+            description: c.description,
+            provider: {
+              "@type": "Organization",
+              name: "The Dime Technology",
+            },
+          },
+        })),
+      },
+    ],
   };
 
   return (

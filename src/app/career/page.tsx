@@ -41,31 +41,52 @@ export default async function CareerPage() {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Open Positions — The Dime Technology",
-    url: "/career",
-    itemListElement: careers.map((c, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "JobPosting",
-        title: c.title,
-        description: c.description,
-        employmentType: c.type.toUpperCase().replace(/-/g, "_"),
-        hiringOrganization: {
-          "@type": "Organization",
-          name: "The Dime Technology",
-        },
-        jobLocation: {
-          "@type": "Place",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: c.location,
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://thedimetechnology.com.np/",
           },
-        },
-        employmentUnit: c.experience || undefined,
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Careers",
+            item: "https://thedimetechnology.com.np/career",
+          },
+        ],
       },
-    })),
+      {
+        "@type": "ItemList",
+        name: "Open Positions — The Dime Technology",
+        url: "/career",
+        itemListElement: careers.map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "JobPosting",
+            title: c.title,
+            description: c.description,
+            employmentType: c.type.toUpperCase().replace(/-/g, "_"),
+            hiringOrganization: {
+              "@type": "Organization",
+              name: "The Dime Technology",
+            },
+            jobLocation: {
+              "@type": "Place",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: c.location,
+              },
+            },
+            employmentUnit: c.experience || undefined,
+          },
+        })),
+      },
+    ],
   };
 
   return (

@@ -25,23 +25,44 @@ export const metadata: Metadata = {
 export default function ProductPage() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Products — The Dime Technology",
-    url: "/product",
-    itemListElement: services.map((s, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "Service",
-        name: s.title,
-        description: s.desc,
-        provider: {
-          "@type": "Organization",
-          name: "The Dime Technology",
-          url: "https://thedimetechnology.com.np",
-        },
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://thedimetechnology.com.np/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Products",
+            item: "https://thedimetechnology.com.np/product",
+          },
+        ],
       },
-    })),
+      {
+        "@type": "ItemList",
+        name: "Products — The Dime Technology",
+        url: "/product",
+        itemListElement: services.map((s, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Service",
+            name: s.title,
+            description: s.desc,
+            provider: {
+              "@type": "Organization",
+              name: "The Dime Technology",
+              url: "https://thedimetechnology.com.np",
+            },
+          },
+        })),
+      },
+    ],
   };
 
   return (
