@@ -104,37 +104,14 @@ export default function About() {
 
           <div className="relative">
             <div className="relative group">
-              <div
-                className="about-glow absolute -inset-3 rounded-[28px] blur-2xl"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(6,92,194,0.5), rgba(10,138,238,0.28) 50%, rgba(43,125,224,0.4))",
-                }}
-              />
-              <div
-                className="relative rounded-2xl p-[1.5px] transition-transform duration-500 ease-out group-hover:-translate-y-1.5"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(6,92,194,0.75), rgba(255,255,255,0.12) 35%, rgba(10,138,238,0.55) 70%, rgba(43,125,224,0.7))",
-                }}
-              >
-                <div className="relative overflow-hidden rounded-[14px]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/assets/about.png"
-                    alt="About The Dime Technology"
-                    className="w-4/5 mx-auto transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  />
-                  <div
-                    className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"
-                    style={{
-                      background:
-                        "linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.14) 50%, transparent 58%)",
-                    }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0f]/70 via-[#0a0a0f]/20 to-transparent" />
-                  <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/[0.06] to-transparent" />
-                </div>
+              <div className="relative overflow-hidden rounded-2xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/about.png"
+                  alt="About The Dime Technology"
+                  className="w-3/5 mx-auto transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0f]/70 via-[#0a0a0f]/20 to-transparent" />
               </div>
             </div>
             <div className="flex gap-6 mt-6 p-6 bg-[#1a1a2e] border border-white/5 rounded-2xl">
