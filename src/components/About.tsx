@@ -103,25 +103,35 @@ export default function About() {
           </div>
 
           <div className="relative">
-            <div className="relative">
-              <div
-                className="relative rounded-2xl p-[1.5px]"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(6,92,194,0.75), rgba(255,255,255,0.12) 35%, rgba(10,138,238,0.55) 70%, rgba(43,125,224,0.7))",
-                }}
-              >
-                <div className="relative overflow-hidden rounded-[14px]">
-                  <video
-                    src="/assets/about.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-label="About The Dime Technology"
-                    className="w-full"
-                  />
-                </div>
+            <div
+              className="absolute -inset-1 rounded-[20px] blur-md animate-aboutGlow pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(6,92,194,0.5), rgba(10,138,238,0.28) 50%, rgba(43,125,224,0.4))",
+              }}
+            />
+            <div
+              className="relative rounded-2xl p-[2px]"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(6,92,194,0.9), rgba(255,255,255,0.2) 35%, rgba(10,138,238,0.7) 70%, rgba(43,125,224,0.9))",
+                backgroundSize: "200% 200%",
+                animation: "borderGradient 4s ease infinite",
+              }}
+            >
+              <div className="relative overflow-hidden rounded-[14px]">
+                <video
+                  src="/assets/about.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="About The Dime Technology"
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </div>
               </div>
             </div>
             <div className="flex gap-6 mt-6 p-6 bg-[#1a1a2e] border border-white/5 rounded-2xl">
