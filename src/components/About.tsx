@@ -102,19 +102,30 @@ export default function About() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="relative group">
-              <div className="relative rounded-2xl">
-                <div className="animate-earth-float">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/assets/about.png"
-                    alt="About The Dime Technology"
-                    className="w-3/5 mx-auto animate-earth-spin"
-                  />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0f]/70 via-[#0a0a0f]/20 to-transparent pointer-events-none" />
+          <div className="relative" style={{ perspective: "1200px" }}>
+            <div className="relative group" style={{ transformStyle: "preserve-3d" }}>
+              <div className="relative overflow-hidden rounded-2xl transition-transform duration-700 ease-out group-hover:rotate-x-[12deg] group-hover:rotate-y-[-8deg] group-hover:scale-95 group-hover:translate-z-[-40px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/about.png"
+                  alt="About The Dime Technology"
+                  className="w-3/5 mx-auto transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0f]/70 via-[#0a0a0f]/20 to-transparent" />
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at 70% 30%, rgba(6,92,194,0.25) 0%, transparent 60%)",
+                  }}
+                />
               </div>
+              <div className="absolute -inset-4 rounded-[28px] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(6,92,194,0.3) 0%, transparent 70%)",
+                }}
+              />
             </div>
             <div className="flex gap-6 mt-6 p-6 bg-[#1a1a2e] border border-white/5 rounded-2xl">
               <div className="text-center flex-1">

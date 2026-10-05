@@ -314,43 +314,6 @@ body {
   animation: aboutGlow 5s ease-in-out infinite;
 }
 
-@keyframes earthSpin {
-  0% {
-    transform: perspective(1200px) rotateY(0deg);
-  }
-  100% {
-    transform: perspective(1200px) rotateY(360deg);
-  }
-}
-
-@keyframes earthFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotateZ(0deg);
-  }
-  25% {
-    transform: translateY(-8px) rotateZ(1deg);
-  }
-  75% {
-    transform: translateY(8px) rotateZ(-1deg);
-  }
-}
-
-.animate-earth-spin {
-  animation: earthSpin 20s linear infinite;
-}
-
-.animate-earth-float {
-  animation: earthFloat 6s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-earth-spin,
-  .animate-earth-float {
-    animation: none !important;
-  }
-}
-
 @keyframes modalIn {
   from {
     opacity: 0;
