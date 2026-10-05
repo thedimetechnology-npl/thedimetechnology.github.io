@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
     apple: "/assets/logo.png",
-    ms: "/assets/logo.png",
   },
   openGraph: {
     title: "The Dime Technology | Your Freelance Tech Partner",
