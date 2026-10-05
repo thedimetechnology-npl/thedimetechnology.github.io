@@ -112,7 +112,7 @@ export default function About() {
                   muted
                   playsInline
                   aria-label="About The Dime Technology"
-                  className="w-3/5 mx-auto"
+                  className="w-4/5 mx-auto"
                 />
               </div>
             </div>
