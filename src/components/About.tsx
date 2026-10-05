@@ -105,10 +105,13 @@ export default function About() {
           <div className="relative" style={{ perspective: "1200px" }}>
             <div className="relative group" style={{ transformStyle: "preserve-3d" }}>
               <div className="relative overflow-hidden rounded-2xl transition-transform duration-700 ease-out group-hover:rotate-x-[12deg] group-hover:rotate-y-[-8deg] group-hover:scale-95 group-hover:translate-z-[-40px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/about.png"
-                  alt="About The Dime Technology"
+                <video
+                  src="/assets/about.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="About The Dime Technology"
                   className="w-3/5 mx-auto transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0f]/70 via-[#0a0a0f]/20 to-transparent" />
