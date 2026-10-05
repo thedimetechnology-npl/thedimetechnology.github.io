@@ -104,16 +104,24 @@ export default function About() {
 
           <div className="relative">
             <div className="relative">
-              <div className="relative rounded-2xl">
-                <video
-                  src="/assets/about.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  aria-label="About The Dime Technology"
-                  className="w-11/12 mx-auto"
-                />
+              <div
+                className="relative rounded-2xl p-[1.5px]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(6,92,194,0.75), rgba(255,255,255,0.12) 35%, rgba(10,138,238,0.55) 70%, rgba(43,125,224,0.7))",
+                }}
+              >
+                <div className="relative overflow-hidden rounded-[14px]">
+                  <video
+                    src="/assets/about.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-label="About The Dime Technology"
+                    className="w-11/12 mx-auto"
+                  />
+                </div>
               </div>
             </div>
             <div className="flex gap-6 mt-6 p-6 bg-[#1a1a2e] border border-white/5 rounded-2xl">
