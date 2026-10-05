@@ -123,7 +123,7 @@ export default function About() {
                   <img
                     src="/assets/about.png"
                     alt="About The Dime Technology"
-                    className="w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="w-4/5 mx-auto transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                   <div
                     className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"
