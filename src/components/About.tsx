@@ -131,9 +131,6 @@ export default function About() {
                 />
               </div>
             </div>
-          </div>
-              </div>
-            </div>
             <div className="flex gap-6 mt-6 p-6 bg-[#1a1a2e] border border-white/5 rounded-2xl">
               <div className="text-center flex-1">
                 <span className="block text-2xl font-extrabold gradient-text">50+</span>
