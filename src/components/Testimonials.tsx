@@ -331,7 +331,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-24 bg-[#111118]">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-screen-2xl mx-auto px-6">
         <div className="flex items-end justify-between mb-12">
           <div>
             <span
