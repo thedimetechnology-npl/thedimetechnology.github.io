@@ -25,7 +25,12 @@ export const metadata: Metadata = {
     },
   },
   themeColor: "#0a0a0f",
-  icons: { icon: "/icon.svg" },
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/assets/logo.png",
+    ms: "/assets/logo.png",
+  },
   openGraph: {
     title: "The Dime Technology | Your Freelance Tech Partner",
     description:
