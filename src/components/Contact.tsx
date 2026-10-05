@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const CONTACT_ENDPOINT = "https://formspree.io/f/mgavdrrz";
+const CONTACT_ENDPOINT = "https://formspree.io/f/mjygbqja";
 
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
