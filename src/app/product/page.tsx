@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Select from The Dime Technology's product list — development, code review, project management and support services.",
   keywords:
-    "tech services, software development services, code review, DevOps, project management, The Dime Technology",
+    "tech services, custom software development services, web development company, mobile app development company, AI development company, Odoo development company, code review, DevOps, project management, IT outsourcing company, The Dime Technology",
   alternates: {
     canonical: "/product",
   },

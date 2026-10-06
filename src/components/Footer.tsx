@@ -54,6 +54,7 @@ export default function Footer() {
                   { label: "About", section: "about" },
                   { label: "Services", section: "services" },
                   { label: "Products", href: "/product" },
+                  { label: "Worldwide", href: "/locations" },
                   { label: "Process", section: "process" },
                 ].map((link) =>
                   link.section ? (

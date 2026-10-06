@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   title: "The Dime Technology | Your Freelance Tech Partner",
   description:
     "Your Freelance Tech Partner. From concept to completion, we turn ideas into production-ready web, mobile and cloud projects with an elite engineering team.",
-  keywords: "freelance tech partner, software development, web development, mobile apps, IT services Nepal, hire developers",
+  keywords:
+    "custom software development company, web development company, mobile app development company, AI development company, Odoo development company, IT outsourcing company, hire dedicated developers, freelance tech partner, IT services Nepal",
   applicationName: "The Dime Technology",
   robots: {
     index: true,
