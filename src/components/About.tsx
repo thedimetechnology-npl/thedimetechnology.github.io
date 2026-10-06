@@ -17,7 +17,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-24 bg-[#111118]">
-      <div className="max-w-screen-2xl mx-auto px-6" ref={ref}>
+      <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <div
           className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${
             visible ? "animate-fade-in-up" : ""

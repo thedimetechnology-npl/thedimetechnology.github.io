@@ -110,7 +110,7 @@ export default async function CareerPage() {
       />
       <Navbar />
       <main className="pt-36 pb-24 bg-[#0a0a0f] min-h-screen">
-        <div className="max-w-screen-2xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="mb-14">
             <span
               className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4"

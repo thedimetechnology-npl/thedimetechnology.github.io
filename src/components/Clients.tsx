@@ -56,7 +56,7 @@ export default function Clients() {
 
   return (
     <section id="clients" className="py-24 bg-[#0a0a0f]">
-      <div className="max-w-screen-2xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-extrabold tracking-tight mb-4">Trusted by Clients</h2>
         </div>

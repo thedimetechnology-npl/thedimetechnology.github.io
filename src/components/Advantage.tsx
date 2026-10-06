@@ -38,7 +38,7 @@ export default function Advantage() {
 
   return (
     <section className="py-24 bg-[#111118]">
-      <div className="max-w-screen-2xl mx-auto px-6" ref={ref}>
+      <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <div className="text-center mb-16">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4"
