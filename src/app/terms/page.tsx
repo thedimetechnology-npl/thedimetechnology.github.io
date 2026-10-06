@@ -14,6 +14,16 @@ export const metadata: Metadata = {
     description:
       "The terms that govern your access to and use of our website and services.",
     type: "article",
+    url: "https://thedimetechnology.com.np/terms",
+    locale: "en_US",
+    siteName: "The Dime Technology",
+    images: ["/assets/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | The Dime Technology",
+    description:
+      "The terms that govern your access to and use of our website and services.",
     images: ["/assets/og.png"],
   },
 };

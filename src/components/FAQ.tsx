@@ -46,7 +46,7 @@ export default function FAQ() {
               onClick={() => setOpen(open === i ? null : i)}
             >
               <div className="flex justify-between items-center px-6 py-5">
-                <span className="font-semibold text-sm">{faq.q}</span>
+                <h3 className="font-semibold text-sm">{faq.q}</h3>
                 <span className="text-[#2b7de0] font-bold text-lg transition-transform duration-300">
                   {open === i ? "−" : "+"}
                 </span>

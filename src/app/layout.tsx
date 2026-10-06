@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     description:
       "Your Freelance Tech Partner. From concept to completion, we turn ideas into production-ready web, mobile and cloud projects with an elite engineering team.",
     type: "website",
+    url: "https://thedimetechnology.com.np/",
     locale: "en_US",
     siteName: "The Dime Technology",
     images: [

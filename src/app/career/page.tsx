@@ -19,6 +19,15 @@ export const metadata: Metadata = {
     title: "Careers | The Dime Technology",
     description: "Open positions at The Dime Technology — web, mobile and cloud roles.",
     type: "website",
+    url: "https://thedimetechnology.com.np/career",
+    locale: "en_US",
+    siteName: "The Dime Technology",
+    images: ["/assets/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Careers | The Dime Technology",
+    description: "Open positions at The Dime Technology — web, mobile and cloud roles.",
     images: ["/assets/og.png"],
   },
 };
@@ -62,7 +71,7 @@ export default async function CareerPage() {
       {
         "@type": "ItemList",
         name: "Open Positions — The Dime Technology",
-        url: "/career",
+        url: "https://thedimetechnology.com.np/career",
         itemListElement: careers.map((c, i) => ({
           "@type": "ListItem",
           position: i + 1,
@@ -70,19 +79,23 @@ export default async function CareerPage() {
             "@type": "JobPosting",
             title: c.title,
             description: c.description,
+            datePosted: "2026-01-01",
+            validThrough: "2026-12-31",
             employmentType: c.type.toUpperCase().replace(/-/g, "_"),
             hiringOrganization: {
               "@type": "Organization",
               name: "The Dime Technology",
+              url: "https://thedimetechnology.com.np",
             },
             jobLocation: {
               "@type": "Place",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: c.location,
+                addressCountry: "NP",
               },
             },
-            employmentUnit: c.experience || undefined,
+            experienceRequirements: c.experience || undefined,
           },
         })),
       },

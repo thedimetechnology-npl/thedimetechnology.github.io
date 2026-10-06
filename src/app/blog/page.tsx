@@ -17,23 +17,56 @@ export const metadata: Metadata = {
     description:
       "Insights, case studies and project write-ups from The Dime Technology.",
     type: "website",
+    url: "https://thedimetechnology.com.np/blog",
+    locale: "en_US",
+    siteName: "The Dime Technology",
+    images: ["/assets/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | The Dime Technology",
+    description:
+      "Insights, case studies and project write-ups from The Dime Technology.",
     images: ["/assets/og.png"],
   },
 };
 
+const BASE_URL = "https://thedimetechnology.com.np";
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Blog",
-  name: "The Dime Technology Blog",
-  description:
-    "Insights, case studies and project write-ups from The Dime Technology.",
-  url: "/blog",
-  blogPost: posts.map((p) => ({
-    "@type": "BlogPosting",
-    headline: p.title,
-    datePublished: p.date,
-    url: `/blog/${p.slug}`,
-  })),
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: `${BASE_URL}/`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: `${BASE_URL}/blog`,
+        },
+      ],
+    },
+    {
+      "@type": "Blog",
+      name: "The Dime Technology Blog",
+      description:
+        "Insights, case studies and project write-ups from The Dime Technology.",
+      url: `${BASE_URL}/blog`,
+      blogPost: posts.map((p) => ({
+        "@type": "BlogPosting",
+        headline: p.title,
+        datePublished: p.date,
+        url: `${BASE_URL}/blog/${p.slug}`,
+      })),
+    },
+  ],
 };
 
 const cards = posts.map(

@@ -7,7 +7,7 @@ import { services } from "@/data/services";
 export const metadata: Metadata = {
   title: "Products | The Dime Technology",
   description:
-    "Select from The Dime Technology's product list — development, code review, project management, support, deployment and innovation services — enter your email and send us an inquiry.",
+    "Select from The Dime Technology's product list — development, code review, project management and support services.",
   keywords:
     "tech services, software development services, code review, DevOps, project management, The Dime Technology",
   alternates: {
@@ -18,6 +18,16 @@ export const metadata: Metadata = {
     description:
       "Pick the services you need, enter your email and send an inquiry directly to our team.",
     type: "website",
+    url: "https://thedimetechnology.com.np/product",
+    locale: "en_US",
+    siteName: "The Dime Technology",
+    images: ["/assets/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Products | The Dime Technology",
+    description:
+      "Pick the services you need, enter your email and send an inquiry directly to our team.",
     images: ["/assets/og.png"],
   },
 };
@@ -46,7 +56,7 @@ export default function ProductPage() {
       {
         "@type": "ItemList",
         name: "Products — The Dime Technology",
-        url: "/product",
+        url: "https://thedimetechnology.com.np/product",
         itemListElement: services.map((s, i) => ({
           "@type": "ListItem",
           position: i + 1,
@@ -90,6 +100,10 @@ export default function ProductPage() {
               the next steps.
             </p>
           </div>
+
+          <h2 className="text-2xl font-extrabold tracking-tight mb-6">
+            Choose Your <span className="gradient-text">Services</span>
+          </h2>
 
           <ProductInquiry />
         </div>

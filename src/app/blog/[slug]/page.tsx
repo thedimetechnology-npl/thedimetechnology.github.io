@@ -33,6 +33,9 @@ export async function generateMetadata({
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
+      url: `https://thedimetechnology.com.np/blog/${slug}`,
+      locale: "en_US",
+      siteName: "The Dime Technology",
       images: ["/assets/og.png"],
     },
     twitter: {
@@ -95,7 +98,7 @@ export default async function BlogPostPage({
         "@type": "BlogPosting",
         headline: post.title,
         description: post.excerpt,
-        image: post.image || "/assets/og.png",
+        image: `https://thedimetechnology.com.np${post.image || "/assets/og.png"}`,
         datePublished: post.date,
         inLanguage: "en",
         author: {
@@ -112,7 +115,7 @@ export default async function BlogPostPage({
             url: "https://thedimetechnology.com.np/assets/logo.png",
           },
         },
-        mainEntityOfPage: `/blog/${post.slug}`,
+        mainEntityOfPage: `https://thedimetechnology.com.np/blog/${post.slug}`,
         keywords: post.tags.join(", "),
       },
     ],
@@ -179,7 +182,7 @@ export default async function BlogPostPage({
 
           <div className="flex items-center gap-4 p-6 bg-[#1a1a2e] border border-white/5 rounded-2xl mt-12">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.svg" alt="" className="w-12 h-12 rounded-xl" />
+            <img src="/logo.svg" alt="The Dime Technology" className="w-12 h-12 rounded-xl" />
             <div>
               <strong className="block text-sm">The Dime Technology</strong>
               <span className="text-xs text-[#5a5a72]">

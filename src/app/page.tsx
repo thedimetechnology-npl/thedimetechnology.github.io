@@ -20,6 +20,23 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  openGraph: {
+    title: "The Dime Technology | Your Freelance Tech Partner",
+    description:
+      "Your Freelance Tech Partner. From concept to completion, we turn ideas into production-ready web, mobile and cloud projects with an elite engineering team.",
+    type: "website",
+    url: "https://thedimetechnology.com.np/",
+    locale: "en_US",
+    siteName: "The Dime Technology",
+    images: ["/assets/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Dime Technology | Your Freelance Tech Partner",
+    description:
+      "Your Freelance Tech Partner. From concept to completion, we turn ideas into production-ready web, mobile and cloud projects with an elite engineering team.",
+    images: ["/assets/og.png"],
+  },
 };
 
 const BASE_URL = "https://thedimetechnology.com.np";
@@ -27,6 +44,17 @@ const BASE_URL = "https://thedimetechnology.com.np";
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://thedimetechnology.com.np/",
+        },
+      ],
+    },
     {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
@@ -77,8 +105,8 @@ const jsonLd = {
       slogan: "Your Freelance Tech Partner",
       telephone: "+977 9801024024",
       email: "info@thedimetechnology.com.np",
-      priceRange: "££",
-      currenciesAccepted: "GBP",
+      priceRange: "NPR",
+      currenciesAccepted: "NPR",
       availableLanguage: "English",
       address: {
         "@type": "PostalAddress",

@@ -20,6 +20,16 @@ export const metadata: Metadata = {
     description:
       "Training courses in web development, mobile apps, DevOps and UI/UX design.",
     type: "website",
+    url: "https://thedimetechnology.com.np/course",
+    locale: "en_US",
+    siteName: "The Dime Technology",
+    images: ["/assets/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Courses | The Dime Technology",
+    description:
+      "Training courses in web development, mobile apps, DevOps and UI/UX design.",
     images: ["/assets/og.png"],
   },
 };
@@ -63,7 +73,7 @@ export default async function CoursePage() {
       {
         "@type": "ItemList",
         name: "Courses — The Dime Technology",
-        url: "/course",
+        url: "https://thedimetechnology.com.np/course",
         itemListElement: courses.map((c, i) => ({
           "@type": "ListItem",
           position: i + 1,

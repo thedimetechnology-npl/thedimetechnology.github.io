@@ -38,7 +38,7 @@ export default function Navbar() {
       >
         <Link href="/" className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.svg" alt="" className="w-8 h-8" />
+          <img src="/logo.svg" alt="The Dime Technology" className="w-8 h-8" />
           <span className="gradient-text">The Dime</span> Technology
         </Link>
 

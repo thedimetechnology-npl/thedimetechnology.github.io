@@ -14,6 +14,16 @@ export const metadata: Metadata = {
     description:
       "What information we collect through our website, how we use it, and how we protect it.",
     type: "article",
+    url: "https://thedimetechnology.com.np/privacy",
+    locale: "en_US",
+    siteName: "The Dime Technology",
+    images: ["/assets/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | The Dime Technology",
+    description:
+      "What information we collect through our website, how we use it, and how we protect it.",
     images: ["/assets/og.png"],
   },
 };

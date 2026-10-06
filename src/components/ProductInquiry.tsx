@@ -114,7 +114,7 @@ export default function ProductInquiry() {
             >
               <div className="flex gap-3 items-start">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={service.icon} alt="" className="w-8 h-8 shrink-0 mt-0.5" />
+                <img src={service.icon} alt={service.title} className="w-8 h-8 shrink-0 mt-0.5" />
                 <div className="min-w-0">
                   <p className="text-sm font-bold mb-1 pr-6">{service.title}</p>
                   <p className="text-[#9898b0] text-xs leading-relaxed">{service.desc}</p>

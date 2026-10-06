@@ -21,7 +21,7 @@ export default function Footer() {
             <div>
               <Link href="/" className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo.svg" alt="" className="w-8 h-8" />
+                <img src="/logo.svg" alt="The Dime Technology" className="w-8 h-8" />
                 <span className="gradient-text">The Dime</span> Technology
               </Link>
               <p className="text-[#9898b0] text-sm leading-relaxed mt-4">
@@ -91,6 +91,7 @@ export default function Footer() {
                   { label: "Team", section: "team" },
                   { label: "Blog", href: "/blog" },
                   { label: "Career", href: "/career" },
+                  { label: "Course", href: "/course" },
                   { label: "Contact", section: "contact" },
                 ].map((link) =>
                   link.section ? (
