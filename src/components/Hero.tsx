@@ -121,15 +121,22 @@ export default function Hero() {
           className="flex gap-4 justify-center mb-14 animate-hero-reveal"
           style={{ animationDelay: "0.45s" }}
         >
-          <ScrollLink section="contact" className="btn-primary">
+          <a
+            href="https://business.thedimetechnology.com.np/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
             Start a Project
-          </ScrollLink>
-          <ScrollLink
-            section="about"
+          </a>
+          <a
+            href="https://www.truelancer.com/freelancer/shahidalam7"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-9 py-3.5 rounded-full text-base font-semibold border border-white/20 text-white hover:border-[#065cc2] hover:bg-[#065cc2]/10 transition-all"
           >
-            Learn More
-          </ScrollLink>
+            Hire Me
+          </a>
         </div>
 
         <div
