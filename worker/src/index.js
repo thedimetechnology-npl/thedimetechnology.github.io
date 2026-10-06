@@ -2,6 +2,10 @@ const COLLECTIONS = ["posts", "testimonials", "clients", "team", "careers", "cou
 const ALLOWED_ORIGINS = [
   "https://thedimetechnology.com.np",
   "https://thedimetechnology-npl.github.io",
+  "https://business.thedimetechnology.com.np",
+  "https://dime-business.pages.dev",
+  "http://localhost:2014",
+  "http://127.0.0.1:2014",
   "http://localhost:3000",
   "http://127.0.0.1:3000",
 ];
