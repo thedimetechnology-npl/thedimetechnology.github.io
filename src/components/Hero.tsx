@@ -104,7 +104,8 @@ export default function Hero() {
           className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-5 animate-hero-reveal"
           style={{ animationDelay: "0.15s" }}
         >
-          Turn Your Project Into <span className="shimmer-text">Reality</span>
+          Turn Your Project Into <span className="shimmer-text">Reality</span> with The Dime
+          Technology
         </h1>
 
         <p

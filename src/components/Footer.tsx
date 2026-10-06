@@ -49,7 +49,7 @@ export default function Footer() {
             </div>
             <div className="grid grid-cols-2 gap-8">
               <div>
-                <h4 className="text-sm font-bold mb-4">Quick Links</h4>
+                <h3 className="text-sm font-bold mb-4">Quick Links</h3>
                 {[
                   { label: "About", section: "about" },
                   { label: "Services", section: "services" },
@@ -86,7 +86,7 @@ export default function Footer() {
                 )}
               </div>
               <div>
-                <h4 className="text-sm font-bold mb-4">Quick Links</h4>
+                <h3 className="text-sm font-bold mb-4">Quick Links</h3>
                 {[
                   { label: "Team", section: "team" },
                   { label: "Blog", href: "/blog" },
@@ -124,7 +124,7 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <h4 className="text-sm font-bold mb-4">Legal</h4>
+              <h3 className="text-sm font-bold mb-4">Legal</h3>
               <Link
                 href="/privacy"
                 className="block text-[#9898b0] text-sm mb-2.5 hover:text-[#2b7de0] transition-colors"
