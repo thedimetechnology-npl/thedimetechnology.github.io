@@ -116,7 +116,7 @@ export default function Team() {
             className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4"
             style={{ background: "rgba(6, 92, 194, 0.12)", color: "#2b7de0" }}
           >
-            Meet the Experts
+            Meet the Core Experts
           </span>
           <h2 className="text-4xl font-extrabold tracking-tight mb-4">
             A Diverse Group of Dedicated Professionals
@@ -210,7 +210,7 @@ export default function Team() {
                 />
                 <div className="absolute top-0 left-0 right-0 p-4">
                   <h3 className="text-base font-bold" style={{ color: "#065cc2" }}>
-                    {member.name}
+                    {member.role}
                   </h3>
                 </div>
                 <div
@@ -222,10 +222,6 @@ export default function Team() {
                     borderRadius: "0 0 12px 12px",
                   }}
                 >
-                  <div className="text-xs text-white/90 mb-1 flex items-start gap-1.5">
-                    <span className="text-[#065cc2] font-bold text-[10px] mt-0.5 shrink-0">&gt;_</span>
-                    {member.role}
-                  </div>
                   <div className="text-xs text-white/80 mb-1 flex items-start gap-1.5">
                     <span className="text-[#065cc2] font-bold text-[10px] mt-0.5 shrink-0">&gt;_</span>
                     {member.experience}
