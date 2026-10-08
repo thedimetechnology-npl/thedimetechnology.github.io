@@ -26,16 +26,9 @@ const COMPANIES = [
   "SapSG & Siga Sys", "SharePro", "System Canada", "TI Systems",
 ];
 
-const CORE_STACK = [
-  "AI", "ASP.Net", "DevOps", "Full-Stack", "Graphic and Video Editing",
-  "Information and Security", "Mobile App", "Moodle LMS", "Network and System",
-  "Programming Language", "Utilities and Scripting", "WordPress", "Zoho",
-];
-
 const STATIC_GROUPS = [
   { key: "country", label: "Country", labels: COUNTRIES },
   { key: "company", label: "Company", labels: COMPANIES },
-  { key: "core", label: "Core Stack", labels: CORE_STACK },
 ];
 
 const VISIBLE_ROWS = 8;
@@ -56,7 +49,7 @@ function getMeta(tags: string[]) {
 }
 
 export default function BlogBrowser({ posts }: { posts: PostCard[] }) {
-  const [open, setOpen] = useState<Record<string, boolean>>({ country: true });
+  const [open, setOpen] = useState<Record<string, boolean>>({ country: true, stacks: true });
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [active, setActive] = useState<string[]>([]);
   const [livePosts, setLivePosts] = useState<PostCard[] | null>(null);
