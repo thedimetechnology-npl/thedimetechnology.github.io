@@ -13,7 +13,7 @@ const navLinks: NavLink[] = [
   { label: "Process", section: "process" },
   { label: "Team", section: "team" },
   { label: "Testimonials", section: "testimonials" },
-  { label: "Blog", href: "/blog" },
+  { label: "Work", href: "/blog" },
   { label: "Contact", section: "contact" },
 ];
 
@@ -66,7 +66,7 @@ export default function Navbar() {
 
         <Link
           href="/book"
-          className="hidden lg:inline-block text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#065cc2]/30"
+          className="hidden lg:inline-block btn-shine text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#065cc2]/30"
           style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
         >
           Book a Call

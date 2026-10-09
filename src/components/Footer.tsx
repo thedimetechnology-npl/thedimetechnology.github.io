@@ -90,7 +90,7 @@ export default function Footer() {
                 <h3 className="text-sm font-bold mb-4">Quick Links</h3>
                 {[
                   { label: "Team", section: "team" },
-                  { label: "Blog", href: "/blog" },
+                  { label: "Work", href: "/blog" },
                   { label: "Career", href: "/career" },
                   { label: "Contact", section: "contact" },
                 ].map((link) =>

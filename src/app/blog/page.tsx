@@ -5,17 +5,18 @@ import BlogBrowser from "@/components/BlogBrowser";
 import { posts } from "@/data/posts";
 
 export const metadata: Metadata = {
-  title: "Blog | The Dime Technology",
+  title: "Work & Case Studies | The Dime Technology",
   description:
-    "Insights, case studies and project write-ups from The Dime Technology — software development, DevOps, mobile apps and AI engineering.",
-  keywords: "tech blog, software development case studies, DevOps, mobile apps, AI, The Dime Technology",
+    "Project write-ups, case studies and engineering notes from The Dime Technology — software development, DevOps, mobile apps and AI projects.",
+  keywords:
+    "tech portfolio, software development case studies, project write-ups, DevOps, mobile apps, AI, The Dime Technology",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Blog | The Dime Technology",
+    title: "Work & Case Studies | The Dime Technology",
     description:
-      "Insights, case studies and project write-ups from The Dime Technology.",
+      "Project write-ups, case studies and engineering notes from The Dime Technology.",
     type: "website",
     url: "https://thedimetechnology.com.np/blog",
     locale: "en_US",
@@ -24,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog | The Dime Technology",
+    title: "Work & Case Studies | The Dime Technology",
     description:
-      "Insights, case studies and project write-ups from The Dime Technology.",
+      "Project write-ups, case studies and engineering notes from The Dime Technology.",
     images: ["/assets/og.png"],
   },
 };
@@ -48,16 +49,16 @@ const jsonLd = {
         {
           "@type": "ListItem",
           position: 2,
-          name: "Blog",
+          name: "Work",
           item: `${BASE_URL}/blog`,
         },
       ],
     },
     {
       "@type": "Blog",
-      name: "The Dime Technology Blog",
+      name: "The Dime Technology Work",
       description:
-        "Insights, case studies and project write-ups from The Dime Technology.",
+        "Project write-ups, case studies and engineering notes from The Dime Technology.",
       url: `${BASE_URL}/blog`,
       blogPost: posts.map((p) => ({
         "@type": "BlogPosting",
@@ -98,7 +99,7 @@ export default function BlogPage() {
               className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4"
               style={{ background: "rgba(6, 92, 194, 0.1)", color: "#2b7de0" }}
             >
-              Blog
+              Work
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
               Insights & <span className="gradient-text">Case Studies</span>

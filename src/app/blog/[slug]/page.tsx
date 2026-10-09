@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!post) return { title: "Post Not Found | The Dime Technology" };
 
   return {
-    title: `${post.title} | The Dime Technology Blog`,
+    title: `${post.title} | The Dime Technology Work`,
     description: post.excerpt,
     keywords: post.tags,
     alternates: {
@@ -83,7 +83,7 @@ export default async function BlogPostPage({
           {
             "@type": "ListItem",
             position: 2,
-            name: "Blog",
+            name: "Work",
             item: "https://thedimetechnology.com.np/blog",
           },
           {
@@ -134,7 +134,7 @@ export default async function BlogPostPage({
             href="/blog"
             className="inline-block text-sm text-[#9898b0] hover:text-[#2b7de0] transition-colors mb-8"
           >
-            ← Back to Blog
+            ← Back to Work
           </Link>
 
           <div className="flex items-center gap-3 mb-5">
