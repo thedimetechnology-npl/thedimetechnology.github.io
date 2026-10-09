@@ -126,7 +126,7 @@ export default function Hero() {
             href="https://business.thedimetechnology.com.np/"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary"
+            className="btn-primary btn-shine"
           >
             Start a Project
           </a>
