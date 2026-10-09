@@ -110,15 +110,12 @@ export default function BookingWizard() {
     const d = new Date();
     d.setDate(d.getDate() + 1);
     while (arr.length < 14) {
-      const dow = d.getDay();
-      if (dow !== 0 && dow !== 6) {
-        arr.push({
-          iso: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`,
-          wd: d.toLocaleDateString("en-US", { weekday: "short" }),
-          day: String(d.getDate()),
-          mon: d.toLocaleDateString("en-US", { month: "short" }),
-        });
-      }
+      arr.push({
+        iso: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`,
+        wd: d.toLocaleDateString("en-US", { weekday: "short" }),
+        day: String(d.getDate()),
+        mon: d.toLocaleDateString("en-US", { month: "short" }),
+      });
       d.setDate(d.getDate() + 1);
     }
     return arr;
