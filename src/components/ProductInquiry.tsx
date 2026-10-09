@@ -164,7 +164,7 @@ export default function ProductInquiry() {
       <button
         type="submit"
         disabled={sending}
-        className="btn-primary btn-shine w-full text-center disabled:opacity-60 disabled:cursor-not-allowed"
+        className="btn-primary btn-glow w-full text-center disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {sending ? "Sending…" : "Send Inquiry"}
       </button>

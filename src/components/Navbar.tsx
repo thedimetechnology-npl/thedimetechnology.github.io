@@ -66,7 +66,7 @@ export default function Navbar() {
 
         <Link
           href="/book"
-          className="hidden lg:inline-block btn-shine text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#065cc2]/30"
+          className="hidden lg:inline-block btn-glow text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#065cc2]/30"
           style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
         >
           Book a Call
@@ -105,6 +105,14 @@ export default function Navbar() {
               </Link>
             )
           )}
+          <Link
+            href="/book"
+            onClick={() => setMenuOpen(false)}
+            className="btn-glow mt-2 inline-block text-center text-white px-7 py-3 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5"
+            style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+          >
+            Book a Call
+          </Link>
         </div>
       )}
     </nav>

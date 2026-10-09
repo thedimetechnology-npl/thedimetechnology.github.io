@@ -491,7 +491,7 @@ export default function BookingWizard() {
             Back
           </button>
           {step < 3 ? (
-            <button type="button" onClick={nextStep} className="btn-primary btn-shine px-8">
+            <button type="button" onClick={nextStep} className="btn-primary btn-glow px-8">
               Continue
             </button>
           ) : (

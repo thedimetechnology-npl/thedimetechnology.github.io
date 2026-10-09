@@ -107,34 +107,23 @@ body {
   box-shadow: 0 12px 32px rgba(6, 92, 194, 0.4);
 }
 
-@keyframes btnShineSweep {
-  0% {
-    transform: translateX(-160%) skewX(-18deg);
-  }
-  55%,
+@keyframes btnGlowPulse {
+  0%,
   100% {
-    transform: translateX(260%) skewX(-18deg);
+    box-shadow:
+      0 0 8px rgba(6, 92, 194, 0.5),
+      0 0 20px rgba(6, 92, 194, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(43, 125, 224, 0.85),
+      0 0 36px rgba(6, 92, 194, 0.5),
+      0 0 56px rgba(6, 92, 194, 0.28);
   }
 }
 
-.btn-shine {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 32%,
-    rgba(255, 255, 255, 0.42) 50%,
-    transparent 68%
-  );
-  transform: translateX(-160%) skewX(-18deg);
-  animation: btnShineSweep 2.8s ease-in-out infinite;
-  pointer-events: none;
+.btn-glow {
+  animation: btnGlowPulse 2.2s ease-in-out infinite;
 }
 
 .card-hover {
@@ -411,8 +400,7 @@ body {
     animation: none !important;
   }
 
-  .btn-shine::after {
+  .btn-glow {
     animation: none !important;
-    content: none !important;
   }
 }
