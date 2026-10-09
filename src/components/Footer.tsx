@@ -54,7 +54,7 @@ export default function Footer() {
                   { label: "About", section: "about" },
                   { label: "Services", section: "services" },
                   { label: "Products", href: "/product" },
-                  { label: "Worldwide", href: "/locations" },
+                  { label: "Explore Courses", href: "/course" },
                   { label: "Process", section: "process" },
                 ].map((link) =>
                   link.section ? (
@@ -92,7 +92,6 @@ export default function Footer() {
                   { label: "Team", section: "team" },
                   { label: "Blog", href: "/blog" },
                   { label: "Career", href: "/career" },
-                  { label: "Course", href: "/course" },
                   { label: "Contact", section: "contact" },
                 ].map((link) =>
                   link.section ? (

@@ -47,3 +47,4 @@ worker/.wrangler/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+dev-server.log

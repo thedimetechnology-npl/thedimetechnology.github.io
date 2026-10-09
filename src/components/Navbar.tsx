@@ -65,11 +65,11 @@ export default function Navbar() {
         </div>
 
         <Link
-          href="/course"
+          href="/book"
           className="hidden lg:inline-block text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#065cc2]/30"
           style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
         >
-          Explore Courses
+          Book a Call
         </Link>
 
         <button

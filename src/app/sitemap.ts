@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/data/posts";
-import { locations } from "@/data/locations";
 
 export const dynamic = "force-static";
 
@@ -51,19 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
-      url: `${BASE_URL}/locations`,
+      url: `${BASE_URL}/book`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
     },
   ];
-
-  const locationPages: MetadataRoute.Sitemap = locations.map((l) => ({
-    url: `${BASE_URL}/locations/${l.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
 
   const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
@@ -72,5 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...home, ...locationPages, ...blogPosts];
+  return [...home, ...blogPosts];
 }
