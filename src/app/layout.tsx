@@ -99,7 +99,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <style dangerouslySetInnerHTML={{ __html: criticalCss }} />
+      <style
+        precedence="default"
+        href="critical-css-0a0a0f"
+        dangerouslySetInnerHTML={{ __html: criticalCss }}
+      />
       <script dangerouslySetInnerHTML={{ __html: cssRetry }} />
       <body className="antialiased">
         {children}
