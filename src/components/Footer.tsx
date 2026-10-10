@@ -4,8 +4,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import ScrollLink from "@/components/ScrollLink";
 
+const PMS_API = "https://dimetechnology-pms.info-thedimetechnology.workers.dev/";
+
 export default function Footer() {
   const [showTop, setShowTop] = useState(false);
+  const [subEmail, setSubEmail] = useState("");
+  const [subMsg, setSubMsg] = useState("");
+  const [subErr, setSubErr] = useState(false);
+  const [subBusy, setSubBusy] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 400);
@@ -137,6 +143,70 @@ export default function Footer() {
               >
                 Terms of Service
               </Link>
+              <div className="mt-6">
+                <h3 className="text-sm font-bold mb-2">Get updates</h3>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const email = subEmail.trim();
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+                      setSubErr(true);
+                      setSubMsg("Please enter a valid email address.");
+                      return;
+                    }
+                    setSubBusy(true);
+                    setSubMsg("");
+                    try {
+                      const r = await fetch(PMS_API, {
+                        method: "POST",
+                        headers: { "Content-Type": "text/plain;charset=utf-8" },
+                        body: JSON.stringify({
+                          action: "saveEmail",
+                          email,
+                          site: location.host,
+                          page: location.pathname,
+                        }),
+                      });
+                      const j = await r.json();
+                      if (j && j.ok) {
+                        setSubErr(false);
+                        setSubMsg("Thanks — you are subscribed ✓");
+                        setSubEmail("");
+                      } else {
+                        setSubErr(true);
+                        setSubMsg((j && j.error) || "Could not subscribe — please try again.");
+                      }
+                    } catch {
+                      setSubErr(true);
+                      setSubMsg("Could not subscribe — please try again.");
+                    } finally {
+                      setSubBusy(false);
+                    }
+                  }}
+                  className="flex gap-2 max-w-sm"
+                >
+                  <input
+                    type="email"
+                    required
+                    value={subEmail}
+                    onChange={(e) => setSubEmail(e.target.value)}
+                    placeholder="you@email.com"
+                    aria-label="Email address"
+                    className="flex-1 min-w-0 px-4 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm text-white placeholder:text-[#5a5a72] focus:outline-none focus:border-[#065cc2]"
+                  />
+                  <button
+                    type="submit"
+                    disabled={subBusy}
+                    className="shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold text-white border-none cursor-pointer disabled:opacity-60"
+                    style={{ background: "linear-gradient(135deg, #065cc2, #2b7de0)" }}
+                  >
+                    {subBusy ? "…" : "Join"}
+                  </button>
+                </form>
+                <p className={`text-xs mt-2 ${subErr ? "text-red-400" : "text-[#5a5a72]"}`}>
+                  {subMsg || "Product news and offers — unsubscribe anytime."}
+                </p>
+              </div>
             </div>
           </div>
           <div className="border-t border-white/5 pt-6 text-center">
