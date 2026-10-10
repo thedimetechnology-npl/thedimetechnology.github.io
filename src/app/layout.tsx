@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Tracker from "@/components/Tracker";
 
 export const viewport: Viewport = {
   themeColor: "#0a0a0f",
@@ -73,6 +74,7 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         <WhatsAppButton />
+        <Tracker />
       </body>
     </html>
   );
