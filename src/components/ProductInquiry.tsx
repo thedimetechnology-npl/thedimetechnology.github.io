@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { services } from "@/data/services";
 
-const INQUIRY_ENDPOINT = "https://formspree.io/f/mgavdrrz";
+const INQUIRY_ENDPOINT = "https://formspree.io/f/mnpjakwb";
 
 export default function ProductInquiry() {
   const [selected, setSelected] = useState<string[]>([]);
