@@ -64,6 +64,34 @@ export const metadata: Metadata = {
   },
 };
 
+const criticalCss = `
+  html, body { background: #0a0a0f; }
+  body { color: #f0f0f5; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+`;
+
+const cssRetry = `
+  (function () {
+    function check() {
+      try {
+        var sheets = document.styleSheets, ok = false;
+        for (var i = 0; i < sheets.length; i++) {
+          if (sheets[i].href && sheets[i].href.indexOf('_next/static') !== -1) { ok = true; break; }
+        }
+        if (ok) return;
+        if (sessionStorage.getItem('__cssRetry')) return;
+        sessionStorage.setItem('__cssRetry', '1');
+        var u = new URL(location.href);
+        u.searchParams.set('_', Date.now());
+        location.replace(u.toString());
+      } catch (e) {}
+    }
+    if (document.readyState === 'complete') check();
+    else window.addEventListener('load', check);
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -71,6 +99,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <style dangerouslySetInnerHTML={{ __html: criticalCss }} />
+      <script dangerouslySetInnerHTML={{ __html: cssRetry }} />
       <body className="antialiased">
         {children}
         <WhatsAppButton />
