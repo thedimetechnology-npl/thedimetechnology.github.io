@@ -108,7 +108,6 @@ export default function BookingWizard() {
   const days = useMemo(() => {
     const arr: { iso: string; wd: string; day: string; mon: string }[] = [];
     const d = new Date();
-    d.setDate(d.getDate() + 1);
     while (arr.length < 14) {
       arr.push({
         iso: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`,
