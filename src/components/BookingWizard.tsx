@@ -54,6 +54,7 @@ type Form = {
   company: string;
   role: string;
   nda: boolean;
+  paymentMethod: "direct" | "card" | "bank-transfer" | "";
 };
 
 const EMPTY: Form = {
@@ -69,6 +70,7 @@ const EMPTY: Form = {
   company: "",
   role: "",
   nda: false,
+  paymentMethod: "",
 };
 
 function Chip({
@@ -168,6 +170,7 @@ export default function BookingWizard() {
           company: form.company,
           role: form.role,
           nda: form.nda ? "Yes" : "No",
+          paymentMethod: form.paymentMethod,
         }),
       });
       const data = (await res.json().catch(() => null)) as {
@@ -431,6 +434,67 @@ export default function BookingWizard() {
                 I would like to sign an NDA before discussing my project.
               </span>
             </label>
+            <div className="mt-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#9898b0] mb-2">
+                Payment Method
+              </h3>
+              <div className="flex gap-4">
+                <label
+                  className="flex items-center gap-2 cursor-pointer selectable"
+                  onClick={() => set("paymentMethod", "direct")}
+                  style={{
+                    color: form.paymentMethod === "direct" ? "#2b7de0" : "#9898b0",
+                    borderColor: form.paymentMethod === "direct" ? "rgba(6, 92, 194, 0.6)" : "rgba(255, 255, 255, 0.15)",
+                    background: form.paymentMethod === "direct" ? "rgba(6, 92, 194, 0.1)" : "transparent",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="direct"
+                    checked={form.paymentMethod === "direct"}
+                    style={{ display: "none" }}
+                  />
+                  <span>Direct Payment</span>
+                </label>
+                <label
+                  className="flex items-center gap-2 cursor-pointer selectable"
+                  onClick={() => set("paymentMethod", "card")}
+                  style={{
+                    color: form.paymentMethod === "card" ? "#2b7de0" : "#9898b0",
+                    borderColor: form.paymentMethod === "card" ? "rgba(6, 92, 194, 0.6)" : "rgba(255, 255, 255, 0.15)",
+                    background: form.paymentMethod === "card" ? "rgba(6, 92, 194, 0.1)" : "transparent",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="card"
+                    checked={form.paymentMethod === "card"}
+                    style={{ display: "none" }}
+                  />
+                  <span>Credit/Debit Card</span>
+                </label>
+                <label
+                  className="flex items-center gap-2 cursor-pointer selectable"
+                  onClick={() => set("paymentMethod", "bank-transfer")}
+                  style={{
+                    color: form.paymentMethod === "bank-transfer" ? "#2b7de0" : "#9898b0",
+                    borderColor: form.paymentMethod === "bank-transfer" ? "rgba(6, 92, 194, 0.6)" : "rgba(255, 255, 255, 0.15)",
+                    background: form.paymentMethod === "bank-transfer" ? "rgba(6, 92, 194, 0.1)" : "transparent",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="bank-transfer"
+                    checked={form.paymentMethod === "bank-transfer"}
+                    style={{ display: "none" }}
+                  />
+                  <span>Bank Transfer</span>
+                </label>
+              </div>
+            </div>
           </div>
         )}
 
@@ -452,6 +516,7 @@ export default function BookingWizard() {
                 ["Email", form.email || "—"],
                 ["NDA", form.nda ? "Yes" : "No"],
                 ["Brief", form.brief || "—"],
+                ["Payment Method", form.paymentMethod || "—"],
               ].map(([label, value], i) => (
                 <div
                   key={label}
